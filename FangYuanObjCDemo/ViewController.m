@@ -49,8 +49,6 @@
     [self.view addSubview:view3];
     view3.backgroundColor = [UIColor greenColor];
     
-    NSLog(@"%f",view2.chainRight);
-    
     view3
     .fy_bottom(view2.chainTop)
     .fy_top(50)
