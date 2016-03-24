@@ -20,9 +20,15 @@
     [super viewDidLoad];
 
     FYView *v = [FYView new];
+    v.backgroundColor = [UIColor redColor];
     [self.view addSubview:v];
     
-    v.fy_top(20);
+    v
+    .fy_top(20)
+    .fy_left(20)
+    .fy_height(100)
+    .fy_width(100);
+    
 }
 
 - (void)dealloc {

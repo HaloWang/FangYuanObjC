@@ -88,8 +88,15 @@ static int fyWidth;
 
 - (Constraint)fy_height {
     if (!objc_getAssociatedObject(self, &fyHeight)) {
+        
+        
         __weak typeof(self) weakSelf = self;
-        Constraint cb = ^(CGFloat bottom) {
+        Constraint cb = ^(CGFloat height) {
+            
+            CGRect frame = self.frame;
+            frame.size.height = height;
+            self.frame = frame;
+            
             // TODO: ⚠️ 未完成
             return weakSelf;
         };
@@ -101,7 +108,12 @@ static int fyWidth;
 - (Constraint)fy_left {
     if (!objc_getAssociatedObject(self, &fyLeft)) {
         __weak typeof(self) weakSelf = self;
-        Constraint cb = ^(CGFloat bottom) {
+        Constraint cb = ^(CGFloat left) {
+            
+            CGRect frame = self.frame;
+            frame.origin.x = left;
+            self.frame = frame;
+            
             // TODO: ⚠️ 未完成
             return weakSelf;
         };
@@ -125,8 +137,13 @@ static int fyWidth;
 - (Constraint)fy_width {
     if (!objc_getAssociatedObject(self, &fyWidth)) {
         __weak typeof(self) weakSelf = self;
-        Constraint cb = ^(CGFloat bottom) {
+        Constraint cb = ^(CGFloat width) {
             // TODO: ⚠️ 未完成
+            
+            CGRect frame = self.frame;
+            frame.size.width = width;
+            self.frame = frame;
+            
             return weakSelf;
         };
         objc_setAssociatedObject(self, &fyWidth, cb, OBJC_ASSOCIATION_RETAIN);
