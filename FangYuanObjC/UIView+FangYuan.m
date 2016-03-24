@@ -207,6 +207,8 @@ static int keyY;
             frame.origin.x = fyWidth(self.superview) - fyWidth(self) - self.rulerX.z.value;
         }
 
+        self.frame = frame;
+
         return self;
     };
 }
