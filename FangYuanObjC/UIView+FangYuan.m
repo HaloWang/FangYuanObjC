@@ -65,7 +65,7 @@ static int keyY;
 
 #pragma mark - Chainable Blocks
 
-#pragma mark - ruler Y
+#pragma mark Ruler Y
 
 - (Constraint)fy_top {
     return ^(CGFloat top) {
@@ -141,7 +141,7 @@ static int keyY;
     };
 }
 
-#pragma mark - ruler X
+#pragma mark Ruler X
 
 - (Constraint)fy_left {
     return ^(CGFloat left) {
