@@ -29,8 +29,8 @@ static int keyY;
 @interface UIView ()
 
 @property (nonatomic, assign, readonly) BOOL hasSuperview;
-@property (nonatomic, assign, readonly) FYRuler rulerX;
-@property (nonatomic, assign, readonly) FYRuler rulerY;
+@property (nonatomic, assign, readonly) FYRuler *rulerX;
+@property (nonatomic, assign, readonly) FYRuler *rulerY;
 
 @end
 
@@ -45,28 +45,22 @@ static int keyY;
 
 #pragma mark - Associated Object
 
-#warning 频繁的初始化 NSData ？！真的比直接使用 NSObject 简单吗？！
-
-- (FYRuler)rulerX {
-    if (!objc_getAssociatedObject(self, &keyX)) {
-        objc_setAssociatedObject(self, &keyX, NSDataFromRuler(FYRulerMakeZero()), OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+- (FYRuler *)rulerX {
+    FYRuler *rulerX = objc_getAssociatedObject(self, &keyX);
+    if (rulerX == nil) {
+        objc_setAssociatedObject(self, &keyX, [FYRuler new], OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+        return objc_getAssociatedObject(self, &keyX);
     }
-    return FYRulerFromData(objc_getAssociatedObject(self, &keyX));
+    return rulerX;
 }
 
-- (void)setRulerX:(FYRuler)rulerX {
-    objc_setAssociatedObject(self, &keyX, NSDataFromRuler(rulerX), OBJC_ASSOCIATION_RETAIN_NONATOMIC);
-}
-
-- (FYRuler)rulerY {
+- (FYRuler *)rulerY {
+    FYRuler *rulerY = objc_getAssociatedObject(self, &keyY);
     if (!objc_getAssociatedObject(self, &keyY)) {
-        objc_setAssociatedObject(self, &keyY, NSDataFromRuler(FYRulerMakeZero()), OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+        objc_setAssociatedObject(self, &keyY, [FYRuler new], OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+        return objc_getAssociatedObject(self, &keyX);
     }
-    return FYRulerFromData(objc_getAssociatedObject(self, &keyY));
-}
-
-- (void)setRulerY:(FYRuler)rulerY {
-    objc_setAssociatedObject(self, &keyY, NSDataFromRuler(rulerY), OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+    return rulerY;
 }
 
 #pragma mark - Chainable Blocks
@@ -77,9 +71,7 @@ static int keyY;
     return ^(CGFloat top) {
         
         //  Set ruler
-        FYRuler rulerY = self.rulerY;
-        rulerY.x       = FYFloatMake(top);
-        self.rulerY    = rulerY;
+        self.rulerY.x       = FYFloatMake(top);
         
         //  Set frame
         CGRect frame   = self.frame;
@@ -105,9 +97,7 @@ static int keyY;
     return ^(CGFloat bottom) {
         
         //  Set ruler
-        FYRuler rulerY    = self.rulerY;
-        rulerY.z          = FYFloatMake(bottom);
-        self.rulerY       = rulerY;
+        self.rulerY.z          = FYFloatMake(bottom);
         
         //  Check superview
         if (!self.hasSuperview) {
@@ -130,9 +120,7 @@ static int keyY;
     return ^(CGFloat height) {
         
         //  Set ruler
-        FYRuler rulerY    = self.rulerY;
-        rulerY.y          = FYFloatMake(height);
-        self.rulerY       = rulerY;
+        self.rulerY.y          = FYFloatMake(height);
         
         //  Set frame
         CGRect frame      = self.frame;
@@ -158,9 +146,7 @@ static int keyY;
 - (Constraint)fy_left {
     return ^(CGFloat left) {
         
-        FYRuler rulerX    = self.rulerX;
-        rulerX.x          = FYFloatMake(left);
-        self.rulerX       = rulerX;
+        self.rulerX.x          = FYFloatMake(left);
         
         CGRect frame = self.frame;
         frame.origin.x = left;
@@ -182,9 +168,7 @@ static int keyY;
 - (Constraint)fy_right {
     return ^(CGFloat right) {
         
-        FYRuler rulerX    = self.rulerX;
-        rulerX.z          = FYFloatMake(right);
-        self.rulerX       = rulerX;
+        self.rulerX.z          = FYFloatMake(right);
         
         if (!self.hasSuperview) {
             return self;
@@ -205,10 +189,8 @@ static int keyY;
 
 - (Constraint)fy_width {
     return ^(CGFloat width) {
-        
-        FYRuler rulerX = self.rulerX;
-        rulerX.y = FYFloatMake(width);
-        self.rulerX = rulerX;
+
+        self.rulerX.y = FYFloatMake(width);
         
         CGRect frame = self.frame;
         frame.size.width = width;

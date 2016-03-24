@@ -25,20 +25,11 @@ typedef NS_ENUM(NSUInteger, FYDimension) {
     FYDimensionZ,
 };
 
-struct FYRuler {
-    FYDimension last;
-    FYFloat x;
-    FYFloat y;
-    FYFloat z;
-};
-typedef struct FYRuler FYRuler;
+@interface FYRuler : NSObject
 
-FYRuler FYRulerMakeZero();
+@property (nonatomic, assign) FYDimension last;
+@property (nonatomic, assign) FYFloat x;
+@property (nonatomic, assign) FYFloat y;
+@property (nonatomic, assign) FYFloat z;
 
-void setRulerX(FYRuler ruler, CGFloat x);
-void setRulerY(FYRuler ruler, CGFloat y);
-void setRulerZ(FYRuler ruler, CGFloat z);
-
-NSData *NSDataFromRuler(FYRuler ruler);
-
-FYRuler FYRulerFromData(NSData *data);
+@end

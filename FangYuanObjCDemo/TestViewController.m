@@ -9,7 +9,6 @@
 #import "TestViewController.h"
 #import "UIView+FangYuan.h"
 #import "FYView.h"
-#import "FangYuan.h"
 
 
 @interface TestViewController ()
@@ -29,16 +28,12 @@
     .fy_top(100)
     .fy_left(20)
     .fy_bottom(100)
-    .fy_right(0);
-    
-    FYRuler fy = FYRulerMakeZero();
-    fy.x = FYFloatMake(8);
-    
-    NSData *data = [NSData dataWithBytes:&fy length:sizeof(fy)];
-    
-    FYRuler zz;
-    
-    [data getBytes:&zz length:sizeof(zz)];
+    .fy_right(0)
+    .fy_right(50)
+    .fy_left(50)
+    .fy_bottom(-50)
+    .fy_top(200);
+
 }
 
 - (void)dealloc {
