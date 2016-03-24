@@ -13,15 +13,12 @@
 CGFloat fyHeight(UIView *view) {
     return view.frame.size.height;
 }
-
 CGFloat fyWidth(UIView *view) {
     return view.frame.size.width;
 }
-
 CGFloat fyX(UIView *view) {
     return view.frame.origin.x;
 }
-
 CGFloat fyY(UIView *view) {
     return view.frame.origin.y;
 }

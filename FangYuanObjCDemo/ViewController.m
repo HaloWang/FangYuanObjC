@@ -45,6 +45,18 @@
     .fy_right(view1.chainLeft);
 
 
+    UIView *view3 = [UIView new];
+    [self.view addSubview:view3];
+    view3.backgroundColor = [UIColor greenColor];
+    
+    NSLog(@"%f",view2.chainRight);
+    
+    view3
+    .fy_bottom(view2.chainTop)
+    .fy_top(50)
+    .fy_left(view1.chainRight + 50)
+    .fy_width(25);
+
 }
 
 - (void)didReceiveMemoryWarning {
