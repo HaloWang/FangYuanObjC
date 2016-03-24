@@ -7,6 +7,7 @@
 //
 
 #import "ViewController.h"
+#import "UIView+FangYuan.h"
 
 @interface ViewController ()
 
@@ -17,9 +18,19 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        [self.button sendActionsForControlEvents:UIControlEventTouchUpInside];
-    });
+    UIView *v = [UIView new];
+    [self.view addSubview:v];
+    v.backgroundColor = [UIColor redColor];
+    
+    v
+    .fy_top(100)
+    .fy_left(20)
+    .fy_bottom(100)
+    .fy_right(0)
+    .fy_right(50)
+    .fy_left(50)
+    .fy_bottom(-50)
+    .fy_top(200);
 }
 
 - (void)didReceiveMemoryWarning {

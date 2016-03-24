@@ -15,13 +15,6 @@ FYFloat FYFloatMake(CGFloat value) {
     return ruler;
 }
 
-FYFloat FYFloatMakeZero() {
-    FYFloat fyFloat;
-    fyFloat.value = 0;
-    fyFloat.enable = NO;
-    return fyFloat;
-}
-
 @implementation FYRuler
 
 - (void)setX:(FYFloat)x {
