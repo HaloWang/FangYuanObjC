@@ -9,6 +9,8 @@
 #import "TestViewController.h"
 #import "UIView+FangYuan.h"
 #import "FYView.h"
+#import "FangYuan.h"
+
 
 @interface TestViewController ()
 
@@ -20,15 +22,23 @@
     [super viewDidLoad];
 
     FYView *v = [FYView new];
-    v.backgroundColor = [UIColor redColor];
     [self.view addSubview:v];
+    v.backgroundColor = [UIColor redColor];
     
     v
-    .fy_top(20)
+    .fy_top(100)
     .fy_left(20)
-    .fy_height(100)
-    .fy_width(100);
+    .fy_bottom(100)
+    .fy_right(0);
     
+    FYRuler fy = FYRulerMakeZero();
+    fy.x = FYFloatMake(8);
+    
+    NSData *data = [NSData dataWithBytes:&fy length:sizeof(fy)];
+    
+    FYRuler zz;
+    
+    [data getBytes:&zz length:sizeof(zz)];
 }
 
 - (void)dealloc {

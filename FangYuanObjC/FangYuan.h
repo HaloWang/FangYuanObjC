@@ -7,13 +7,38 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <CoreGraphics/CoreGraphics.h>
 
-typedef NS_ENUM(NSUInteger, FangYuanConstraintDimension) {
-    FangYuanConstraintDimensionX,
-    FangYuanConstraintDimensionY,
-    FangYuanConstraintDimensionZ,
+struct FYFloat {
+    BOOL enable;
+    CGFloat value;
+};
+typedef struct FYFloat FYFloat;
+
+FYFloat FYFloatMake(CGFloat value);
+FYFloat FYFloatMakeZero();
+
+typedef NS_ENUM(NSUInteger, FYDimension) {
+    FYDimensionNone,
+    FYDimensionX,
+    FYDimensionY,
+    FYDimensionZ,
 };
 
-@interface FangYuan : NSObject
+struct FYRuler {
+    FYDimension last;
+    FYFloat x;
+    FYFloat y;
+    FYFloat z;
+};
+typedef struct FYRuler FYRuler;
 
-@end
+FYRuler FYRulerMakeZero();
+
+void setRulerX(FYRuler ruler, CGFloat x);
+void setRulerY(FYRuler ruler, CGFloat y);
+void setRulerZ(FYRuler ruler, CGFloat z);
+
+NSData *NSDataFromRuler(FYRuler ruler);
+
+FYRuler FYRulerFromData(NSData *data);

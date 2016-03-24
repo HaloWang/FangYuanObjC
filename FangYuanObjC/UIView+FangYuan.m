@@ -10,20 +10,27 @@
 #import "FangYuan.h"
 #import <objc/runtime.h>
 
+CGFloat GetHeight(UIView *view) {
+    return view.frame.size.height;
+}
+CGFloat GetWidth(UIView *view) {
+    return view.frame.size.width;
+}
+CGFloat GetX(UIView *view) {
+    return view.frame.origin.x;
+}
+CGFloat GetY(UIView *view) {
+    return view.frame.origin.y;
+}
+
 static int keyX;
 static int keyY;
-static int fyTop;
-static int fyBottom;
-static int fyLeft;
-static int fyRight;
-static int fyHeight;
-static int fyWidth;
 
 @interface UIView ()
 
 @property (nonatomic, assign, readonly) BOOL hasSuperview;
-@property (nonatomic, strong, readonly) NSMutableArray *fangYuanX;
-@property (nonatomic, strong, readonly) NSMutableArray *fangYuanY;
+@property (nonatomic, assign, readonly) FYRuler rulerX;
+@property (nonatomic, assign, readonly) FYRuler rulerY;
 
 @end
 
@@ -38,117 +45,185 @@ static int fyWidth;
 
 #pragma mark - Associated Object
 
-- (NSMutableArray *)fangYuanX {
+#warning 频繁的初始化 NSData ？！真的比直接使用 NSObject 简单吗？！
+
+- (FYRuler)rulerX {
     if (!objc_getAssociatedObject(self, &keyX)) {
-        objc_setAssociatedObject(self, &keyX, @[].mutableCopy, OBJC_ASSOCIATION_RETAIN);
+        objc_setAssociatedObject(self, &keyX, NSDataFromRuler(FYRulerMakeZero()), OBJC_ASSOCIATION_RETAIN_NONATOMIC);
     }
-    return objc_getAssociatedObject(self, &keyX);
+    return FYRulerFromData(objc_getAssociatedObject(self, &keyX));
 }
 
-- (NSMutableArray *)fangYuanY {
+- (void)setRulerX:(FYRuler)rulerX {
+    objc_setAssociatedObject(self, &keyX, NSDataFromRuler(rulerX), OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+}
+
+- (FYRuler)rulerY {
     if (!objc_getAssociatedObject(self, &keyY)) {
-        objc_setAssociatedObject(self, &keyY, @[].mutableCopy, OBJC_ASSOCIATION_RETAIN);
+        objc_setAssociatedObject(self, &keyY, NSDataFromRuler(FYRulerMakeZero()), OBJC_ASSOCIATION_RETAIN_NONATOMIC);
     }
-    return objc_getAssociatedObject(self, &keyY);
+    return FYRulerFromData(objc_getAssociatedObject(self, &keyY));
+}
+
+- (void)setRulerY:(FYRuler)rulerY {
+    objc_setAssociatedObject(self, &keyY, NSDataFromRuler(rulerY), OBJC_ASSOCIATION_RETAIN_NONATOMIC);
 }
 
 #pragma mark - Chainable Blocks
 
+#pragma mark - ruler Y
+
 - (Constraint)fy_top {
-    if (!objc_getAssociatedObject(self, &fyTop)) {
-        __weak typeof(self) weakSelf = self;
-        Constraint cb = ^(CGFloat top) {
-            
-            CGRect frame = self.frame;
-            frame.origin.y = top;
-            self.frame = frame;
-            
-            if (self.hasSuperview) {
-                // TODO: ⚠️ 未完成
-            }
-            
-            return weakSelf;
-        };
-        objc_setAssociatedObject(self, &fyTop, cb, OBJC_ASSOCIATION_RETAIN);
-    }
-    return objc_getAssociatedObject(self, &fyTop);
+    return ^(CGFloat top) {
+        
+        //  Set ruler
+        FYRuler rulerY = self.rulerY;
+        rulerY.x       = FYFloatMake(top);
+        self.rulerY    = rulerY;
+        
+        //  Set frame
+        CGRect frame   = self.frame;
+        frame.origin.y = top;
+        self.frame     = frame;
+        
+        //  Check superview
+        if (!self.hasSuperview) {
+            return self;
+        }
+        
+        //  use value stored in ruler to change frame
+        if (self.rulerY.z.enable) {
+            frame.size.height = GetHeight(self.superview) - top - self.rulerY.z.value;
+        }
+        self.frame = frame;
+        
+        return self;
+    };
 }
 
 - (Constraint)fy_bottom {
-    if (!objc_getAssociatedObject(self, &fyBottom)) {
-        __weak typeof(self) weakSelf = self;
-        Constraint cb = ^(CGFloat bottom) {
-            // TODO: ⚠️ 未完成
-            return weakSelf;
-        };
-        objc_setAssociatedObject(self, &fyBottom, cb, OBJC_ASSOCIATION_RETAIN);
-    }
-    return objc_getAssociatedObject(self, &fyBottom);
+    return ^(CGFloat bottom) {
+        
+        //  Set ruler
+        FYRuler rulerY    = self.rulerY;
+        rulerY.z          = FYFloatMake(bottom);
+        self.rulerY       = rulerY;
+        
+        //  Check superview
+        if (!self.hasSuperview) {
+            return self;
+        }
+        
+        //  use value stored in ruler to change frame
+        CGRect frame = self.frame;
+        if (self.rulerY.x.enable) {
+            frame.size.height = GetHeight(self.superview) - GetY(self) - self.rulerY.z.value;
+        } else {
+            frame.origin.y = GetHeight(self.superview) - GetHeight(self) - self.rulerY.z.value;
+        }
+        self.frame = frame;
+        return self;
+    };
 }
 
 - (Constraint)fy_height {
-    if (!objc_getAssociatedObject(self, &fyHeight)) {
+    return ^(CGFloat height) {
         
+        //  Set ruler
+        FYRuler rulerY    = self.rulerY;
+        rulerY.y          = FYFloatMake(height);
+        self.rulerY       = rulerY;
         
-        __weak typeof(self) weakSelf = self;
-        Constraint cb = ^(CGFloat height) {
-            
-            CGRect frame = self.frame;
-            frame.size.height = height;
-            self.frame = frame;
-            
-            // TODO: ⚠️ 未完成
-            return weakSelf;
-        };
-        objc_setAssociatedObject(self, &fyHeight, cb, OBJC_ASSOCIATION_RETAIN);
-    }
-    return objc_getAssociatedObject(self, &fyHeight);
+        //  Set frame
+        CGRect frame      = self.frame;
+        frame.size.height = height;
+        self.frame        = frame;
+        
+        //  Check superview
+        if (!self.hasSuperview) {
+            return self;
+        }
+        
+        //  use value stored in ruler to change frame
+        if (self.rulerY.z.enable) {
+            frame.origin.y = GetHeight(self.superview) - GetHeight(self) - self.rulerY.z.value;
+        }
+        self.frame = frame;
+        return self;
+    };
 }
 
+#pragma mark - ruler X
+
 - (Constraint)fy_left {
-    if (!objc_getAssociatedObject(self, &fyLeft)) {
-        __weak typeof(self) weakSelf = self;
-        Constraint cb = ^(CGFloat left) {
-            
-            CGRect frame = self.frame;
-            frame.origin.x = left;
-            self.frame = frame;
-            
-            // TODO: ⚠️ 未完成
-            return weakSelf;
-        };
-        objc_setAssociatedObject(self, &fyLeft, cb, OBJC_ASSOCIATION_RETAIN);
-    }
-    return objc_getAssociatedObject(self, &fyLeft);
+    return ^(CGFloat left) {
+        
+        FYRuler rulerX    = self.rulerX;
+        rulerX.x          = FYFloatMake(left);
+        self.rulerX       = rulerX;
+        
+        CGRect frame = self.frame;
+        frame.origin.x = left;
+        self.frame = frame;
+        
+        if (!self.hasSuperview) {
+            return self;
+        }
+        
+        if (self.rulerX.z.enable) {
+            frame.size.width = GetWidth(self.superview) - left - self.rulerX.z.value;
+        }
+        
+        self.frame = frame;
+        return self;
+    };
 }
 
 - (Constraint)fy_right {
-    if (!objc_getAssociatedObject(self, &fyRight)) {
-        __weak typeof(self) weakSelf = self;
-        Constraint cb = ^(CGFloat bottom) {
-            // TODO: ⚠️ 未完成
-            return weakSelf;
-        };
-        objc_setAssociatedObject(self, &fyRight, cb, OBJC_ASSOCIATION_RETAIN);
-    }
-    return objc_getAssociatedObject(self, &fyRight);
+    return ^(CGFloat right) {
+        
+        FYRuler rulerX    = self.rulerX;
+        rulerX.z          = FYFloatMake(right);
+        self.rulerX       = rulerX;
+        
+        if (!self.hasSuperview) {
+            return self;
+        }
+        
+        CGRect frame = self.frame;
+        if (self.rulerX.x.enable) {
+            frame.size.width = GetWidth(self.superview) - GetX(self) - self.rulerX.z.value;
+        } else {
+            frame.origin.x = GetWidth(self.superview) - GetWidth(self) - self.rulerX.z.value;
+        }
+
+        self.frame = frame;
+        
+        return self;
+    };
 }
 
 - (Constraint)fy_width {
-    if (!objc_getAssociatedObject(self, &fyWidth)) {
-        __weak typeof(self) weakSelf = self;
-        Constraint cb = ^(CGFloat width) {
-            // TODO: ⚠️ 未完成
-            
-            CGRect frame = self.frame;
-            frame.size.width = width;
-            self.frame = frame;
-            
-            return weakSelf;
-        };
-        objc_setAssociatedObject(self, &fyWidth, cb, OBJC_ASSOCIATION_RETAIN);
-    }
-    return objc_getAssociatedObject(self, &fyWidth);
+    return ^(CGFloat width) {
+        
+        FYRuler rulerX = self.rulerX;
+        rulerX.y = FYFloatMake(width);
+        self.rulerX = rulerX;
+        
+        CGRect frame = self.frame;
+        frame.size.width = width;
+        self.frame = frame;
+        
+        if (!self.hasSuperview) {
+            return self;
+        }
+        
+        if (self.rulerX.z.enable) {
+            frame.origin.x = GetWidth(self.superview) - GetWidth(self) - self.rulerX.z.value;
+        }
+        
+        return self;
+    };
 }
 
 #pragma mark - Chainable Getters
