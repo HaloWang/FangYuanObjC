@@ -232,7 +232,7 @@ static int keyY;
 
 - (CGFloat)chainLeft {
     if (self.hasSuperview) {
-        return self.superview.frame.size.width + self.frame.origin.x;
+        return self.superview.frame.size.width - self.frame.origin.x;
     }
     return 0;
 }

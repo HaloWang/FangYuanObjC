@@ -18,19 +18,33 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    UIView *v = [UIView new];
-    [self.view addSubview:v];
-    v.backgroundColor = [UIColor redColor];
+    UIView *view1 = [UIView new];
+    [self.view addSubview:view1];
+    view1.backgroundColor = [UIColor redColor];
     
-    v
+    view1
+    .fy_bottom(-50)
     .fy_top(100)
     .fy_left(20)
     .fy_bottom(100)
     .fy_right(0)
     .fy_right(50)
     .fy_left(50)
-    .fy_bottom(-50)
-    .fy_top(200);
+    .fy_top(200)
+    .fy_width(50)
+    .fy_height(200);
+
+    UIView *view2 = [UIView new];
+    [self.view addSubview:view2];
+    view2.backgroundColor = [UIColor blueColor];
+
+    view2
+    .fy_bottom(50)
+    .fy_top(view1.chainBottom)
+    .fy_left(10)
+    .fy_right(view1.chainLeft);
+
+
 }
 
 - (void)didReceiveMemoryWarning {
