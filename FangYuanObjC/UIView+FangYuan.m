@@ -58,7 +58,7 @@ static int keyY;
     FYRuler *rulerY = objc_getAssociatedObject(self, &keyY);
     if (!objc_getAssociatedObject(self, &keyY)) {
         objc_setAssociatedObject(self, &keyY, [FYRuler new], OBJC_ASSOCIATION_RETAIN_NONATOMIC);
-        return objc_getAssociatedObject(self, &keyX);
+        return objc_getAssociatedObject(self, &keyY);
     }
     return rulerY;
 }

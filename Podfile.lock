@@ -1,0 +1,13 @@
+PODS:
+  - HaloObjC (0.1.1)
+  - Reveal-iOS-SDK (1.6.2)
+
+DEPENDENCIES:
+  - HaloObjC
+  - Reveal-iOS-SDK
+
+SPEC CHECKSUMS:
+  HaloObjC: fbd2cd1158d0f825d24dbaace1dcd570a7d59888
+  Reveal-iOS-SDK: e2250b3c155bcfac53ae223ddc1f76d08f206c33
+
+COCOAPODS: 0.39.0
