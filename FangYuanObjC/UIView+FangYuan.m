@@ -29,7 +29,9 @@ static int keyY;
 @interface UIView ()
 
 @property (nonatomic, assign, readonly) BOOL hasSuperview;
+/// 横轴标尺
 @property (nonatomic, assign, readonly) FYRuler *rulerX;
+/// 纵轴标尺
 @property (nonatomic, assign, readonly) FYRuler *rulerY;
 
 @end
