@@ -7,7 +7,7 @@
 //
 
 #import "ViewController.h"
-#import "UIView+FangYuan.h"
+#import <FangYuanObjC/UIView+FangYuan.h>
 
 @interface ViewController ()
 

@@ -30,13 +30,6 @@
 			<key>isa</key>
 			<string>PBXBuildFile</string>
 		</dict>
-		<key>0C4B3BDA5C7B0982FF3D49BDA493B525</key>
-		<dict>
-			<key>fileRef</key>
-			<string>5485BCF05CEC72D50E87A8F3B361A419</string>
-			<key>isa</key>
-			<string>PBXBuildFile</string>
-		</dict>
 		<key>0D4CE96F0C93B7614E23D5CC00B62597</key>
 		<dict>
 			<key>children</key>
@@ -53,6 +46,21 @@
 			<string>../Target Support Files/HaloObjC</string>
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
+		</dict>
+		<key>0DC83C5EFCF5245B8A5AD6649B03DE23</key>
+		<dict>
+			<key>explicitFileType</key>
+			<string>archive.ar</string>
+			<key>includeInIndex</key>
+			<string>0</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>name</key>
+			<string>libFangYuanObjC.a</string>
+			<key>path</key>
+			<string>libFangYuanObjC.a</string>
+			<key>sourceTree</key>
+			<string>BUILT_PRODUCTS_DIR</string>
 		</dict>
 		<key>0DEF83A6802BA4DE4578F62FC93F4EDE</key>
 		<dict>
@@ -81,31 +89,20 @@
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
-		<key>13C0BAE9EDBFDE550A240154810E0A79</key>
+		<key>1510562C4A980187713F158B34839C9E</key>
 		<dict>
-			<key>buildConfigurationList</key>
-			<string>B70BCA444082C6EC00E247FB2BCBC87A</string>
-			<key>buildPhases</key>
-			<array>
-				<string>FD3BB8758E4DFDC479E1F58E769B1F36</string>
-				<string>CCDC6F1CF8805AFB1663A6990F78FF9A</string>
-			</array>
-			<key>buildRules</key>
-			<array/>
-			<key>dependencies</key>
-			<array>
-				<string>E9F4C40F1275C6655E812A299DF7E781</string>
-			</array>
+			<key>explicitFileType</key>
+			<string>archive.ar</string>
+			<key>includeInIndex</key>
+			<string>0</string>
 			<key>isa</key>
-			<string>PBXNativeTarget</string>
+			<string>PBXFileReference</string>
 			<key>name</key>
-			<string>Pods-FangYuanObjCDemo</string>
-			<key>productName</key>
-			<string>Pods-FangYuanObjCDemo</string>
-			<key>productReference</key>
-			<string>35E24C5474B49887F3FF2B9B9F4DB03D</string>
-			<key>productType</key>
-			<string>com.apple.product-type.library.static</string>
+			<string>libPods-FangYuanObjCDemo.a</string>
+			<key>path</key>
+			<string>libPods-FangYuanObjCDemo.a</string>
+			<key>sourceTree</key>
+			<string>BUILT_PRODUCTS_DIR</string>
 		</dict>
 		<key>15BBB33116646D108CCBA0E013CDE5C4</key>
 		<dict>
@@ -119,6 +116,38 @@
 			<string>HaloObjC.xcconfig</string>
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
+		</dict>
+		<key>15D9C1D8EB6B59C7868EFCE24C1490E0</key>
+		<dict>
+			<key>baseConfigurationReference</key>
+			<string>AE8C5A48190E676229AA83C6496A31DE</string>
+			<key>buildSettings</key>
+			<dict>
+				<key>ENABLE_STRICT_OBJC_MSGSEND</key>
+				<string>YES</string>
+				<key>IPHONEOS_DEPLOYMENT_TARGET</key>
+				<string>9.2</string>
+				<key>MACH_O_TYPE</key>
+				<string>staticlib</string>
+				<key>MTL_ENABLE_DEBUG_INFO</key>
+				<string>YES</string>
+				<key>OTHER_LDFLAGS</key>
+				<string></string>
+				<key>OTHER_LIBTOOLFLAGS</key>
+				<string></string>
+				<key>PODS_ROOT</key>
+				<string>$(SRCROOT)</string>
+				<key>PRODUCT_NAME</key>
+				<string>$(TARGET_NAME)</string>
+				<key>SDKROOT</key>
+				<string>iphoneos</string>
+				<key>SKIP_INSTALL</key>
+				<string>YES</string>
+			</dict>
+			<key>isa</key>
+			<string>XCBuildConfiguration</string>
+			<key>name</key>
+			<string>Debug</string>
 		</dict>
 		<key>17C354B648D48C3E4B881CD745ED5CAB</key>
 		<dict>
@@ -222,20 +251,94 @@
 			<key>isa</key>
 			<string>XCConfigurationList</string>
 		</dict>
-		<key>35E24C5474B49887F3FF2B9B9F4DB03D</key>
+		<key>321FE47363A21B8B6AF288C136FC93FF</key>
 		<dict>
-			<key>explicitFileType</key>
-			<string>archive.ar</string>
-			<key>includeInIndex</key>
+			<key>fileRef</key>
+			<string>FE70E62D53C03518BE3CFEE6F67A1750</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+			<key>settings</key>
+			<dict>
+				<key>ATTRIBUTES</key>
+				<array>
+					<string>Public</string>
+				</array>
+			</dict>
+		</dict>
+		<key>34DC3D5A040E44CAB807C31A798CA5BE</key>
+		<dict>
+			<key>buildActionMask</key>
+			<string>2147483647</string>
+			<key>files</key>
+			<array>
+				<string>86863367B18D4EFE5189F1554C94CE6E</string>
+			</array>
+			<key>isa</key>
+			<string>PBXFrameworksBuildPhase</string>
+			<key>runOnlyForDeploymentPostprocessing</key>
 			<string>0</string>
+		</dict>
+		<key>36253FD35E356724EC56F0DD34D57B76</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
 			<key>isa</key>
 			<string>PBXFileReference</string>
-			<key>name</key>
-			<string>libPods-FangYuanObjCDemo.a</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.h</string>
 			<key>path</key>
-			<string>libPods-FangYuanObjCDemo.a</string>
+			<string>UIView+FangYuan.h</string>
 			<key>sourceTree</key>
-			<string>BUILT_PRODUCTS_DIR</string>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>3E2245FCF8DCD294D1BB56112D93B100</key>
+		<dict>
+			<key>buildActionMask</key>
+			<string>2147483647</string>
+			<key>files</key>
+			<array>
+				<string>CB6C31DBBF33552ED9C68278507F66E2</string>
+				<string>D17503D348959FA296E1AB2ACC9D5C57</string>
+				<string>9E5EEB3C81A7636D89A01E4D3E95EBDA</string>
+			</array>
+			<key>isa</key>
+			<string>PBXSourcesBuildPhase</string>
+			<key>runOnlyForDeploymentPostprocessing</key>
+			<string>0</string>
+		</dict>
+		<key>3FDD8DD9869880D1591186E077D78F72</key>
+		<dict>
+			<key>baseConfigurationReference</key>
+			<string>7857F6841770CCA8C86E56CDA9A146B9</string>
+			<key>buildSettings</key>
+			<dict>
+				<key>ENABLE_STRICT_OBJC_MSGSEND</key>
+				<string>YES</string>
+				<key>GCC_PREFIX_HEADER</key>
+				<string>Target Support Files/FangYuanObjC/FangYuanObjC-prefix.pch</string>
+				<key>IPHONEOS_DEPLOYMENT_TARGET</key>
+				<string>9.2</string>
+				<key>MTL_ENABLE_DEBUG_INFO</key>
+				<string>YES</string>
+				<key>OTHER_LDFLAGS</key>
+				<string></string>
+				<key>OTHER_LIBTOOLFLAGS</key>
+				<string></string>
+				<key>PRIVATE_HEADERS_FOLDER_PATH</key>
+				<string></string>
+				<key>PRODUCT_NAME</key>
+				<string>$(TARGET_NAME)</string>
+				<key>PUBLIC_HEADERS_FOLDER_PATH</key>
+				<string></string>
+				<key>SDKROOT</key>
+				<string>iphoneos</string>
+				<key>SKIP_INSTALL</key>
+				<string>YES</string>
+			</dict>
+			<key>isa</key>
+			<string>XCBuildConfiguration</string>
+			<key>name</key>
+			<string>Debug</string>
 		</dict>
 		<key>433CD3331B6C3787F473C941B61FC68F</key>
 		<dict>
@@ -276,37 +379,18 @@
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
-		<key>5B7F00A283B9510F9E2CF73CB0BFD1AD</key>
+		<key>630B7C03D8DA50B6CF944CCC4655BC48</key>
 		<dict>
-			<key>baseConfigurationReference</key>
-			<string>AE8C5A48190E676229AA83C6496A31DE</string>
-			<key>buildSettings</key>
-			<dict>
-				<key>ENABLE_STRICT_OBJC_MSGSEND</key>
-				<string>YES</string>
-				<key>IPHONEOS_DEPLOYMENT_TARGET</key>
-				<string>9.2</string>
-				<key>MACH_O_TYPE</key>
-				<string>staticlib</string>
-				<key>MTL_ENABLE_DEBUG_INFO</key>
-				<string>YES</string>
-				<key>OTHER_LDFLAGS</key>
-				<string></string>
-				<key>OTHER_LIBTOOLFLAGS</key>
-				<string></string>
-				<key>PODS_ROOT</key>
-				<string>$(SRCROOT)</string>
-				<key>PRODUCT_NAME</key>
-				<string>$(TARGET_NAME)</string>
-				<key>SDKROOT</key>
-				<string>iphoneos</string>
-				<key>SKIP_INSTALL</key>
-				<string>YES</string>
-			</dict>
+			<key>children</key>
+			<array>
+				<string>BE0067DF0B725659A5E24F3F92997A84</string>
+			</array>
 			<key>isa</key>
-			<string>XCBuildConfiguration</string>
+			<string>PBXGroup</string>
 			<key>name</key>
-			<string>Debug</string>
+			<string>Development Pods</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
 		</dict>
 		<key>643783F498F102FB0CF70D584E5D2F31</key>
 		<dict>
@@ -349,6 +433,19 @@
 			<key>isa</key>
 			<string>PBXBuildFile</string>
 		</dict>
+		<key>65352987C5D86B7223767EB40E344CE2</key>
+		<dict>
+			<key>containerPortal</key>
+			<string>D41D8CD98F00B204E9800998ECF8427E</string>
+			<key>isa</key>
+			<string>PBXContainerItemProxy</string>
+			<key>proxyType</key>
+			<string>1</string>
+			<key>remoteGlobalIDString</key>
+			<string>8ACDD1A96C8DEEF3D130B920B36A3D4B</string>
+			<key>remoteInfo</key>
+			<string>HaloObjC</string>
+		</dict>
 		<key>6572AFE088A3B5962A6161301D826F21</key>
 		<dict>
 			<key>buildActionMask</key>
@@ -362,6 +459,20 @@
 			<string>PBXFrameworksBuildPhase</string>
 			<key>runOnlyForDeploymentPostprocessing</key>
 			<string>0</string>
+		</dict>
+		<key>69052AC490077BC87FD7C67302CC885F</key>
+		<dict>
+			<key>buildConfigurations</key>
+			<array>
+				<string>15D9C1D8EB6B59C7868EFCE24C1490E0</string>
+				<string>73C6EB0729EDDB6E3832E91F5576F404</string>
+			</array>
+			<key>defaultConfigurationIsVisible</key>
+			<string>0</string>
+			<key>defaultConfigurationName</key>
+			<string>Release</string>
+			<key>isa</key>
+			<string>XCConfigurationList</string>
 		</dict>
 		<key>6E7E5AF37923BFA48D6994B9BFC6535F</key>
 		<dict>
@@ -389,37 +500,7 @@
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
-		<key>7799F98CEAAAB2DE3B418D900345E13E</key>
-		<dict>
-			<key>includeInIndex</key>
-			<string>1</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>sourcecode.c.objc</string>
-			<key>name</key>
-			<string>HaloObjC.m</string>
-			<key>path</key>
-			<string>HaloObjC/HaloObjC.m</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>7DB346D0F39D3F0E887471402A8071AB</key>
-		<dict>
-			<key>children</key>
-			<array>
-				<string>BA6428E9F66FD5A23C0A2E06ED26CD2F</string>
-				<string>433CD3331B6C3787F473C941B61FC68F</string>
-				<string>FB78CEAB6B8C72408A424704C994F2F7</string>
-				<string>8F0098767BD690F334EE7EC7F0224805</string>
-				<string>71CBEF2D532CF3E13C4AAE60B2CBB9F3</string>
-			</array>
-			<key>isa</key>
-			<string>PBXGroup</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>7F915F14E2EC07323779279660274B5F</key>
+		<key>73C6EB0729EDDB6E3832E91F5576F404</key>
 		<dict>
 			<key>baseConfigurationReference</key>
 			<string>DD4DE406D52C774D573C5CF4844F9676</string>
@@ -451,6 +532,63 @@
 			<key>name</key>
 			<string>Release</string>
 		</dict>
+		<key>7799F98CEAAAB2DE3B418D900345E13E</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.objc</string>
+			<key>name</key>
+			<string>HaloObjC.m</string>
+			<key>path</key>
+			<string>HaloObjC/HaloObjC.m</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>7857F6841770CCA8C86E56CDA9A146B9</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>text.xcconfig</string>
+			<key>path</key>
+			<string>FangYuanObjC.xcconfig</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>7DB346D0F39D3F0E887471402A8071AB</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>BA6428E9F66FD5A23C0A2E06ED26CD2F</string>
+				<string>630B7C03D8DA50B6CF944CCC4655BC48</string>
+				<string>433CD3331B6C3787F473C941B61FC68F</string>
+				<string>FB78CEAB6B8C72408A424704C994F2F7</string>
+				<string>DA525D7F06F3E788EAC2402122F71B7F</string>
+				<string>71CBEF2D532CF3E13C4AAE60B2CBB9F3</string>
+			</array>
+			<key>isa</key>
+			<string>PBXGroup</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>7F0B4C48EBA4561B16BB282D9A494D0D</key>
+		<dict>
+			<key>buildActionMask</key>
+			<string>2147483647</string>
+			<key>files</key>
+			<array>
+				<string>F3DF2966F552011972AF69F3AAD29BB8</string>
+			</array>
+			<key>isa</key>
+			<string>PBXFrameworksBuildPhase</string>
+			<key>runOnlyForDeploymentPostprocessing</key>
+			<string>0</string>
+		</dict>
 		<key>804EB14319E6994E77BCED7EFD201078</key>
 		<dict>
 			<key>buildConfigurations</key>
@@ -464,6 +602,13 @@
 			<string>Release</string>
 			<key>isa</key>
 			<string>XCConfigurationList</string>
+		</dict>
+		<key>86863367B18D4EFE5189F1554C94CE6E</key>
+		<dict>
+			<key>fileRef</key>
+			<string>6E7E5AF37923BFA48D6994B9BFC6535F</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
 		</dict>
 		<key>8ACDD1A96C8DEEF3D130B920B36A3D4B</key>
 		<dict>
@@ -486,7 +631,7 @@
 			<key>productName</key>
 			<string>HaloObjC</string>
 			<key>productReference</key>
-			<string>B57342939DDC89F0CC86C9E6F1F1C49B</string>
+			<string>9C06BF1C9E386B4D3B5475A53E7189E3</string>
 			<key>productType</key>
 			<string>com.apple.product-type.library.static</string>
 		</dict>
@@ -563,19 +708,36 @@
 			<key>name</key>
 			<string>Debug</string>
 		</dict>
-		<key>8F0098767BD690F334EE7EC7F0224805</key>
+		<key>8FC4548053B1D49C917C573DC4D6163C</key>
 		<dict>
 			<key>children</key>
 			<array>
-				<string>B57342939DDC89F0CC86C9E6F1F1C49B</string>
-				<string>35E24C5474B49887F3FF2B9B9F4DB03D</string>
+				<string>7857F6841770CCA8C86E56CDA9A146B9</string>
+				<string>D7B661A99BCADC3041218226B074AAF0</string>
+				<string>FD99746668759510C072F368319B98B4</string>
 			</array>
 			<key>isa</key>
 			<string>PBXGroup</string>
 			<key>name</key>
-			<string>Products</string>
+			<string>Support Files</string>
+			<key>path</key>
+			<string>../Pods/Target Support Files/FangYuanObjC</string>
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
+		</dict>
+		<key>90D2B4505C6982BECBAC1B60E132CB53</key>
+		<dict>
+			<key>buildActionMask</key>
+			<string>2147483647</string>
+			<key>files</key>
+			<array>
+				<string>321FE47363A21B8B6AF288C136FC93FF</string>
+				<string>9DED86D16489071F40F14BD67CBF4F52</string>
+			</array>
+			<key>isa</key>
+			<string>PBXHeadersBuildPhase</string>
+			<key>runOnlyForDeploymentPostprocessing</key>
+			<string>0</string>
 		</dict>
 		<key>980E9584C8F22FE3F5B79A0FCB39A791</key>
 		<dict>
@@ -597,6 +759,116 @@
 			<string>Target Support Files/Pods-FangYuanObjCDemo</string>
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
+		</dict>
+		<key>9C06BF1C9E386B4D3B5475A53E7189E3</key>
+		<dict>
+			<key>explicitFileType</key>
+			<string>archive.ar</string>
+			<key>includeInIndex</key>
+			<string>0</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>name</key>
+			<string>libHaloObjC.a</string>
+			<key>path</key>
+			<string>libHaloObjC.a</string>
+			<key>sourceTree</key>
+			<string>BUILT_PRODUCTS_DIR</string>
+		</dict>
+		<key>9DED86D16489071F40F14BD67CBF4F52</key>
+		<dict>
+			<key>fileRef</key>
+			<string>36253FD35E356724EC56F0DD34D57B76</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+			<key>settings</key>
+			<dict>
+				<key>ATTRIBUTES</key>
+				<array>
+					<string>Public</string>
+				</array>
+			</dict>
+		</dict>
+		<key>9E5EEB3C81A7636D89A01E4D3E95EBDA</key>
+		<dict>
+			<key>fileRef</key>
+			<string>E0E366A3B66A636E3671BCC51FB8F1F7</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+			<key>settings</key>
+			<dict>
+				<key>COMPILER_FLAGS</key>
+				<string>-DOS_OBJECT_USE_OBJC=0</string>
+			</dict>
+		</dict>
+		<key>A1FE0F3ABD9569963B380A71A3700EDA</key>
+		<dict>
+			<key>buildActionMask</key>
+			<string>2147483647</string>
+			<key>files</key>
+			<array>
+				<string>A9B1635EAE5CAFE59C2A792110AB9AB3</string>
+			</array>
+			<key>isa</key>
+			<string>PBXSourcesBuildPhase</string>
+			<key>runOnlyForDeploymentPostprocessing</key>
+			<string>0</string>
+		</dict>
+		<key>A7D7CD3B75645CC2188FAAB4DC8853C4</key>
+		<dict>
+			<key>isa</key>
+			<string>PBXTargetDependency</string>
+			<key>name</key>
+			<string>HaloObjC</string>
+			<key>target</key>
+			<string>8ACDD1A96C8DEEF3D130B920B36A3D4B</string>
+			<key>targetProxy</key>
+			<string>65352987C5D86B7223767EB40E344CE2</string>
+		</dict>
+		<key>A8003EB9E65DF1F43BBC5F9F29E85DFE</key>
+		<dict>
+			<key>containerPortal</key>
+			<string>D41D8CD98F00B204E9800998ECF8427E</string>
+			<key>isa</key>
+			<string>PBXContainerItemProxy</string>
+			<key>proxyType</key>
+			<string>1</string>
+			<key>remoteGlobalIDString</key>
+			<string>A9D523F8C3552AEDCE31A81BCAFE10F5</string>
+			<key>remoteInfo</key>
+			<string>FangYuanObjC</string>
+		</dict>
+		<key>A9B1635EAE5CAFE59C2A792110AB9AB3</key>
+		<dict>
+			<key>fileRef</key>
+			<string>5485BCF05CEC72D50E87A8F3B361A419</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>A9D523F8C3552AEDCE31A81BCAFE10F5</key>
+		<dict>
+			<key>buildConfigurationList</key>
+			<string>BAB240DF815E61418FC5000B290838F1</string>
+			<key>buildPhases</key>
+			<array>
+				<string>3E2245FCF8DCD294D1BB56112D93B100</string>
+				<string>7F0B4C48EBA4561B16BB282D9A494D0D</string>
+				<string>90D2B4505C6982BECBAC1B60E132CB53</string>
+			</array>
+			<key>buildRules</key>
+			<array/>
+			<key>dependencies</key>
+			<array/>
+			<key>isa</key>
+			<string>PBXNativeTarget</string>
+			<key>name</key>
+			<string>FangYuanObjC</string>
+			<key>productName</key>
+			<string>FangYuanObjC</string>
+			<key>productReference</key>
+			<string>0DC83C5EFCF5245B8A5AD6649B03DE23</string>
+			<key>productType</key>
+			<string>com.apple.product-type.library.static</string>
 		</dict>
 		<key>AE8C5A48190E676229AA83C6496A31DE</key>
 		<dict>
@@ -624,34 +896,18 @@
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
-		<key>B57342939DDC89F0CC86C9E6F1F1C49B</key>
+		<key>B7E74206CC2B178EAB98A8EFEB600C3F</key>
 		<dict>
-			<key>explicitFileType</key>
-			<string>archive.ar</string>
 			<key>includeInIndex</key>
-			<string>0</string>
+			<string>1</string>
 			<key>isa</key>
 			<string>PBXFileReference</string>
-			<key>name</key>
-			<string>libHaloObjC.a</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.objc</string>
 			<key>path</key>
-			<string>libHaloObjC.a</string>
+			<string>FangYuan.m</string>
 			<key>sourceTree</key>
-			<string>BUILT_PRODUCTS_DIR</string>
-		</dict>
-		<key>B70BCA444082C6EC00E247FB2BCBC87A</key>
-		<dict>
-			<key>buildConfigurations</key>
-			<array>
-				<string>5B7F00A283B9510F9E2CF73CB0BFD1AD</string>
-				<string>7F915F14E2EC07323779279660274B5F</string>
-			</array>
-			<key>defaultConfigurationIsVisible</key>
-			<string>0</string>
-			<key>defaultConfigurationName</key>
-			<string>Release</string>
-			<key>isa</key>
-			<string>XCConfigurationList</string>
+			<string>&lt;group&gt;</string>
 		</dict>
 		<key>BA2EC7AC52440D3C109D34791905E30F</key>
 		<dict>
@@ -687,12 +943,72 @@
 			<key>xcLanguageSpecificationIdentifier</key>
 			<string>xcode.lang.ruby</string>
 		</dict>
-		<key>C023E77151E6D75E7CB91A8F1EF83211</key>
+		<key>BAB240DF815E61418FC5000B290838F1</key>
 		<dict>
-			<key>fileRef</key>
-			<string>6E7E5AF37923BFA48D6994B9BFC6535F</string>
+			<key>buildConfigurations</key>
+			<array>
+				<string>3FDD8DD9869880D1591186E077D78F72</string>
+				<string>BB08DEB7890F86744A2F6B4CB0B9ECF3</string>
+			</array>
+			<key>defaultConfigurationIsVisible</key>
+			<string>0</string>
+			<key>defaultConfigurationName</key>
+			<string>Release</string>
 			<key>isa</key>
-			<string>PBXBuildFile</string>
+			<string>XCConfigurationList</string>
+		</dict>
+		<key>BB08DEB7890F86744A2F6B4CB0B9ECF3</key>
+		<dict>
+			<key>baseConfigurationReference</key>
+			<string>7857F6841770CCA8C86E56CDA9A146B9</string>
+			<key>buildSettings</key>
+			<dict>
+				<key>ENABLE_STRICT_OBJC_MSGSEND</key>
+				<string>YES</string>
+				<key>GCC_PREFIX_HEADER</key>
+				<string>Target Support Files/FangYuanObjC/FangYuanObjC-prefix.pch</string>
+				<key>IPHONEOS_DEPLOYMENT_TARGET</key>
+				<string>9.2</string>
+				<key>MTL_ENABLE_DEBUG_INFO</key>
+				<string>NO</string>
+				<key>OTHER_LDFLAGS</key>
+				<string></string>
+				<key>OTHER_LIBTOOLFLAGS</key>
+				<string></string>
+				<key>PRIVATE_HEADERS_FOLDER_PATH</key>
+				<string></string>
+				<key>PRODUCT_NAME</key>
+				<string>$(TARGET_NAME)</string>
+				<key>PUBLIC_HEADERS_FOLDER_PATH</key>
+				<string></string>
+				<key>SDKROOT</key>
+				<string>iphoneos</string>
+				<key>SKIP_INSTALL</key>
+				<string>YES</string>
+			</dict>
+			<key>isa</key>
+			<string>XCBuildConfiguration</string>
+			<key>name</key>
+			<string>Release</string>
+		</dict>
+		<key>BE0067DF0B725659A5E24F3F92997A84</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>FE70E62D53C03518BE3CFEE6F67A1750</string>
+				<string>B7E74206CC2B178EAB98A8EFEB600C3F</string>
+				<string>36253FD35E356724EC56F0DD34D57B76</string>
+				<string>E0E366A3B66A636E3671BCC51FB8F1F7</string>
+				<string>8FC4548053B1D49C917C573DC4D6163C</string>
+			</array>
+			<key>isa</key>
+			<string>PBXGroup</string>
+			<key>name</key>
+			<string>FangYuanObjC</string>
+			<key>path</key>
+			<string>../FangYuanObjC</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
 		</dict>
 		<key>C3B7BDF5CE5CB8F095FE12DA55D9A9BB</key>
 		<dict>
@@ -775,31 +1091,35 @@
 			<key>name</key>
 			<string>Release</string>
 		</dict>
-		<key>CCDC6F1CF8805AFB1663A6990F78FF9A</key>
+		<key>C60B17CCF3C1B17F538C5CF2EAD35ADF</key>
 		<dict>
-			<key>buildActionMask</key>
-			<string>2147483647</string>
-			<key>files</key>
-			<array>
-				<string>C023E77151E6D75E7CB91A8F1EF83211</string>
-			</array>
 			<key>isa</key>
-			<string>PBXFrameworksBuildPhase</string>
-			<key>runOnlyForDeploymentPostprocessing</key>
-			<string>0</string>
+			<string>PBXTargetDependency</string>
+			<key>name</key>
+			<string>FangYuanObjC</string>
+			<key>target</key>
+			<string>A9D523F8C3552AEDCE31A81BCAFE10F5</string>
+			<key>targetProxy</key>
+			<string>A8003EB9E65DF1F43BBC5F9F29E85DFE</string>
 		</dict>
-		<key>D360B16D2FFBE3C8B19A59286492A9F0</key>
+		<key>CB6C31DBBF33552ED9C68278507F66E2</key>
 		<dict>
-			<key>containerPortal</key>
-			<string>D41D8CD98F00B204E9800998ECF8427E</string>
+			<key>fileRef</key>
+			<string>B7E74206CC2B178EAB98A8EFEB600C3F</string>
 			<key>isa</key>
-			<string>PBXContainerItemProxy</string>
-			<key>proxyType</key>
-			<string>1</string>
-			<key>remoteGlobalIDString</key>
-			<string>8ACDD1A96C8DEEF3D130B920B36A3D4B</string>
-			<key>remoteInfo</key>
-			<string>HaloObjC</string>
+			<string>PBXBuildFile</string>
+			<key>settings</key>
+			<dict>
+				<key>COMPILER_FLAGS</key>
+				<string>-DOS_OBJECT_USE_OBJC=0</string>
+			</dict>
+		</dict>
+		<key>D17503D348959FA296E1AB2ACC9D5C57</key>
+		<dict>
+			<key>fileRef</key>
+			<string>D7B661A99BCADC3041218226B074AAF0</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
 		</dict>
 		<key>D41D8CD98F00B204E9800998ECF8427E</key>
 		<dict>
@@ -827,7 +1147,7 @@
 			<key>mainGroup</key>
 			<string>7DB346D0F39D3F0E887471402A8071AB</string>
 			<key>productRefGroup</key>
-			<string>8F0098767BD690F334EE7EC7F0224805</string>
+			<string>DA525D7F06F3E788EAC2402122F71B7F</string>
 			<key>projectDirPath</key>
 			<string></string>
 			<key>projectReferences</key>
@@ -836,9 +1156,65 @@
 			<string></string>
 			<key>targets</key>
 			<array>
+				<string>A9D523F8C3552AEDCE31A81BCAFE10F5</string>
 				<string>8ACDD1A96C8DEEF3D130B920B36A3D4B</string>
-				<string>13C0BAE9EDBFDE550A240154810E0A79</string>
+				<string>D7B234A6F864148E8AE5FEEDD0E3299D</string>
 			</array>
+		</dict>
+		<key>D7B234A6F864148E8AE5FEEDD0E3299D</key>
+		<dict>
+			<key>buildConfigurationList</key>
+			<string>69052AC490077BC87FD7C67302CC885F</string>
+			<key>buildPhases</key>
+			<array>
+				<string>A1FE0F3ABD9569963B380A71A3700EDA</string>
+				<string>34DC3D5A040E44CAB807C31A798CA5BE</string>
+			</array>
+			<key>buildRules</key>
+			<array/>
+			<key>dependencies</key>
+			<array>
+				<string>C60B17CCF3C1B17F538C5CF2EAD35ADF</string>
+				<string>A7D7CD3B75645CC2188FAAB4DC8853C4</string>
+			</array>
+			<key>isa</key>
+			<string>PBXNativeTarget</string>
+			<key>name</key>
+			<string>Pods-FangYuanObjCDemo</string>
+			<key>productName</key>
+			<string>Pods-FangYuanObjCDemo</string>
+			<key>productReference</key>
+			<string>1510562C4A980187713F158B34839C9E</string>
+			<key>productType</key>
+			<string>com.apple.product-type.library.static</string>
+		</dict>
+		<key>D7B661A99BCADC3041218226B074AAF0</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.objc</string>
+			<key>path</key>
+			<string>FangYuanObjC-dummy.m</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>DA525D7F06F3E788EAC2402122F71B7F</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>0DC83C5EFCF5245B8A5AD6649B03DE23</string>
+				<string>9C06BF1C9E386B4D3B5475A53E7189E3</string>
+				<string>1510562C4A980187713F158B34839C9E</string>
+			</array>
+			<key>isa</key>
+			<string>PBXGroup</string>
+			<key>name</key>
+			<string>Products</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
 		</dict>
 		<key>DD4DE406D52C774D573C5CF4844F9676</key>
 		<dict>
@@ -850,6 +1226,19 @@
 			<string>text.xcconfig</string>
 			<key>path</key>
 			<string>Pods-FangYuanObjCDemo.release.xcconfig</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>E0E366A3B66A636E3671BCC51FB8F1F7</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.objc</string>
+			<key>path</key>
+			<string>UIView+FangYuan.m</string>
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
@@ -868,16 +1257,12 @@
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
-		<key>E9F4C40F1275C6655E812A299DF7E781</key>
+		<key>F3DF2966F552011972AF69F3AAD29BB8</key>
 		<dict>
+			<key>fileRef</key>
+			<string>6E7E5AF37923BFA48D6994B9BFC6535F</string>
 			<key>isa</key>
-			<string>PBXTargetDependency</string>
-			<key>name</key>
-			<string>HaloObjC</string>
-			<key>target</key>
-			<string>8ACDD1A96C8DEEF3D130B920B36A3D4B</string>
-			<key>targetProxy</key>
-			<string>D360B16D2FFBE3C8B19A59286492A9F0</string>
+			<string>PBXBuildFile</string>
 		</dict>
 		<key>FB029B4426D251752E8B84CFF6EEB20C</key>
 		<dict>
@@ -899,18 +1284,31 @@
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
-		<key>FD3BB8758E4DFDC479E1F58E769B1F36</key>
+		<key>FD99746668759510C072F368319B98B4</key>
 		<dict>
-			<key>buildActionMask</key>
-			<string>2147483647</string>
-			<key>files</key>
-			<array>
-				<string>0C4B3BDA5C7B0982FF3D49BDA493B525</string>
-			</array>
+			<key>includeInIndex</key>
+			<string>1</string>
 			<key>isa</key>
-			<string>PBXSourcesBuildPhase</string>
-			<key>runOnlyForDeploymentPostprocessing</key>
-			<string>0</string>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.h</string>
+			<key>path</key>
+			<string>FangYuanObjC-prefix.pch</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>FE70E62D53C03518BE3CFEE6F67A1750</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.h</string>
+			<key>path</key>
+			<string>FangYuan.h</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
 		</dict>
 		<key>FEA92BF95F1825B26F566BE8646247B3</key>
 		<dict>

@@ -1,3 +1,4 @@
 target 'FangYuanObjCDemo' do
 	pod 'HaloObjC'
+	pod 'FangYuanObjC', :path=>"./FangYuanObjC"
 end

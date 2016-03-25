@@ -1,10 +1,17 @@
 PODS:
+  - FangYuanObjC (0.0.1)
   - HaloObjC (0.1.1)
 
 DEPENDENCIES:
+  - FangYuanObjC (from `./FangYuanObjC`)
   - HaloObjC
 
+EXTERNAL SOURCES:
+  FangYuanObjC:
+    :path: ./FangYuanObjC
+
 SPEC CHECKSUMS:
+  FangYuanObjC: 3094549478d24f99fef1fdab32637c47773c443a
   HaloObjC: fbd2cd1158d0f825d24dbaace1dcd570a7d59888
 
 COCOAPODS: 0.39.0

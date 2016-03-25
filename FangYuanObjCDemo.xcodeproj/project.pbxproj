@@ -14,8 +14,6 @@
 		0975A8611C9FFAB200CB5351 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0975A85F1C9FFAB200CB5351 /* Main.storyboard */; };
 		0975A8631C9FFAB200CB5351 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0975A8621C9FFAB200CB5351 /* Assets.xcassets */; };
 		0975A8661C9FFAB200CB5351 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0975A8641C9FFAB200CB5351 /* LaunchScreen.storyboard */; };
-		0975A8721C9FFAD400CB5351 /* FangYuan.m in Sources */ = {isa = PBXBuildFile; fileRef = 0975A86F1C9FFAD400CB5351 /* FangYuan.m */; };
-		0975A8731C9FFAD400CB5351 /* UIView+FangYuan.m in Sources */ = {isa = PBXBuildFile; fileRef = 0975A8711C9FFAD400CB5351 /* UIView+FangYuan.m */; };
 		2C91FF95D90C1EF6536E69A9 /* libPods-FangYuanObjCDemo.a in Frameworks */ = {isa = PBXBuildFile; fileRef = AC92EFB1BD56B90BDA6B2F9C /* libPods-FangYuanObjCDemo.a */; };
 /* End PBXBuildFile section */
 
@@ -32,10 +30,6 @@
 		0975A8621C9FFAB200CB5351 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		0975A8651C9FFAB200CB5351 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		0975A8671C9FFAB200CB5351 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		0975A86E1C9FFAD400CB5351 /* FangYuan.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FangYuan.h; sourceTree = "<group>"; };
-		0975A86F1C9FFAD400CB5351 /* FangYuan.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FangYuan.m; sourceTree = "<group>"; };
-		0975A8701C9FFAD400CB5351 /* UIView+FangYuan.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+FangYuan.h"; sourceTree = "<group>"; };
-		0975A8711C9FFAD400CB5351 /* UIView+FangYuan.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+FangYuan.m"; sourceTree = "<group>"; };
 		0DAB4896F17F65F7138663D7 /* Pods-FangYuanObjCDemo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FangYuanObjCDemo.release.xcconfig"; path = "Pods/Target Support Files/Pods-FangYuanObjCDemo/Pods-FangYuanObjCDemo.release.xcconfig"; sourceTree = "<group>"; };
 		15308A950CB306EDE2B098A7 /* Pods-FangYuanObjCDemo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FangYuanObjCDemo.debug.xcconfig"; path = "Pods/Target Support Files/Pods-FangYuanObjCDemo/Pods-FangYuanObjCDemo.debug.xcconfig"; sourceTree = "<group>"; };
 		AC92EFB1BD56B90BDA6B2F9C /* libPods-FangYuanObjCDemo.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-FangYuanObjCDemo.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -66,7 +60,6 @@
 			isa = PBXGroup;
 			children = (
 				095E60191CA4D10F00620945 /* FY_Research */,
-				0975A86D1C9FFAD400CB5351 /* FangYuanObjC */,
 				0975A8551C9FFAB200CB5351 /* FangYuanObjCDemo */,
 				0975A8541C9FFAB200CB5351 /* Products */,
 				E5C1B952D5995A471DD49D18 /* Pods */,
@@ -85,14 +78,9 @@
 		0975A8551C9FFAB200CB5351 /* FangYuanObjCDemo */ = {
 			isa = PBXGroup;
 			children = (
-				0975A8591C9FFAB200CB5351 /* AppDelegate.h */,
 				0975A85A1C9FFAB200CB5351 /* AppDelegate.m */,
 				0975A85C1C9FFAB200CB5351 /* ViewController.h */,
 				0975A85D1C9FFAB200CB5351 /* ViewController.m */,
-				0975A85F1C9FFAB200CB5351 /* Main.storyboard */,
-				0975A8621C9FFAB200CB5351 /* Assets.xcassets */,
-				0975A8641C9FFAB200CB5351 /* LaunchScreen.storyboard */,
-				0975A8671C9FFAB200CB5351 /* Info.plist */,
 				0975A8561C9FFAB200CB5351 /* Supporting Files */,
 			);
 			path = FangYuanObjCDemo;
@@ -101,20 +89,14 @@
 		0975A8561C9FFAB200CB5351 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				0975A8591C9FFAB200CB5351 /* AppDelegate.h */,
+				0975A85F1C9FFAB200CB5351 /* Main.storyboard */,
+				0975A8621C9FFAB200CB5351 /* Assets.xcassets */,
+				0975A8641C9FFAB200CB5351 /* LaunchScreen.storyboard */,
+				0975A8671C9FFAB200CB5351 /* Info.plist */,
 				0975A8571C9FFAB200CB5351 /* main.m */,
 			);
 			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
-		0975A86D1C9FFAD400CB5351 /* FangYuanObjC */ = {
-			isa = PBXGroup;
-			children = (
-				0975A86E1C9FFAD400CB5351 /* FangYuan.h */,
-				0975A86F1C9FFAD400CB5351 /* FangYuan.m */,
-				0975A8701C9FFAD400CB5351 /* UIView+FangYuan.h */,
-				0975A8711C9FFAD400CB5351 /* UIView+FangYuan.m */,
-			);
-			path = FangYuanObjC;
 			sourceTree = "<group>";
 		};
 		7EE4C08E3D14871026B6E2D5 /* Frameworks */ = {
@@ -258,8 +240,6 @@
 				0975A85E1C9FFAB200CB5351 /* ViewController.m in Sources */,
 				095E601C1CA4D10F00620945 /* UIView+FangYuanMethodSwizzle.m in Sources */,
 				0975A85B1C9FFAB200CB5351 /* AppDelegate.m in Sources */,
-				0975A8731C9FFAD400CB5351 /* UIView+FangYuan.m in Sources */,
-				0975A8721C9FFAD400CB5351 /* FangYuan.m in Sources */,
 				0975A8581C9FFAB200CB5351 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
