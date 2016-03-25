@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		0934F49C1CA3F73F0072312B /* UIView+FangYuanMethodSwizzle.m in Sources */ = {isa = PBXBuildFile; fileRef = 0934F49B1CA3F73F0072312B /* UIView+FangYuanMethodSwizzle.m */; };
+		095E601C1CA4D10F00620945 /* UIView+FangYuanMethodSwizzle.m in Sources */ = {isa = PBXBuildFile; fileRef = 095E601B1CA4D10F00620945 /* UIView+FangYuanMethodSwizzle.m */; };
 		0975A8581C9FFAB200CB5351 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 0975A8571C9FFAB200CB5351 /* main.m */; };
 		0975A85B1C9FFAB200CB5351 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 0975A85A1C9FFAB200CB5351 /* AppDelegate.m */; };
 		0975A85E1C9FFAB200CB5351 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0975A85D1C9FFAB200CB5351 /* ViewController.m */; };
@@ -20,8 +20,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		0934F49A1CA3F73F0072312B /* UIView+FangYuanMethodSwizzle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+FangYuanMethodSwizzle.h"; sourceTree = "<group>"; };
-		0934F49B1CA3F73F0072312B /* UIView+FangYuanMethodSwizzle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+FangYuanMethodSwizzle.m"; sourceTree = "<group>"; };
+		095E601A1CA4D10F00620945 /* UIView+FangYuanMethodSwizzle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+FangYuanMethodSwizzle.h"; sourceTree = "<group>"; };
+		095E601B1CA4D10F00620945 /* UIView+FangYuanMethodSwizzle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+FangYuanMethodSwizzle.m"; sourceTree = "<group>"; };
 		0975A8531C9FFAB200CB5351 /* FangYuanObjCDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FangYuanObjCDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0975A8571C9FFAB200CB5351 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		0975A8591C9FFAB200CB5351 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -53,9 +53,19 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		095E60191CA4D10F00620945 /* FY_Research */ = {
+			isa = PBXGroup;
+			children = (
+				095E601A1CA4D10F00620945 /* UIView+FangYuanMethodSwizzle.h */,
+				095E601B1CA4D10F00620945 /* UIView+FangYuanMethodSwizzle.m */,
+			);
+			path = FY_Research;
+			sourceTree = "<group>";
+		};
 		0975A84A1C9FFAB200CB5351 = {
 			isa = PBXGroup;
 			children = (
+				095E60191CA4D10F00620945 /* FY_Research */,
 				0975A86D1C9FFAD400CB5351 /* FangYuanObjC */,
 				0975A8551C9FFAB200CB5351 /* FangYuanObjCDemo */,
 				0975A8541C9FFAB200CB5351 /* Products */,
@@ -103,8 +113,6 @@
 				0975A86F1C9FFAD400CB5351 /* FangYuan.m */,
 				0975A8701C9FFAD400CB5351 /* UIView+FangYuan.h */,
 				0975A8711C9FFAD400CB5351 /* UIView+FangYuan.m */,
-				0934F49A1CA3F73F0072312B /* UIView+FangYuanMethodSwizzle.h */,
-				0934F49B1CA3F73F0072312B /* UIView+FangYuanMethodSwizzle.m */,
 			);
 			path = FangYuanObjC;
 			sourceTree = "<group>";
@@ -248,7 +256,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				0975A85E1C9FFAB200CB5351 /* ViewController.m in Sources */,
-				0934F49C1CA3F73F0072312B /* UIView+FangYuanMethodSwizzle.m in Sources */,
+				095E601C1CA4D10F00620945 /* UIView+FangYuanMethodSwizzle.m in Sources */,
 				0975A85B1C9FFAB200CB5351 /* AppDelegate.m in Sources */,
 				0975A8731C9FFAD400CB5351 /* UIView+FangYuan.m in Sources */,
 				0975A8721C9FFAD400CB5351 /* FangYuan.m in Sources */,

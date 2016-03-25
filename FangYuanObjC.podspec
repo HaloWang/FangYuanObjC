@@ -1,4 +1,5 @@
-pod::Spec.new do |s|
+
+Pod::Spec.new do |s|
   s.name         = "HaloObjC"
   s.version      = "0.0.1"
   s.summary      = "FangYuan written by Objective-C"
