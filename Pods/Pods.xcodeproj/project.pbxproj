@@ -37,10 +37,27 @@
 			<key>isa</key>
 			<string>PBXBuildFile</string>
 		</dict>
+		<key>0D4CE96F0C93B7614E23D5CC00B62597</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>15BBB33116646D108CCBA0E013CDE5C4</string>
+				<string>13322508B67AEF0A73024A12D847034A</string>
+				<string>AFB147342250413D4B740FD8EE396960</string>
+			</array>
+			<key>isa</key>
+			<string>PBXGroup</string>
+			<key>name</key>
+			<string>Support Files</string>
+			<key>path</key>
+			<string>../Target Support Files/HaloObjC</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
 		<key>0DEF83A6802BA4DE4578F62FC93F4EDE</key>
 		<dict>
 			<key>fileRef</key>
-			<string>0E9C0A459A79995337D731F65BC2F8AD</string>
+			<string>E71CEC256DE2E9360462427B11B298D7</string>
 			<key>isa</key>
 			<string>PBXBuildFile</string>
 			<key>settings</key>
@@ -51,18 +68,16 @@
 				</array>
 			</dict>
 		</dict>
-		<key>0E9C0A459A79995337D731F65BC2F8AD</key>
+		<key>13322508B67AEF0A73024A12D847034A</key>
 		<dict>
 			<key>includeInIndex</key>
 			<string>1</string>
 			<key>isa</key>
 			<string>PBXFileReference</string>
 			<key>lastKnownFileType</key>
-			<string>sourcecode.c.h</string>
-			<key>name</key>
-			<string>HaloObjC.h</string>
+			<string>sourcecode.c.objc</string>
 			<key>path</key>
-			<string>HaloObjC/HaloObjC.h</string>
+			<string>HaloObjC-dummy.m</string>
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
@@ -92,18 +107,16 @@
 			<key>productType</key>
 			<string>com.apple.product-type.library.static</string>
 		</dict>
-		<key>15CE0E407301B7BFBC5FB0A95B7AF568</key>
+		<key>15BBB33116646D108CCBA0E013CDE5C4</key>
 		<dict>
 			<key>includeInIndex</key>
 			<string>1</string>
 			<key>isa</key>
 			<string>PBXFileReference</string>
 			<key>lastKnownFileType</key>
-			<string>sourcecode.c.objc</string>
-			<key>name</key>
-			<string>HaloObjC.m</string>
+			<string>text.xcconfig</string>
 			<key>path</key>
-			<string>HaloObjC/HaloObjC.m</string>
+			<string>HaloObjC.xcconfig</string>
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
@@ -120,21 +133,6 @@
 			<string>PBXSourcesBuildPhase</string>
 			<key>runOnlyForDeploymentPostprocessing</key>
 			<string>0</string>
-		</dict>
-		<key>1820CFF22E0F2AF386A18DB3B5E06683</key>
-		<dict>
-			<key>children</key>
-			<array>
-				<string>74393D1E887E6EEBBFAD944969294DF7</string>
-			</array>
-			<key>isa</key>
-			<string>PBXGroup</string>
-			<key>name</key>
-			<string>Reveal-iOS-SDK</string>
-			<key>path</key>
-			<string>Reveal-iOS-SDK</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
 		</dict>
 		<key>18340F12838DEE43507667CC74401EB1</key>
 		<dict>
@@ -176,27 +174,10 @@
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
-		<key>213E021823435873458E93D63858C7BB</key>
-		<dict>
-			<key>children</key>
-			<array>
-				<string>3B0BDBD58C0763DFA0E915475C03571F</string>
-				<string>9581694242A4F95D085C472078E9A546</string>
-				<string>CDFBB6624C2099D96DE84B0418998D0E</string>
-			</array>
-			<key>isa</key>
-			<string>PBXGroup</string>
-			<key>name</key>
-			<string>Support Files</string>
-			<key>path</key>
-			<string>../Target Support Files/HaloObjC</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
 		<key>2CAA255799FA1835CAE5E6AB264C754B</key>
 		<dict>
 			<key>baseConfigurationReference</key>
-			<string>3B0BDBD58C0763DFA0E915475C03571F</string>
+			<string>15BBB33116646D108CCBA0E013CDE5C4</string>
 			<key>buildSettings</key>
 			<dict>
 				<key>ENABLE_STRICT_OBJC_MSGSEND</key>
@@ -255,19 +236,6 @@
 			<string>libPods-FangYuanObjCDemo.a</string>
 			<key>sourceTree</key>
 			<string>BUILT_PRODUCTS_DIR</string>
-		</dict>
-		<key>3B0BDBD58C0763DFA0E915475C03571F</key>
-		<dict>
-			<key>includeInIndex</key>
-			<string>1</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>text.xcconfig</string>
-			<key>path</key>
-			<string>HaloObjC.xcconfig</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
 		</dict>
 		<key>433CD3331B6C3787F473C941B61FC68F</key>
 		<dict>
@@ -343,7 +311,7 @@
 		<key>643783F498F102FB0CF70D584E5D2F31</key>
 		<dict>
 			<key>baseConfigurationReference</key>
-			<string>3B0BDBD58C0763DFA0E915475C03571F</string>
+			<string>15BBB33116646D108CCBA0E013CDE5C4</string>
 			<key>buildSettings</key>
 			<dict>
 				<key>ENABLE_STRICT_OBJC_MSGSEND</key>
@@ -421,16 +389,18 @@
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
-		<key>74393D1E887E6EEBBFAD944969294DF7</key>
+		<key>7799F98CEAAAB2DE3B418D900345E13E</key>
 		<dict>
-			<key>children</key>
-			<array>
-				<string>9DAF9B727B4056EE7CD16F74A13DA83C</string>
-			</array>
+			<key>includeInIndex</key>
+			<string>1</string>
 			<key>isa</key>
-			<string>PBXGroup</string>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.objc</string>
 			<key>name</key>
-			<string>Frameworks</string>
+			<string>HaloObjC.m</string>
+			<key>path</key>
+			<string>HaloObjC/HaloObjC.m</string>
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
@@ -440,7 +410,7 @@
 			<array>
 				<string>BA6428E9F66FD5A23C0A2E06ED26CD2F</string>
 				<string>433CD3331B6C3787F473C941B61FC68F</string>
-				<string>ECA3293ADD8F9285853B6CDA43209DA4</string>
+				<string>FB78CEAB6B8C72408A424704C994F2F7</string>
 				<string>8F0098767BD690F334EE7EC7F0224805</string>
 				<string>71CBEF2D532CF3E13C4AAE60B2CBB9F3</string>
 			</array>
@@ -607,36 +577,6 @@
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
-		<key>8F4778C5054F0BC3962FC92127CFE809</key>
-		<dict>
-			<key>children</key>
-			<array>
-				<string>0E9C0A459A79995337D731F65BC2F8AD</string>
-				<string>15CE0E407301B7BFBC5FB0A95B7AF568</string>
-				<string>213E021823435873458E93D63858C7BB</string>
-			</array>
-			<key>isa</key>
-			<string>PBXGroup</string>
-			<key>name</key>
-			<string>HaloObjC</string>
-			<key>path</key>
-			<string>HaloObjC</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>9581694242A4F95D085C472078E9A546</key>
-		<dict>
-			<key>includeInIndex</key>
-			<string>1</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>sourcecode.c.objc</string>
-			<key>path</key>
-			<string>HaloObjC-dummy.m</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
 		<key>980E9584C8F22FE3F5B79A0FCB39A791</key>
 		<dict>
 			<key>children</key>
@@ -658,19 +598,6 @@
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
-		<key>9DAF9B727B4056EE7CD16F74A13DA83C</key>
-		<dict>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>wrapper.framework</string>
-			<key>name</key>
-			<string>Reveal.framework</string>
-			<key>path</key>
-			<string>Reveal-Framework-iOS-1.6.2/Reveal.framework</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
 		<key>AE8C5A48190E676229AA83C6496A31DE</key>
 		<dict>
 			<key>includeInIndex</key>
@@ -681,6 +608,19 @@
 			<string>text.xcconfig</string>
 			<key>path</key>
 			<string>Pods-FangYuanObjCDemo.debug.xcconfig</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>AFB147342250413D4B740FD8EE396960</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.h</string>
+			<key>path</key>
+			<string>HaloObjC-prefix.pch</string>
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
@@ -712,6 +652,23 @@
 			<string>Release</string>
 			<key>isa</key>
 			<string>XCConfigurationList</string>
+		</dict>
+		<key>BA2EC7AC52440D3C109D34791905E30F</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>E71CEC256DE2E9360462427B11B298D7</string>
+				<string>7799F98CEAAAB2DE3B418D900345E13E</string>
+				<string>0D4CE96F0C93B7614E23D5CC00B62597</string>
+			</array>
+			<key>isa</key>
+			<string>PBXGroup</string>
+			<key>name</key>
+			<string>HaloObjC</string>
+			<key>path</key>
+			<string>HaloObjC</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
 		</dict>
 		<key>BA6428E9F66FD5A23C0A2E06ED26CD2F</key>
 		<dict>
@@ -831,19 +788,6 @@
 			<key>runOnlyForDeploymentPostprocessing</key>
 			<string>0</string>
 		</dict>
-		<key>CDFBB6624C2099D96DE84B0418998D0E</key>
-		<dict>
-			<key>includeInIndex</key>
-			<string>1</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>sourcecode.c.h</string>
-			<key>path</key>
-			<string>HaloObjC-prefix.pch</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
 		<key>D360B16D2FFBE3C8B19A59286492A9F0</key>
 		<dict>
 			<key>containerPortal</key>
@@ -909,6 +853,21 @@
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
+		<key>E71CEC256DE2E9360462427B11B298D7</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.h</string>
+			<key>name</key>
+			<string>HaloObjC.h</string>
+			<key>path</key>
+			<string>HaloObjC/HaloObjC.h</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
 		<key>E9F4C40F1275C6655E812A299DF7E781</key>
 		<dict>
 			<key>isa</key>
@@ -920,12 +879,18 @@
 			<key>targetProxy</key>
 			<string>D360B16D2FFBE3C8B19A59286492A9F0</string>
 		</dict>
-		<key>ECA3293ADD8F9285853B6CDA43209DA4</key>
+		<key>FB029B4426D251752E8B84CFF6EEB20C</key>
+		<dict>
+			<key>fileRef</key>
+			<string>13322508B67AEF0A73024A12D847034A</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>FB78CEAB6B8C72408A424704C994F2F7</key>
 		<dict>
 			<key>children</key>
 			<array>
-				<string>8F4778C5054F0BC3962FC92127CFE809</string>
-				<string>1820CFF22E0F2AF386A18DB3B5E06683</string>
+				<string>BA2EC7AC52440D3C109D34791905E30F</string>
 			</array>
 			<key>isa</key>
 			<string>PBXGroup</string>
@@ -933,13 +898,6 @@
 			<string>Pods</string>
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
-		</dict>
-		<key>FB029B4426D251752E8B84CFF6EEB20C</key>
-		<dict>
-			<key>fileRef</key>
-			<string>9581694242A4F95D085C472078E9A546</string>
-			<key>isa</key>
-			<string>PBXBuildFile</string>
 		</dict>
 		<key>FD3BB8758E4DFDC479E1F58E769B1F36</key>
 		<dict>
@@ -957,7 +915,7 @@
 		<key>FEA92BF95F1825B26F566BE8646247B3</key>
 		<dict>
 			<key>fileRef</key>
-			<string>15CE0E407301B7BFBC5FB0A95B7AF568</string>
+			<string>7799F98CEAAAB2DE3B418D900345E13E</string>
 			<key>isa</key>
 			<string>PBXBuildFile</string>
 		</dict>
