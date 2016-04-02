@@ -10,6 +10,8 @@
 #import "FangYuan.h"
 #import <objc/runtime.h>
 
+#pragma mark - Helper Function
+
 CGFloat fyHeight(UIView *view) {
     return view.frame.size.height;
 }
@@ -30,9 +32,9 @@ static int keyY;
 
 @property (nonatomic, assign, readonly) BOOL hasSuperview;
 /// 横轴标尺
-@property (nonatomic, assign, readonly) FYRuler *rulerX;
+@property (nonatomic, readonly) FYRuler *rulerX;
 /// 纵轴标尺
-@property (nonatomic, assign, readonly) FYRuler *rulerY;
+@property (nonatomic, readonly) FYRuler *rulerY;
 
 @end
 
@@ -69,11 +71,11 @@ static int keyY;
 
 #pragma mark Ruler Y
 
-- (Constraint)fy_top {
+- (FYSectionValueChainableSetter)fy_top {
     return ^(CGFloat top) {
 
         //  Set ruler
-        self.rulerY.x = FYFloatMake(top);
+        self.rulerY.a = FYFloatMake(top);
 
         //  Set frame
         CGRect frame = self.frame;
@@ -86,8 +88,8 @@ static int keyY;
         }
 
         //  use value stored in ruler to change frame
-        if (self.rulerY.z.enable) {
-            frame.size.height = fyHeight(self.superview) - top - self.rulerY.z.value;
+        if (self.rulerY.c.enable) {
+            frame.size.height = fyHeight(self.superview) - top - self.rulerY.c.value;
         }
         self.frame = frame;
 
@@ -95,11 +97,11 @@ static int keyY;
     };
 }
 
-- (Constraint)fy_bottom {
+- (FYSectionValueChainableSetter)fy_bottom {
     return ^(CGFloat bottom) {
 
         //  Set ruler
-        self.rulerY.z = FYFloatMake(bottom);
+        self.rulerY.c = FYFloatMake(bottom);
 
         //  Check superview
         if (!self.hasSuperview) {
@@ -108,21 +110,21 @@ static int keyY;
 
         //  use value stored in ruler to change frame
         CGRect frame = self.frame;
-        if (self.rulerY.x.enable) {
-            frame.size.height = fyHeight(self.superview) - fyY(self) - self.rulerY.z.value;
+        if (self.rulerY.a.enable) {
+            frame.size.height = fyHeight(self.superview) - fyY(self) - self.rulerY.c.value;
         } else {
-            frame.origin.y = fyHeight(self.superview) - fyHeight(self) - self.rulerY.z.value;
+            frame.origin.y = fyHeight(self.superview) - fyHeight(self) - self.rulerY.c.value;
         }
         self.frame = frame;
         return self;
     };
 }
 
-- (Constraint)fy_height {
+- (FYSectionValueChainableSetter)fy_height {
     return ^(CGFloat height) {
 
         //  Set ruler
-        self.rulerY.y = FYFloatMake(height);
+        self.rulerY.b = FYFloatMake(height);
 
         //  Set frame
         CGRect frame = self.frame;
@@ -135,8 +137,8 @@ static int keyY;
         }
 
         //  use value stored in ruler to change frame
-        if (self.rulerY.z.enable) {
-            frame.origin.y = fyHeight(self.superview) - fyHeight(self) - self.rulerY.z.value;
+        if (self.rulerY.c.enable) {
+            frame.origin.y = fyHeight(self.superview) - fyHeight(self) - self.rulerY.c.value;
         }
         self.frame = frame;
         return self;
@@ -145,10 +147,10 @@ static int keyY;
 
 #pragma mark Ruler X
 
-- (Constraint)fy_left {
+- (FYSectionValueChainableSetter)fy_left {
     return ^(CGFloat left) {
 
-        self.rulerX.x = FYFloatMake(left);
+        self.rulerX.a = FYFloatMake(left);
 
         CGRect frame = self.frame;
         frame.origin.x = left;
@@ -158,8 +160,8 @@ static int keyY;
             return self;
         }
 
-        if (self.rulerX.z.enable) {
-            frame.size.width = fyWidth(self.superview) - left - self.rulerX.z.value;
+        if (self.rulerX.c.enable) {
+            frame.size.width = fyWidth(self.superview) - left - self.rulerX.c.value;
         }
 
         self.frame = frame;
@@ -167,20 +169,20 @@ static int keyY;
     };
 }
 
-- (Constraint)fy_right {
+- (FYSectionValueChainableSetter)fy_right {
     return ^(CGFloat right) {
 
-        self.rulerX.z = FYFloatMake(right);
+        self.rulerX.c = FYFloatMake(right);
 
         if (!self.hasSuperview) {
             return self;
         }
 
         CGRect frame = self.frame;
-        if (self.rulerX.x.enable) {
-            frame.size.width = fyWidth(self.superview) - fyX(self) - self.rulerX.z.value;
+        if (self.rulerX.a.enable) {
+            frame.size.width = fyWidth(self.superview) - fyX(self) - self.rulerX.c.value;
         } else {
-            frame.origin.x = fyWidth(self.superview) - fyWidth(self) - self.rulerX.z.value;
+            frame.origin.x = fyWidth(self.superview) - fyWidth(self) - self.rulerX.c.value;
         }
 
         self.frame = frame;
@@ -189,10 +191,10 @@ static int keyY;
     };
 }
 
-- (Constraint)fy_width {
+- (FYSectionValueChainableSetter)fy_width {
     return ^(CGFloat width) {
 
-        self.rulerX.y = FYFloatMake(width);
+        self.rulerX.b = FYFloatMake(width);
 
         CGRect frame = self.frame;
         frame.size.width = width;
@@ -202,13 +204,23 @@ static int keyY;
             return self;
         }
 
-        if (self.rulerX.z.enable) {
-            frame.origin.x = fyWidth(self.superview) - fyWidth(self) - self.rulerX.z.value;
+        if (self.rulerX.c.enable) {
+            frame.origin.x = fyWidth(self.superview) - fyWidth(self) - self.rulerX.c.value;
         }
 
         self.frame = frame;
 
         return self;
+    };
+}
+
+- (UIView *(^)(UIEdgeInsets))fy_edge {
+    return ^(UIEdgeInsets edge) {
+        return self
+        .fy_top(edge.top)
+        .fy_left(edge.left)
+        .fy_right(edge.right)
+        .fy_bottom(edge.bottom);
     };
 }
 

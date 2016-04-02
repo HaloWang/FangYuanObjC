@@ -17,61 +17,61 @@ FYFloat FYFloatMake(CGFloat value) {
 
 @implementation FYRuler
 
-- (void)setX:(FYFloat)x {
+- (void)setA:(FYFloat)a {
     
-    _x = x;
+    _a = a;
     
-    if (!_x.enable) {
+    if (!_a.enable) {
         return;
     }
     
-    if (_last != FYDimensionNone) {
-        if (_last == FYDimensionY) {
-            _z.enable = NO;
-        } else if (_last == FYDimensionZ) {
-            _y.enable = NO;
+    if (_last != FYSectionNone) {
+        if (_last == FYSectionB) {
+            _c.enable = NO;
+        } else if (_last == FYSectionC) {
+            _b.enable = NO;
         }
     }
     
-    _last = FYDimensionX;
+    _last = FYSectionA;
 }
 
-- (void)setY:(FYFloat)y {
+- (void)setB:(FYFloat)b {
     
-    _y = y;
+    _b = b;
     
-    if (!_y.enable) {
+    if (!_b.enable) {
         return;
     }
     
-    if (_last != FYDimensionNone) {
-        if (_last == FYDimensionX) {
-            _z.enable = NO;
-        } else if (_last == FYDimensionZ) {
-            _x.enable = NO;
+    if (_last != FYSectionNone) {
+        if (_last == FYSectionA) {
+            _c.enable = NO;
+        } else if (_last == FYSectionC) {
+            _a.enable = NO;
         }
     }
     
-    _last = FYDimensionY;
+    _last = FYSectionB;
 }
 
-- (void)setZ:(FYFloat)z {
+- (void)setC:(FYFloat)c {
     
-    _z = z;
+    _c = c;
     
-    if (!_z.enable) {
+    if (!_c.enable) {
         return;
     }
     
-    if (_last != FYDimensionNone) {
-        if (_last == FYDimensionX) {
-            _y.enable = NO;
-        } else if (_last == FYDimensionY) {
-            _x.enable = NO;
+    if (_last != FYSectionNone) {
+        if (_last == FYSectionA) {
+            _b.enable = NO;
+        } else if (_last == FYSectionB) {
+            _a.enable = NO;
         }
     }
     
-    _last = FYDimensionZ;
+    _last = FYSectionC;
 }
 
 @end
