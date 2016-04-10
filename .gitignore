@@ -15,7 +15,5 @@ xcuserdata
 *.xcscmblueprin
 *.hmap
 *.ipa
-Carthage/Build
-fastlane/report.xml
-fastlane/screenshots
 .idea/
+Pods/
