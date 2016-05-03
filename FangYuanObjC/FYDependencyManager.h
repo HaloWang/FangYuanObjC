@@ -1,11 +1,3 @@
-//
-//  FYDependencyManager.h
-//  Pods
-//
-//  Created by 王策 on 16/5/3.
-//
-//
-
 
 #import <Foundation/Foundation.h>
 #import "FYDependency.h"

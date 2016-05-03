@@ -13,11 +13,11 @@
             buildForProfiling = "YES"
             buildForArchiving = "YES">
             <BuildableReference
-               BuildableIdentifier = 'primary'
-               BlueprintIdentifier = '7B59FD9020913FF8F7564AB1'
-               BlueprintName = 'FangYuanObjC'
-               ReferencedContainer = 'container:Pods.xcodeproj'
-               BuildableName = 'libFangYuanObjC.a'>
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "A9D523F8C3552AEDCE31A81BCAFE10F5"
+               BlueprintName = "FangYuanObjC"
+               ReferencedContainer = "container:Pods.xcodeproj"
+               BuildableName = "libFangYuanObjC.a">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>

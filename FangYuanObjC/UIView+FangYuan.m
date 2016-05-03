@@ -7,7 +7,7 @@
 //
 
 #import "UIView+FangYuan.h"
-#import "FangYuan.h"
+#import "FYRuler.h"
 #import <objc/runtime.h>
 
 #pragma mark - Helper Function

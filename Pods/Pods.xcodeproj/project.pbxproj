@@ -13,13 +13,13 @@
 		09B87AE01CD8E6CB008C946C /* FYDependency.m in Sources */ = {isa = PBXBuildFile; fileRef = 09B87ADE1CD8E6CB008C946C /* FYDependency.m */; };
 		0AB3199AD7CFE89271D729071193B621 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C3B7BDF5CE5CB8F095FE12DA55D9A9BB /* UIKit.framework */; };
 		0DEF83A6802BA4DE4578F62FC93F4EDE /* HaloObjC.h in Headers */ = {isa = PBXBuildFile; fileRef = E71CEC256DE2E9360462427B11B298D7 /* HaloObjC.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		321FE47363A21B8B6AF288C136FC93FF /* FangYuan.h in Headers */ = {isa = PBXBuildFile; fileRef = FE70E62D53C03518BE3CFEE6F67A1750 /* FangYuan.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		321FE47363A21B8B6AF288C136FC93FF /* FYRuler.h in Headers */ = {isa = PBXBuildFile; fileRef = FE70E62D53C03518BE3CFEE6F67A1750 /* FYRuler.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		6454B0129FA07A00847FF646A59EEC74 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6E7E5AF37923BFA48D6994B9BFC6535F /* Foundation.framework */; };
 		86863367B18D4EFE5189F1554C94CE6E /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6E7E5AF37923BFA48D6994B9BFC6535F /* Foundation.framework */; };
 		9DED86D16489071F40F14BD67CBF4F52 /* UIView+FangYuan.h in Headers */ = {isa = PBXBuildFile; fileRef = 36253FD35E356724EC56F0DD34D57B76 /* UIView+FangYuan.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		9E5EEB3C81A7636D89A01E4D3E95EBDA /* UIView+FangYuan.m in Sources */ = {isa = PBXBuildFile; fileRef = E0E366A3B66A636E3671BCC51FB8F1F7 /* UIView+FangYuan.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
 		A9B1635EAE5CAFE59C2A792110AB9AB3 /* Pods-FangYuanObjCDemo-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 5485BCF05CEC72D50E87A8F3B361A419 /* Pods-FangYuanObjCDemo-dummy.m */; };
-		CB6C31DBBF33552ED9C68278507F66E2 /* FangYuan.m in Sources */ = {isa = PBXBuildFile; fileRef = B7E74206CC2B178EAB98A8EFEB600C3F /* FangYuan.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
+		CB6C31DBBF33552ED9C68278507F66E2 /* FYRuler.m in Sources */ = {isa = PBXBuildFile; fileRef = B7E74206CC2B178EAB98A8EFEB600C3F /* FYRuler.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
 		D17503D348959FA296E1AB2ACC9D5C57 /* FangYuanObjC-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = D7B661A99BCADC3041218226B074AAF0 /* FangYuanObjC-dummy.m */; };
 		F3DF2966F552011972AF69F3AAD29BB8 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6E7E5AF37923BFA48D6994B9BFC6535F /* Foundation.framework */; };
 		FB029B4426D251752E8B84CFF6EEB20C /* HaloObjC-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 13322508B67AEF0A73024A12D847034A /* HaloObjC-dummy.m */; };
@@ -63,7 +63,7 @@
 		9C06BF1C9E386B4D3B5475A53E7189E3 /* libHaloObjC.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libHaloObjC.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		AE8C5A48190E676229AA83C6496A31DE /* Pods-FangYuanObjCDemo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-FangYuanObjCDemo.debug.xcconfig"; sourceTree = "<group>"; };
 		AFB147342250413D4B740FD8EE396960 /* HaloObjC-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "HaloObjC-prefix.pch"; sourceTree = "<group>"; };
-		B7E74206CC2B178EAB98A8EFEB600C3F /* FangYuan.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = FangYuan.m; sourceTree = "<group>"; };
+		B7E74206CC2B178EAB98A8EFEB600C3F /* FYRuler.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = FYRuler.m; sourceTree = "<group>"; };
 		BA6428E9F66FD5A23C0A2E06ED26CD2F /* Podfile */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		C3B7BDF5CE5CB8F095FE12DA55D9A9BB /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS9.0.sdk/System/Library/Frameworks/UIKit.framework; sourceTree = DEVELOPER_DIR; };
 		D7B661A99BCADC3041218226B074AAF0 /* FangYuanObjC-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "FangYuanObjC-dummy.m"; sourceTree = "<group>"; };
@@ -71,7 +71,7 @@
 		E0E366A3B66A636E3671BCC51FB8F1F7 /* UIView+FangYuan.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "UIView+FangYuan.m"; sourceTree = "<group>"; };
 		E71CEC256DE2E9360462427B11B298D7 /* HaloObjC.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = HaloObjC.h; path = HaloObjC/HaloObjC.h; sourceTree = "<group>"; };
 		FD99746668759510C072F368319B98B4 /* FangYuanObjC-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "FangYuanObjC-prefix.pch"; sourceTree = "<group>"; };
-		FE70E62D53C03518BE3CFEE6F67A1750 /* FangYuan.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = FangYuan.h; sourceTree = "<group>"; };
+		FE70E62D53C03518BE3CFEE6F67A1750 /* FYRuler.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = FYRuler.h; sourceTree = "<group>"; };
 		FFABB1D05B3A8D65BC3FEBA742DFF053 /* Pods-FangYuanObjCDemo-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-FangYuanObjCDemo-acknowledgements.plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -199,8 +199,8 @@
 		BE0067DF0B725659A5E24F3F92997A84 /* FangYuanObjC */ = {
 			isa = PBXGroup;
 			children = (
-				FE70E62D53C03518BE3CFEE6F67A1750 /* FangYuan.h */,
-				B7E74206CC2B178EAB98A8EFEB600C3F /* FangYuan.m */,
+				FE70E62D53C03518BE3CFEE6F67A1750 /* FYRuler.h */,
+				B7E74206CC2B178EAB98A8EFEB600C3F /* FYRuler.m */,
 				36253FD35E356724EC56F0DD34D57B76 /* UIView+FangYuan.h */,
 				E0E366A3B66A636E3671BCC51FB8F1F7 /* UIView+FangYuan.m */,
 				09B87AD91CD8E6B1008C946C /* FYDependencyManager.h */,
@@ -246,7 +246,7 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				321FE47363A21B8B6AF288C136FC93FF /* FangYuan.h in Headers */,
+				321FE47363A21B8B6AF288C136FC93FF /* FYRuler.h in Headers */,
 				9DED86D16489071F40F14BD67CBF4F52 /* UIView+FangYuan.h in Headers */,
 				09B87ADF1CD8E6CB008C946C /* FYDependency.h in Headers */,
 				09B87ADB1CD8E6B1008C946C /* FYDependencyManager.h in Headers */,
@@ -350,7 +350,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CB6C31DBBF33552ED9C68278507F66E2 /* FangYuan.m in Sources */,
+				CB6C31DBBF33552ED9C68278507F66E2 /* FYRuler.m in Sources */,
 				09B87ADC1CD8E6B1008C946C /* FYDependencyManager.m in Sources */,
 				D17503D348959FA296E1AB2ACC9D5C57 /* FangYuanObjC-dummy.m in Sources */,
 				9E5EEB3C81A7636D89A01E4D3E95EBDA /* UIView+FangYuan.m in Sources */,

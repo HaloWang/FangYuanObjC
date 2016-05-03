@@ -37,6 +37,15 @@ NS_ASSUME_NONNULL_END
 
 #pragma mark - Private
 
++ (void)pushDependencyFrom:(UIView *)from to:(UIView *)to direction:(FYDependencyDirection *)direction value:(CGFloat)value {
+
+}
+
++ (void)popDependencyFrom:(UIView *)from to:(UIView *)to direction:(FYDependencyDirection *)direction value:(CGFloat)value {
+
+}
+
+
 - (BOOL)layouting:(UIView *)view {
     return YES;
 }
