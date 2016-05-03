@@ -2,8 +2,4 @@
 
 Light weight layout library written by Objective-C
 
-## Usage
-
-### CocoaPods
-
-`pod 'FangYuanObjC'`
+⚠️ 紧张的完成中！
