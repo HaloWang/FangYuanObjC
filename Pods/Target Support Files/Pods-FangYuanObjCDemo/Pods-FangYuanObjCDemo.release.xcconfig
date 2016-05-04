@@ -1,5 +1,0 @@
-GCC_PREPROCESSOR_DEFINITIONS = $(inherited) COCOAPODS=1
-HEADER_SEARCH_PATHS = $(inherited) "${PODS_ROOT}/Headers/Public" "${PODS_ROOT}/Headers/Public/FangYuanObjC" "${PODS_ROOT}/Headers/Public/HaloObjC" "${PODS_ROOT}/Headers/Public/Reveal-iOS-SDK"
-OTHER_CFLAGS = $(inherited) -isystem "${PODS_ROOT}/Headers/Public" -isystem "${PODS_ROOT}/Headers/Public/FangYuanObjC" -isystem "${PODS_ROOT}/Headers/Public/HaloObjC" -isystem "${PODS_ROOT}/Headers/Public/Reveal-iOS-SDK"
-OTHER_LDFLAGS = $(inherited) -ObjC -l"FangYuanObjC" -l"HaloObjC" -framework "UIKit"
-PODS_ROOT = ${SRCROOT}/Pods
