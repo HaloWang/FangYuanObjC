@@ -162,7 +162,7 @@ static int _AOHolderKey;
     CGFloat newWidth;
     if (rx.a.enable) {
         newX = rx.a.value;
-        newWidth = rx.b.enable ?  rx.b.value : superview.fyWidth - newX - rx.c.value;
+        newWidth = rx.b.enable ? rx.b.value : superview.fyWidth - newX - rx.c.value;
     } else {
         newX = superview.fyWidth - rx.b.value - rx.c.value;
         newWidth = rx.b.value;

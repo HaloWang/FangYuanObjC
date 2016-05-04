@@ -45,20 +45,20 @@
     .fy_left(10)
     .fy_right(100);
 
-//    UIView *view3 = [UIView new];
-//    [self.view addSubview:view3];
-//    view3.backgroundColor = [UIColor greenColor];
-//    
-//    view3
-//    .fy_bottom(view2.chainTop)
-//    .fy_top(50)
-//    .fy_left(view1.chainRight + 50)
-//    .fy_width(25);
+    UIView *view3 = [UIView new];
+    [self.view addSubview:view3];
+    view3.backgroundColor = [UIColor greenColor];
+    
+    view3
+    .fy_width(25)
+    .fy_left(view1.chainRight + 50)
+    .fy_top(50)
+    .fy_bottom(view2.chainTop - 25);
 
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         cc(NSStringFromCGRect(view1.frame));
         cc(NSStringFromCGRect(view2.frame));
-//        cc(NSStringFromCGRect(view3.frame));
+        cc(NSStringFromCGRect(view3.frame));
     });
 }
 

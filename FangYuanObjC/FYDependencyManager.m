@@ -156,7 +156,7 @@
             }
                 
             case FYDependencyDirectionTopBottom:{
-                to.rulerX.c = FYFloatMake(from.superview.fyWidth - from.fyX + value);
+                to.rulerY.c = FYFloatMake(from.superview.fyHeight - from.fyY + value);
                 break;
             }
                 
@@ -166,7 +166,7 @@
             }
                 
             case FYDependencyDirectionLeftRight:{
-                to.rulerY.c = FYFloatMake(from.superview.fyHeight - from.fyY + value);
+                to.rulerX.c = FYFloatMake(from.superview.fyWidth - from.fyX + value);
                 break;
             }
                 
