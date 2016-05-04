@@ -11,6 +11,8 @@
 		09B87ADC1CD8E6B1008C946C /* FYDependencyManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 09B87ADA1CD8E6B1008C946C /* FYDependencyManager.m */; };
 		09B87ADF1CD8E6CB008C946C /* FYDependency.h in Headers */ = {isa = PBXBuildFile; fileRef = 09B87ADD1CD8E6CB008C946C /* FYDependency.h */; };
 		09B87AE01CD8E6CB008C946C /* FYDependency.m in Sources */ = {isa = PBXBuildFile; fileRef = 09B87ADE1CD8E6CB008C946C /* FYDependency.m */; };
+		09DAD0EE1CD9BCBC00189A39 /* FYHolder.h in Headers */ = {isa = PBXBuildFile; fileRef = 09DAD0EC1CD9BCBC00189A39 /* FYHolder.h */; };
+		09DAD0EF1CD9BCBC00189A39 /* FYHolder.m in Sources */ = {isa = PBXBuildFile; fileRef = 09DAD0ED1CD9BCBC00189A39 /* FYHolder.m */; };
 		0AB3199AD7CFE89271D729071193B621 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C3B7BDF5CE5CB8F095FE12DA55D9A9BB /* UIKit.framework */; };
 		0DEF83A6802BA4DE4578F62FC93F4EDE /* HaloObjC.h in Headers */ = {isa = PBXBuildFile; fileRef = E71CEC256DE2E9360462427B11B298D7 /* HaloObjC.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		321FE47363A21B8B6AF288C136FC93FF /* FYRuler.h in Headers */ = {isa = PBXBuildFile; fileRef = FE70E62D53C03518BE3CFEE6F67A1750 /* FYRuler.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -49,6 +51,8 @@
 		09B87ADA1CD8E6B1008C946C /* FYDependencyManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FYDependencyManager.m; sourceTree = "<group>"; };
 		09B87ADD1CD8E6CB008C946C /* FYDependency.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FYDependency.h; sourceTree = "<group>"; };
 		09B87ADE1CD8E6CB008C946C /* FYDependency.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FYDependency.m; sourceTree = "<group>"; };
+		09DAD0EC1CD9BCBC00189A39 /* FYHolder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FYHolder.h; sourceTree = "<group>"; };
+		09DAD0ED1CD9BCBC00189A39 /* FYHolder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FYHolder.m; sourceTree = "<group>"; };
 		0DC83C5EFCF5245B8A5AD6649B03DE23 /* libFangYuanObjC.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libFangYuanObjC.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		13322508B67AEF0A73024A12D847034A /* HaloObjC-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "HaloObjC-dummy.m"; sourceTree = "<group>"; };
 		1510562C4A980187713F158B34839C9E /* libPods-FangYuanObjCDemo.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-FangYuanObjCDemo.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -199,12 +203,14 @@
 		BE0067DF0B725659A5E24F3F92997A84 /* FangYuanObjC */ = {
 			isa = PBXGroup;
 			children = (
-				FE70E62D53C03518BE3CFEE6F67A1750 /* FYRuler.h */,
-				B7E74206CC2B178EAB98A8EFEB600C3F /* FYRuler.m */,
 				36253FD35E356724EC56F0DD34D57B76 /* UIView+FangYuan.h */,
 				E0E366A3B66A636E3671BCC51FB8F1F7 /* UIView+FangYuan.m */,
 				09B87AD91CD8E6B1008C946C /* FYDependencyManager.h */,
 				09B87ADA1CD8E6B1008C946C /* FYDependencyManager.m */,
+				FE70E62D53C03518BE3CFEE6F67A1750 /* FYRuler.h */,
+				B7E74206CC2B178EAB98A8EFEB600C3F /* FYRuler.m */,
+				09DAD0EC1CD9BCBC00189A39 /* FYHolder.h */,
+				09DAD0ED1CD9BCBC00189A39 /* FYHolder.m */,
 				09B87ADD1CD8E6CB008C946C /* FYDependency.h */,
 				09B87ADE1CD8E6CB008C946C /* FYDependency.m */,
 				8FC4548053B1D49C917C573DC4D6163C /* Support Files */,
@@ -246,6 +252,7 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				09DAD0EE1CD9BCBC00189A39 /* FYHolder.h in Headers */,
 				321FE47363A21B8B6AF288C136FC93FF /* FYRuler.h in Headers */,
 				9DED86D16489071F40F14BD67CBF4F52 /* UIView+FangYuan.h in Headers */,
 				09B87ADF1CD8E6CB008C946C /* FYDependency.h in Headers */,
@@ -350,6 +357,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				09DAD0EF1CD9BCBC00189A39 /* FYHolder.m in Sources */,
 				CB6C31DBBF33552ED9C68278507F66E2 /* FYRuler.m in Sources */,
 				09B87ADC1CD8E6B1008C946C /* FYDependencyManager.m in Sources */,
 				D17503D348959FA296E1AB2ACC9D5C57 /* FangYuanObjC-dummy.m in Sources */,
