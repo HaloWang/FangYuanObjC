@@ -12,15 +12,11 @@
 
 @interface FYDependencyManager ()
 
-NS_ASSUME_NONNULL_BEGIN
-
 @property(nonatomic, assign, readonly) BOOL hasDependencies;
 @property(nonatomic, assign, readonly) BOOL hasUnSetDependencies;
-@property(nonatomic, strong, nullable) FYDependency *dependencyHolder;
+@property(nonatomic, strong) FYDependency *dependencyHolder;
 @property(nonatomic, strong) NSMutableArray<FYDependency *> *dependencies;
 @property(nonatomic, readonly) NSArray<FYDependency *> *unsetDeps;
-
-NS_ASSUME_NONNULL_END
 
 @end
 
@@ -46,10 +42,7 @@ NS_ASSUME_NONNULL_END
     
     NSAssert(to != nil, @"\"to\" should not be nil when pop a dependency");
     NSAssert(from == nil, @"\"from\" should be nil when pop a dependency");
-    
-    if (direction != manager.dependencyHolder.direction) {
-        return;
-    }
+    NSAssert(direction == manager.dependencyHolder.direction, @"Direction should be same");
     
     manager.dependencyHolder.to = to;
     manager.dependencyHolder.value = value;

@@ -10,6 +10,8 @@
 
 typedef UIView*(^FYSectionValueChainableSetter)(CGFloat value);
 
+NS_ASSUME_NONNULL_BEGIN
+
 @interface UIView (FangYuan)
 
 @property (nonatomic, readonly) CGFloat chainTop;
@@ -35,3 +37,5 @@ typedef UIView*(^FYSectionValueChainableSetter)(CGFloat value);
 @property (nonatomic, readonly) UIView*(^fy_edge)(UIEdgeInsets edge);
 
 @end
+
+NS_ASSUME_NONNULL_END
