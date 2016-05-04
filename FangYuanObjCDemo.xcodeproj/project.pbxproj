@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		095E601C1CA4D10F00620945 /* UIView+FangYuanMethodSwizzle.m in Sources */ = {isa = PBXBuildFile; fileRef = 095E601B1CA4D10F00620945 /* UIView+FangYuanMethodSwizzle.m */; };
 		0975A8581C9FFAB200CB5351 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 0975A8571C9FFAB200CB5351 /* main.m */; };
 		0975A85B1C9FFAB200CB5351 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 0975A85A1C9FFAB200CB5351 /* AppDelegate.m */; };
 		0975A85E1C9FFAB200CB5351 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0975A85D1C9FFAB200CB5351 /* ViewController.m */; };
@@ -18,8 +17,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		095E601A1CA4D10F00620945 /* UIView+FangYuanMethodSwizzle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+FangYuanMethodSwizzle.h"; sourceTree = "<group>"; };
-		095E601B1CA4D10F00620945 /* UIView+FangYuanMethodSwizzle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+FangYuanMethodSwizzle.m"; sourceTree = "<group>"; };
 		0975A8531C9FFAB200CB5351 /* FangYuanObjCDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FangYuanObjCDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0975A8571C9FFAB200CB5351 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		0975A8591C9FFAB200CB5351 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -47,19 +44,9 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		095E60191CA4D10F00620945 /* FY_Research */ = {
-			isa = PBXGroup;
-			children = (
-				095E601A1CA4D10F00620945 /* UIView+FangYuanMethodSwizzle.h */,
-				095E601B1CA4D10F00620945 /* UIView+FangYuanMethodSwizzle.m */,
-			);
-			path = FY_Research;
-			sourceTree = "<group>";
-		};
 		0975A84A1C9FFAB200CB5351 = {
 			isa = PBXGroup;
 			children = (
-				095E60191CA4D10F00620945 /* FY_Research */,
 				0975A8551C9FFAB200CB5351 /* FangYuanObjCDemo */,
 				0975A8541C9FFAB200CB5351 /* Products */,
 				E5C1B952D5995A471DD49D18 /* Pods */,
@@ -238,7 +225,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				0975A85E1C9FFAB200CB5351 /* ViewController.m in Sources */,
-				095E601C1CA4D10F00620945 /* UIView+FangYuanMethodSwizzle.m in Sources */,
 				0975A85B1C9FFAB200CB5351 /* AppDelegate.m in Sources */,
 				0975A8581C9FFAB200CB5351 /* main.m in Sources */,
 			);

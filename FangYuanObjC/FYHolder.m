@@ -13,11 +13,23 @@
 - (instancetype)init {
     self = [super init];
     if (self) {
-        _rulerX = [FYRuler new];
-        _rulerY = [FYRuler new];
         _usingFangYuan = NO;
     }
     return self;
+}
+
+- (FYRuler *)rulerX {
+    if (!_rulerX) {
+        _rulerX = [FYRuler new];
+    }
+    return _rulerX;
+}
+
+- (FYRuler *)rulerY {
+    if (!_rulerY) {
+        _rulerY = [FYRuler new];
+    }
+    return _rulerY;
 }
 
 @end

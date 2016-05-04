@@ -7,104 +7,10 @@
 //
 
 #import "UIView+FangYuan.h"
-#import <objc/runtime.h>
 #import "FYDependencyManager.h"
-#import "FYHolder.h"
-
-@interface UIView ()
-
-/// 横轴标尺
-@property (nonatomic, readonly) FYRuler *rulerX;
-/// 纵轴标尺
-@property (nonatomic, readonly) FYRuler *rulerY;
-@property (nonatomic, getter=isUsingFangYuan) BOOL usingFangYuan;
-@property (nonatomic, readonly) FYHolder *holder;
-
-@end
-
-@interface UIView (FangYuanHelper)
-
-@property (nonatomic, assign) CGFloat fyX;
-@property (nonatomic, assign) CGFloat fyY;
-@property (nonatomic, assign) CGFloat fyHeight;
-@property (nonatomic, assign) CGFloat fyWidth;
-
-@end
-
-@implementation UIView (FangYuanHelper)
-
-- (CGFloat)fyX {
-    return self.frame.origin.x;
-}
-
-- (CGFloat)fyY {
-    return self.frame.origin.y;
-}
-
-- (CGFloat)fyWidth {
-    return self.frame.size.width;
-}
-
-- (CGFloat)fyHeight {
-    return self.frame.size.height;
-}
-
-- (void)setFyX:(CGFloat)fyX {
-    CGRect rect = self.frame;
-    rect.origin.x = fyX;
-    self.frame = rect;
-}
-
-- (void)setFyY:(CGFloat)fyY {
-    CGRect rect = self.frame;
-    rect.origin.y = fyY;
-    self.frame = rect;
-}
-
-- (void)setFyWidth:(CGFloat)fyWidth {
-    CGRect rect = self.frame;
-    rect.size.width = fyWidth;
-    self.frame = rect;
-}
-
-- (void)setFyHeight:(CGFloat)fyHeight {
-    CGRect rect = self.frame;
-    rect.size.height = fyHeight;
-    self.frame = rect;
-}
-
-@end
+#import "UIView+FangYuanPrivate.h"
 
 @implementation UIView (FangYuan)
-
-#pragma mark - Associated Object
-
-static int _AOHolderKey;
-
-- (FYHolder *)holder {
-    FYHolder *holder = objc_getAssociatedObject(self, &_AOHolderKey);
-    if (!holder) {
-        holder = [FYHolder new];
-        objc_setAssociatedObject(self, &_AOHolderKey, holder, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
-    }
-    return holder;
-}
-
-- (FYRuler *)rulerX {
-    return self.holder.rulerX;
-}
-
-- (FYRuler *)rulerY {
-    return self.holder.rulerY;
-}
-
-- (BOOL)isUsingFangYuan {
-    return self.holder.isUsingFangYuan;
-}
-
-- (void)setUsingFangYuan:(BOOL)usingFangYuan {
-    self.holder.usingFangYuan = usingFangYuan;
-}
 
 #pragma mark - Chainable Methods
 
@@ -130,17 +36,13 @@ static int _AOHolderKey;
 
 #pragma mark - Chainable Blocks
 
-- (void)basicSetting {
-    [self setNeedsLayout];
-    self.usingFangYuan = YES;
-}
-
 #pragma mark Ruler Y
 
 - (FYSectionValueChainableSetter)fy_top {
     return ^(CGFloat top) {
         [self basicSetting];
         self.rulerY.a = FYFloatMake(top);
+        [FYDependencyManager popDependencyFrom:nil to:self direction:FYDependencyDirectionBottomTop value:top];
         return self;
     };
 }
@@ -149,6 +51,7 @@ static int _AOHolderKey;
     return ^(CGFloat bottom) {
         [self basicSetting];
         self.rulerY.c = FYFloatMake(bottom);
+        [FYDependencyManager popDependencyFrom:nil to:self direction:FYDependencyDirectionTopBottom value:bottom];
         return self;
     };
 }
@@ -167,6 +70,7 @@ static int _AOHolderKey;
     return ^(CGFloat left) {
         [self basicSetting];
         self.rulerX.a = FYFloatMake(left);
+        [FYDependencyManager popDependencyFrom:nil to:self direction:FYDependencyDirectionRightLeft value:left];
         return self;
     };
 }
@@ -175,6 +79,7 @@ static int _AOHolderKey;
     return ^(CGFloat right) {
         [self basicSetting];
         self.rulerX.c = FYFloatMake(right);
+        [FYDependencyManager popDependencyFrom:nil to:self direction:FYDependencyDirectionLeftRight value:right];
         return self;
     };
 }
@@ -191,46 +96,6 @@ static int _AOHolderKey;
     return ^(UIEdgeInsets edge) {
         return self.fy_top(edge.top).fy_left(edge.left).fy_right(edge.right).fy_bottom(edge.bottom);
     };
-}
-
-#pragma mark - Private Methods
-
-#define setIfNE(a, b)\
-        if (a != b) {\
-            a = b;\
-        }
-
-- (void)layoutWithFangYuan {
-
-    UIView *superview = self.superview;
-
-    //  X
-    FYRuler *rx = self.rulerX;
-    CGFloat newX;
-    CGFloat newWidth;
-    if (rx.a.enable) {
-        newX = rx.a.value;
-        newWidth = rx.b.enable ? superview.fyWidth - newX - rx.c.value : rx.b.value;
-    } else {
-        newX = superview.fyWidth - rx.b.value - rx.c.value;
-        newWidth = rx.b.value;
-    }
-    setIfNE(self.fyX, newX)
-    setIfNE(self.fyWidth, newWidth)
-
-    //  Y
-    FYRuler *ry = self.rulerY;
-    CGFloat newY;
-    CGFloat newHeight;
-    if (ry.a.enable) {
-        newY = ry.a.value;
-        newHeight = ry.b.enable ? superview.fyHeight - newY - ry.c.value : ry.b.value;
-    } else {
-        newY = superview.fyHeight - ry.b.value - ry.c.value;
-        newHeight = ry.b.value;
-    }
-    setIfNE(self.fyY, newY);
-    setIfNE(self.fyHeight, newHeight)
 }
 
 @end

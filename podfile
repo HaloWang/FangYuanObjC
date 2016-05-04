@@ -1,4 +1,5 @@
 target 'FangYuanObjCDemo' do
 	pod 'HaloObjC'
 	pod 'FangYuanObjC', :path=>"./FangYuanObjC"
+    pod 'Reveal-iOS-SDK', :configurations => ["Debug"]
 end

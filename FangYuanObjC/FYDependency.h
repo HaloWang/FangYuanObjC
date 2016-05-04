@@ -17,9 +17,9 @@ typedef NS_ENUM(NSUInteger, FYDependencyDirection) {
 
 @interface FYDependency : NSObject
 
-@property (nonatomic, weak  ) UIView                *from;
-@property (nonatomic, weak  ) UIView                *to;
-@property (nonatomic, assign) CGFloat               value;
+@property (nonatomic, weak) UIView *from;
+@property (nonatomic, weak) UIView *to;
+@property (nonatomic, assign) CGFloat value;
 @property (nonatomic, assign) FYDependencyDirection direction;
 @property (nonatomic, assign) BOOL hasSet;
 

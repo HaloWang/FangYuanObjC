@@ -1,10 +1,12 @@
 PODS:
   - FangYuanObjC (0.0.1)
-  - HaloObjC (0.1.1)
+  - HaloObjC (0.2.5)
+  - Reveal-iOS-SDK (1.6.2)
 
 DEPENDENCIES:
   - FangYuanObjC (from `./FangYuanObjC`)
   - HaloObjC
+  - Reveal-iOS-SDK
 
 EXTERNAL SOURCES:
   FangYuanObjC:
@@ -12,6 +14,7 @@ EXTERNAL SOURCES:
 
 SPEC CHECKSUMS:
   FangYuanObjC: 3094549478d24f99fef1fdab32637c47773c443a
-  HaloObjC: fbd2cd1158d0f825d24dbaace1dcd570a7d59888
+  HaloObjC: 0e20be5a2a8d88b4a08470e359d8e6a6fed27cfc
+  Reveal-iOS-SDK: e2250b3c155bcfac53ae223ddc1f76d08f206c33
 
 COCOAPODS: 0.39.0

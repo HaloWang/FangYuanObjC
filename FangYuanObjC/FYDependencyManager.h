@@ -11,8 +11,6 @@
 
 @interface FYDependencyManager : NSObject
 
-+ (FYDependencyManager *)sharedInstance;
-
 + (void)pushDependencyFrom:(UIView *)from
                         to:(UIView *)to
                  direction:(FYDependencyDirection)direction
@@ -22,5 +20,7 @@
                        to:(UIView *)to
                 direction:(FYDependencyDirection)direction
                     value:(CGFloat)value;
+
++ (void)layout:(UIView *)view;
 
 @end
