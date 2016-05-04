@@ -16,7 +16,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property(nonatomic, assign, readonly) BOOL hasDependencies;
 @property(nonatomic, assign, readonly) BOOL hasUnSetDependencies;
-@property(nonatomic, strong) FYDependency *dependencyHolder;
+@property(nonatomic, strong, nullable) FYDependency *dependencyHolder;
 @property(nonatomic, strong) NSMutableArray<FYDependency *> *dependencies;
 @property(nonatomic, readonly) NSArray<FYDependency *> *unsetDeps;
 
@@ -53,7 +53,6 @@ NS_ASSUME_NONNULL_END
     
     manager.dependencyHolder.to = to;
     manager.dependencyHolder.value = value;
-    
     [manager.dependencies addObject:manager.dependencyHolder];
     manager.dependencyHolder = nil;
 }
@@ -121,10 +120,10 @@ NS_ASSUME_NONNULL_END
 }
 
 - (void)removeUselessDep {
-    NSMutableArray *newDependencies = @[].mutableCopy;
+    NSMutableArray *newDependencies = self.dependencies;
     [self.dependencies enumerateObjectsUsingBlock:^(FYDependency * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
         if (obj.to == nil && obj.from == nil) {
-            [newDependencies addObject:obj];
+            [newDependencies removeObject:obj];
         }
     }];
     self.dependencies = newDependencies;
@@ -182,6 +181,7 @@ NS_ASSUME_NONNULL_END
                 NSAssert(NO, @"Something wrong!");
                 break;
         }
+        obj.hasSet = YES;
     }];
 }
 

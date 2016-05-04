@@ -9,7 +9,6 @@
 #import "UIView+FangYuanPrivate.h"
 #import "FYDependencyManager.h"
 #import <objc/runtime.h>
-#import "FYHolder.h"
 
 #define             \
 setIfNE(a, b)       \
