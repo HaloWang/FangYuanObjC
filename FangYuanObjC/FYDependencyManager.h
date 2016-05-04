@@ -1,8 +1,13 @@
+//
+//  FYDependencyManager.h
+//  FangYuanObjC
+//
+//  Created by 王策 on 16/5/4.
+//  Copyright © 2016年 WangCe. All rights reserved.
+//
 
 #import <Foundation/Foundation.h>
 #import "FYDependency.h"
-
-NS_ASSUME_NONNULL_BEGIN
 
 @interface FYDependencyManager : NSObject
 
@@ -10,15 +15,12 @@ NS_ASSUME_NONNULL_BEGIN
 
 + (void)pushDependencyFrom:(UIView *)from
                         to:(UIView *)to
-                 direction:(FYDependencyDirection *)direction
+                 direction:(FYDependencyDirection)direction
                      value:(CGFloat)value;
 
 + (void)popDependencyFrom:(UIView *)from
                        to:(UIView *)to
-                direction:(FYDependencyDirection *)direction
+                direction:(FYDependencyDirection)direction
                     value:(CGFloat)value;
 
-
 @end
-
-NS_ASSUME_NONNULL_END

@@ -1,3 +1,10 @@
+//
+//  FYRuler.m
+//  FangYuanObjC
+//
+//  Created by 王策 on 16/5/4.
+//  Copyright © 2016年 WangCe. All rights reserved.
+//
 
 #import "FYRuler.h"
 
