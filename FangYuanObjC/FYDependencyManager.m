@@ -123,6 +123,11 @@
 }
 
 - (void)layout:(UIView *)view {
+    
+    if (view == nil) {
+        return;
+    }
+    
     if ([self hasUnSetDependenciesOf:view]) {
         while ([self hasUnSetDependenciesOf:view]) {
             [view.usingFangYuanSubviews enumerateObjectsUsingBlock:^(UIView * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {

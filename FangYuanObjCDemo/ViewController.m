@@ -9,8 +9,14 @@
 #import "ViewController.h"
 #import <UIView+FangYuan.h>
 #import <HaloObjC.h>
+#import <UIView+FangYuanPrivate.h>
+#import <FYDependencyManager.h>
 
 @interface ViewController ()
+
+@property (nonatomic, strong) UIView *view1;
+@property (nonatomic, strong) UIView *view2;
+@property (nonatomic, strong) UIView *view3;
 
 @end
 
@@ -19,11 +25,11 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    UIView *view1 = [UIView new];
-    [self.view addSubview:view1];
-    view1.backgroundColor = [UIColor redColor];
+    self.view1 = [UIView new];
+    [self.view addSubview:_view1];
+    _view1.backgroundColor = [UIColor redColor];
     
-    view1
+    _view1
     .fy_bottom(-50)
     .fy_top(100)
     .fy_left(20)
@@ -35,31 +41,31 @@
     .fy_width(50)
     .fy_height(200);
 
-    UIView *view2 = [UIView new];
-    [self.view addSubview:view2];
-    view2.backgroundColor = [UIColor blueColor];
+    self.view2 = [UIView new];
+    [self.view addSubview:_view2];
+    _view2.backgroundColor = [UIColor blueColor];
 
-    view2
+    _view2
     .fy_bottom(50)
-    .fy_top(view1.chainBottom)
+    .fy_top(_view1.chainBottom)
     .fy_left(10)
     .fy_right(100);
 
-    UIView *view3 = [UIView new];
-    [self.view addSubview:view3];
-    view3.backgroundColor = [UIColor greenColor];
+    self.view3 = [UIView new];
+    [self.view addSubview:_view3];
+    _view3.backgroundColor = [UIColor greenColor];
     
-    view3
+    _view3
     .fy_width(25)
-    .fy_left(view1.chainRight + 50)
+    .fy_left(_view1.chainRight + 50)
     .fy_top(50)
-    .fy_bottom(view2.chainTop - 25);
+    .fy_bottom(_view2.chainTop - 25);
+}
 
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        cc(NSStringFromCGRect(view1.frame));
-        cc(NSStringFromCGRect(view2.frame));
-        cc(NSStringFromCGRect(view3.frame));
-    });
+- (IBAction)animation:(id)sender {
+    [UIView animateWithDuration:0.25 animations:^{
+        _view3.fy_bottom(_view2.chainTop + 25).toAnimation();
+    }];
 }
 
 @end

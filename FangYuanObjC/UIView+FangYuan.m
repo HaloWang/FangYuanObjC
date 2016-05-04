@@ -98,4 +98,10 @@
     };
 }
 
+- (void (^)())toAnimation {
+    return ^{
+        [FYDependencyManager layout:self.superview];
+    };
+}
+
 @end
