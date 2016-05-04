@@ -12,11 +12,11 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@property (nonatomic, strong) FYDependency *dependencyHolder;
-@property (nonatomic, strong) NSMutableArray<FYDependency *> *dependencies;
-@property (nonatomic, assign, readonly) BOOL hasDependencies;
-@property (nonatomic, assign, readonly) BOOL hasUnSetDependencies;
-@property (nonatomic, readonly) NSArray<FYDependency *> *unsetDeps;
+@property(nonatomic, strong) FYDependency *dependencyHolder;
+@property(nonatomic, strong) NSMutableArray<FYDependency *> *dependencies;
+@property(nonatomic, assign, readonly) BOOL hasDependencies;
+@property(nonatomic, assign, readonly) BOOL hasUnSetDependencies;
+@property(nonatomic, readonly) NSArray<FYDependency *> *unsetDeps;
 
 NS_ASSUME_NONNULL_END
 
@@ -38,11 +38,11 @@ NS_ASSUME_NONNULL_END
 #pragma mark - Private
 
 + (void)pushDependencyFrom:(UIView *)from to:(UIView *)to direction:(FYDependencyDirection)direction value:(CGFloat)value {
-    
+
 }
 
 + (void)popDependencyFrom:(UIView *)from to:(UIView *)to direction:(FYDependencyDirection)direction value:(CGFloat)value {
-    
+
 }
 
 
@@ -51,7 +51,7 @@ NS_ASSUME_NONNULL_END
 }
 
 - (void)removeUselessDep {
-    
+
 }
 
 - (BOOL)hasUnSetDependenciesOf:(UIView *)view {
@@ -59,11 +59,11 @@ NS_ASSUME_NONNULL_END
 }
 
 - (void)layout {
-    
+
 }
 
 - (void)loadDependenciesOf:(UIView *)view {
-    
+
 }
 
 - (BOOL)allDependenciesLoaddedOf:(UIView *)view {

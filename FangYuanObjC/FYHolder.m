@@ -10,8 +10,7 @@
 
 @implementation FYHolder
 
-- (instancetype)init
-{
+- (instancetype)init {
     self = [super init];
     if (self) {
         _rulerX = [FYRuler new];

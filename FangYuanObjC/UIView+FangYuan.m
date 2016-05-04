@@ -9,9 +9,7 @@
 #import "UIView+FangYuan.h"
 #import <objc/runtime.h>
 #import "FYDependencyManager.h"
-#import "FYDependency.h"
 #import "FYHolder.h"
-#import "FYRuler.h"
 
 @interface UIView ()
 
@@ -19,9 +17,7 @@
 @property (nonatomic, readonly) FYRuler *rulerX;
 /// 纵轴标尺
 @property (nonatomic, readonly) FYRuler *rulerY;
-
 @property (nonatomic, getter=isUsingFangYuan) BOOL usingFangYuan;
-
 @property (nonatomic, readonly) FYHolder *holder;
 
 @end
@@ -205,9 +201,9 @@ static int _AOHolderKey;
         }
 
 - (void)layoutWithFangYuan {
-    
+
     UIView *superview = self.superview;
-    
+
     //  X
     FYRuler *rx = self.rulerX;
     CGFloat newX;
@@ -221,7 +217,7 @@ static int _AOHolderKey;
     }
     setIfNE(self.fyX, newX)
     setIfNE(self.fyWidth, newWidth)
-    
+
     //  Y
     FYRuler *ry = self.rulerY;
     CGFloat newY;
@@ -236,6 +232,5 @@ static int _AOHolderKey;
     setIfNE(self.fyY, newY);
     setIfNE(self.fyHeight, newHeight)
 }
-
 
 @end
