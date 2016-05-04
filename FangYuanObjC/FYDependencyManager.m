@@ -39,12 +39,13 @@ NS_ASSUME_NONNULL_END
 }
 
 + (void)popDependencyFrom:(UIView *)from to:(UIView *)to direction:(FYDependencyDirection)direction value:(CGFloat)value {
-    NSAssert(to != nil, @"\"to\" should not be nil when pop a dependency");
-    NSAssert(from == nil, @"\"from\" should be nil when pop a dependency");
     FYDependencyManager *manager = [FYDependencyManager sharedInstance];
     if (!manager.dependencyHolder) {
         return;
     }
+    
+    NSAssert(to != nil, @"\"to\" should not be nil when pop a dependency");
+    NSAssert(from == nil, @"\"from\" should be nil when pop a dependency");
     
     if (direction != manager.dependencyHolder.direction) {
         return;

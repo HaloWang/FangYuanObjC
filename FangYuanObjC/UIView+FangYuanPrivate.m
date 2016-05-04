@@ -163,7 +163,7 @@ static int _AOHolderKey;
     CGFloat newWidth;
     if (rx.a.enable) {
         newX = rx.a.value;
-        newWidth = rx.b.enable ? superview.fyWidth - newX - rx.c.value : rx.b.value;
+        newWidth = rx.b.enable ?  rx.b.value : superview.fyWidth - newX - rx.c.value;
     } else {
         newX = superview.fyWidth - rx.b.value - rx.c.value;
         newWidth = rx.b.value;
@@ -177,7 +177,7 @@ static int _AOHolderKey;
     CGFloat newHeight;
     if (ry.a.enable) {
         newY = ry.a.value;
-        newHeight = ry.b.enable ? superview.fyHeight - newY - ry.c.value : ry.b.value;
+        newHeight = ry.b.enable ? ry.b.value : superview.fyHeight - newY - ry.c.value;
     } else {
         newY = superview.fyHeight - ry.b.value - ry.c.value;
         newHeight = ry.b.value;

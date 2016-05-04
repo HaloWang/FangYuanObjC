@@ -74,4 +74,8 @@ FYFloat FYFloatMake(CGFloat value) {
     _last = FYSectionC;
 }
 
+- (NSString *)description {
+    return [NSString stringWithFormat:@"%@\na:%f\nb:%f\nc:%f", [self class], self.a.value, self.b.value, self.c.value];
+}
+
 @end
