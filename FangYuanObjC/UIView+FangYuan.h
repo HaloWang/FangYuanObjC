@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-typedef UIView*(^FYSectionValueChainableSetter)(CGFloat value);
+typedef UIView *(^FYSectionValueChainableSetter)(CGFloat value);
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -34,7 +34,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, readonly) FYSectionValueChainableSetter fy_right;
 
 /// 函数：设定某个 UIView 四个边距离其父视图相对四边的距离
-@property (nonatomic, readonly) UIView*(^fy_edge)(UIEdgeInsets edge);
+@property (nonatomic, readonly) UIView *(^fy_edge)(UIEdgeInsets edge);
 
 @property (nonatomic, readonly) void(^toAnimation)();
 

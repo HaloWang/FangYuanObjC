@@ -14,6 +14,8 @@
 @property (nonatomic, strong) FYDependency *dependencyHolder;
 @property (nonatomic, strong) NSMutableArray<FYDependency *> *dependencies;
 @property (nonatomic, readonly) NSArray<FYDependency *> *unsetDependencies;
+@property (nonatomic, strong) NSPredicate *filterHasSetPredicate;
+
 
 @end
 
@@ -26,8 +28,6 @@
 }
 
 + (void)pushDependencyFrom:(UIView *)from to:(UIView *)to direction:(FYDependencyDirection)direction value:(CGFloat)value {
-    NSAssert(from != nil, @"");
-    NSAssert(value == 0, @"");
     [self sharedInstance].dependencyHolder = [FYDependency dependencyFrom:from to:to direction:direction value:value];
 }
 
@@ -37,26 +37,26 @@
         return;
     }
     
-    NSAssert(to != nil, @"\"to\" should not be nil when pop a dependency");
-    NSAssert(from == nil, @"\"from\" should be nil when pop a dependency");
-    NSAssert(direction == manager.dependencyHolder.direction, @"Direction should be same");
-    
     manager.dependencyHolder.to = to;
     manager.dependencyHolder.value = value;
+
+    //  移除重复的约束
+    FYDependency *dependencyNeedRemove;
+    for (FYDependency *dependency in manager.dependencies) {
+        if (dependency.to == to && manager.dependencyHolder.from == from && dependency.direction == direction) {
+            dependencyNeedRemove = dependency;
+        }
+    }
+    if (dependencyNeedRemove) {
+        [manager.dependencies removeObject:dependencyNeedRemove];
+    }
+    
+    //  添加约束
     [manager.dependencies addObject:manager.dependencyHolder];
     manager.dependencyHolder = nil;
 }
 
 #pragma mark - Private
-
-- (NSArray<FYDependency *> *)unsetDependencies {
-    NSMutableArray<FYDependency *> *mArr = self.dependencies;
-    [mArr filterUsingPredicate:[NSPredicate predicateWithBlock:^BOOL(id  _Nonnull evaluatedObject, NSDictionary<NSString *,id> * _Nullable bindings) {
-        FYDependency *dep = evaluatedObject;
-        return !dep.hasSet;
-    }]];
-    return mArr.copy;
-}
 
 + (FYDependencyManager *)sharedInstance {
     static FYDependencyManager *manager = nil;
@@ -64,8 +64,18 @@
     dispatch_once(&onceToken, ^{
         manager = [FYDependencyManager new];
         manager.dependencies = [NSMutableArray array];
+        manager.filterHasSetPredicate = [NSPredicate predicateWithBlock:^BOOL(id  _Nonnull evaluatedObject, NSDictionary<NSString *,id> * _Nullable bindings) {
+            FYDependency *dep = evaluatedObject;
+            return !dep.hasSet;
+        }];
     });
     return manager;
+}
+
+- (NSArray<FYDependency *> *)unsetDependencies {
+    NSMutableArray<FYDependency *> *mArr = self.dependencies;
+    [mArr filterUsingPredicate:self.filterHasSetPredicate];
+    return mArr.copy;
 }
 
 - (BOOL)layouting:(UIView *)view {
@@ -136,7 +146,14 @@
         }
     } else {
         [view.usingFangYuanSubviews enumerateObjectsUsingBlock:^(UIView * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+//            printf("ℹ️");
+//            NSLog(@"%@", obj.usingFangYuan ? @"YES" : @"NO");
+//            NSLog(@"%@",[obj class]);
+//            NSLog(@"%@",obj.superview);
+//            NSLog(@"%@",NSStringFromCGRect(obj.frame));
             [obj layoutWithFangYuan];
+//            NSLog(@"%@",NSStringFromCGRect(obj.frame));
+//            NSLog(@"\n");
         }];
     }
 }

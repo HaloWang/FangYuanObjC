@@ -15,22 +15,38 @@
 #pragma mark - Chainable Methods
 
 - (CGFloat)chainLeft {
-    [FYDependencyManager pushDependencyFrom:self to:nil direction:FYDependencyDirectionLeftRight value:0];
+    [FYDependencyManager
+     pushDependencyFrom:self
+     to:nil
+     direction:FYDependencyDirectionLeftRight
+     value:0];
     return 0;
 }
 
 - (CGFloat)chainRight {
-    [FYDependencyManager pushDependencyFrom:self to:nil direction:FYDependencyDirectionRightLeft value:0];
+    [FYDependencyManager
+     pushDependencyFrom:self
+     to:nil
+     direction:FYDependencyDirectionRightLeft
+     value:0];
     return 0;
 }
 
 - (CGFloat)chainTop {
-    [FYDependencyManager pushDependencyFrom:self to:nil direction:FYDependencyDirectionTopBottom value:0];
+    [FYDependencyManager
+     pushDependencyFrom:self
+     to:nil
+     direction:FYDependencyDirectionTopBottom
+     value:0];
     return 0;
 }
 
 - (CGFloat)chainBottom {
-    [FYDependencyManager pushDependencyFrom:self to:nil direction:FYDependencyDirectionBottomTop value:0];
+    [FYDependencyManager
+     pushDependencyFrom:self
+     to:nil
+     direction:FYDependencyDirectionBottomTop
+     value:0];
     return 0;
 }
 
@@ -42,7 +58,11 @@
     return ^(CGFloat top) {
         [self basicSetting];
         self.rulerY.a = FYFloatMake(top);
-        [FYDependencyManager popDependencyFrom:nil to:self direction:FYDependencyDirectionBottomTop value:top];
+        [FYDependencyManager
+         popDependencyFrom:nil
+         to:self
+         direction:FYDependencyDirectionBottomTop
+         value:top];
         return self;
     };
 }
@@ -51,7 +71,11 @@
     return ^(CGFloat bottom) {
         [self basicSetting];
         self.rulerY.c = FYFloatMake(bottom);
-        [FYDependencyManager popDependencyFrom:nil to:self direction:FYDependencyDirectionTopBottom value:bottom];
+        [FYDependencyManager
+         popDependencyFrom:nil
+         to:self
+         direction:FYDependencyDirectionTopBottom
+         value:bottom];
         return self;
     };
 }
@@ -70,7 +94,11 @@
     return ^(CGFloat left) {
         [self basicSetting];
         self.rulerX.a = FYFloatMake(left);
-        [FYDependencyManager popDependencyFrom:nil to:self direction:FYDependencyDirectionRightLeft value:left];
+        [FYDependencyManager
+         popDependencyFrom:nil
+         to:self
+         direction:FYDependencyDirectionRightLeft
+         value:left];
         return self;
     };
 }
@@ -79,7 +107,11 @@
     return ^(CGFloat right) {
         [self basicSetting];
         self.rulerX.c = FYFloatMake(right);
-        [FYDependencyManager popDependencyFrom:nil to:self direction:FYDependencyDirectionLeftRight value:right];
+        [FYDependencyManager
+         popDependencyFrom:nil
+         to:self
+         direction:FYDependencyDirectionLeftRight
+         value:right];
         return self;
     };
 }

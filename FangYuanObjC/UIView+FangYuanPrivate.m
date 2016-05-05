@@ -28,21 +28,15 @@ if (a != b) {       \
         SEL originalSelector = @selector(layoutSubviews);
         SEL swizzledSelector = @selector(_swizzled_layoutSubviews);
         
-        
         Method originalMethod = class_getInstanceMethod(class, originalSelector);
         Method swizzledMethod = class_getInstanceMethod(class, swizzledSelector);
         
-        BOOL didAddMethod =
-        class_addMethod(class,
-                        originalSelector,
-                        method_getImplementation(swizzledMethod),
-                        method_getTypeEncoding(swizzledMethod));
+        // TODO: 下面的代码保证了什么来着？
+        
+        BOOL didAddMethod = class_addMethod(class, originalSelector, method_getImplementation(swizzledMethod), method_getTypeEncoding(swizzledMethod));
         
         if (didAddMethod) {
-            class_replaceMethod(class,
-                                swizzledSelector,
-                                method_getImplementation(originalMethod),
-                                method_getTypeEncoding(originalMethod));
+            class_replaceMethod(class, swizzledSelector, method_getImplementation(originalMethod), method_getTypeEncoding(originalMethod));
         } else {
             method_exchangeImplementations(originalMethod, swizzledMethod);
         }
@@ -78,6 +72,7 @@ static int _AOHolderKey;
     return self.fy_AssociatedObjectHolder.rulerY;
 }
 
+// TODO: 给所有的 UIView 添加了一个 fy_AssociatedObjectHolder 的属性，这样真的好吗？
 - (BOOL)isUsingFangYuan {
     return self.fy_AssociatedObjectHolder.isUsingFangYuan;
 }
@@ -148,6 +143,7 @@ static int _AOHolderKey;
 }
 
 - (void)basicSetting {
+    // TODO: 这一步是不是必要的？
     [self setNeedsLayout];
     self.usingFangYuan = YES;
 }
