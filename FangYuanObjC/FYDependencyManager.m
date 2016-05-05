@@ -7,16 +7,13 @@
 //
 
 #import "FYDependencyManager.h"
-#import "UIView+FangYuan.h"
 #import "UIView+FangYuanPrivate.h"
 
 @interface FYDependencyManager ()
 
-@property(nonatomic, assign, readonly) BOOL hasDependencies;
-@property(nonatomic, assign, readonly) BOOL hasUnSetDependencies;
-@property(nonatomic, strong) FYDependency *dependencyHolder;
-@property(nonatomic, strong) NSMutableArray<FYDependency *> *dependencies;
-@property(nonatomic, readonly) NSArray<FYDependency *> *unsetDeps;
+@property (nonatomic, strong) FYDependency *dependencyHolder;
+@property (nonatomic, strong) NSMutableArray<FYDependency *> *dependencies;
+@property (nonatomic, readonly) NSArray<FYDependency *> *unsetDependencies;
 
 @end
 
@@ -52,7 +49,7 @@
 
 #pragma mark - Private
 
-- (NSArray<FYDependency *> *)unsetDeps {
+- (NSArray<FYDependency *> *)unsetDependencies {
     NSMutableArray<FYDependency *> *mArr = self.dependencies;
     [mArr filterUsingPredicate:[NSPredicate predicateWithBlock:^BOOL(id  _Nonnull evaluatedObject, NSDictionary<NSString *,id> * _Nullable bindings) {
         FYDependency *dep = evaluatedObject;
@@ -96,7 +93,7 @@
         return NO;
     }
     
-    NSArray<FYDependency *> *needSetDeps = self.unsetDeps;
+    NSArray<FYDependency *> *needSetDeps = self.unsetDependencies;
     if (needSetDeps.count == 0) {
         return NO;
     }

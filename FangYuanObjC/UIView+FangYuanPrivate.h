@@ -12,7 +12,7 @@
 
 @interface UIView (FangYuanPrivate)
 
-@property (nonatomic, readonly) FYHolder *holder;
+@property (nonatomic, readonly) FYHolder *fy_AssociatedObjectHolder;
 @property (nonatomic, readonly) FYRuler  *rulerX;
 @property (nonatomic, readonly) FYRuler  *rulerY;
 
@@ -26,7 +26,6 @@
 @property (nonatomic, assign) CGFloat fyWidth;
 
 - (void)layoutWithFangYuan;
-
 - (void)basicSetting;
 
 @end

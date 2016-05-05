@@ -61,7 +61,7 @@ if (a != b) {       \
 
 static int _AOHolderKey;
 
-- (FYHolder *)holder {
+- (FYHolder *)fy_AssociatedObjectHolder {
     FYHolder *holder = objc_getAssociatedObject(self, &_AOHolderKey);
     if (!holder) {
         holder = [FYHolder new];
@@ -71,19 +71,19 @@ static int _AOHolderKey;
 }
 
 - (FYRuler *)rulerX {
-    return self.holder.rulerX;
+    return self.fy_AssociatedObjectHolder.rulerX;
 }
 
 - (FYRuler *)rulerY {
-    return self.holder.rulerY;
+    return self.fy_AssociatedObjectHolder.rulerY;
 }
 
 - (BOOL)isUsingFangYuan {
-    return self.holder.isUsingFangYuan;
+    return self.fy_AssociatedObjectHolder.isUsingFangYuan;
 }
 
 - (void)setUsingFangYuan:(BOOL)usingFangYuan {
-    self.holder.usingFangYuan = usingFangYuan;
+    self.fy_AssociatedObjectHolder.usingFangYuan = usingFangYuan;
 }
 
 #pragma mark - Quick Setter / Getter
