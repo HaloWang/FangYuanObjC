@@ -55,7 +55,8 @@
     dispatch_once(&onceToken, ^{
         manager = [FYDependencyManager new];
         manager.dependencies = [NSMutableArray array];
-        manager.filterHasSetPredicate = [NSPredicate predicateWithBlock:^BOOL(id  _Nonnull evaluatedObject, NSDictionary<NSString *,id> * _Nullable bindings) {
+        manager.filterHasSetPredicate = [NSPredicate predicateWithBlock:
+                                         ^BOOL(id  _Nonnull evaluatedObject, NSDictionary<NSString *,id> * _Nullable bindings) {
             FYDependency *dep = evaluatedObject;
             return !dep.hasSet;
         }];
@@ -65,7 +66,8 @@
 
 - (void)removeDuplicateDependencyOf:(UIView *)view atDirection:(FYDependencyDirection)direction {
     __block FYDependency *dependencyNeedRemove;
-    [_dependencies enumerateObjectsUsingBlock:^(FYDependency * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+    [_dependencies enumerateObjectsUsingBlock:
+     ^(FYDependency * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
         if (obj.to == view && obj.direction == direction) {
             dependencyNeedRemove = obj;
             stop = YES;
@@ -125,7 +127,8 @@
 
 - (void)removeUselessDep {
     NSMutableArray *newDependencies = self.dependencies;
-    [self.dependencies enumerateObjectsUsingBlock:^(FYDependency * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+    [self.dependencies enumerateObjectsUsingBlock:
+     ^(FYDependency * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
         if (obj.to == nil && obj.from == nil) {
             [newDependencies removeObject:obj];
         }
@@ -144,7 +147,8 @@
     
     if ([self hasUnSetDependenciesOf:view]) {
         do {
-            [view.usingFangYuanSubviews enumerateObjectsUsingBlock:^(UIView * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+            [view.usingFangYuanSubviews enumerateObjectsUsingBlock
+             :^(UIView * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
                 if ([self allDependenciesLoaddedOf:obj]) {
                     [obj layoutWithFangYuan];
                     [self loadDependenciesOf:obj];
@@ -152,7 +156,8 @@
             }];
         } while ([self hasUnSetDependenciesOf:view]);
     } else {
-        [view.usingFangYuanSubviews enumerateObjectsUsingBlock:^(UIView * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        [view.usingFangYuanSubviews enumerateObjectsUsingBlock:
+         ^(UIView * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
             //            printf("ℹ️");
             //            NSLog(@"%@", obj.usingFangYuan ? @"YES" : @"NO");
             //            NSLog(@"%@",[obj class]);
@@ -165,9 +170,6 @@
     }
 }
 
-/**
- *  加载所有依赖于 view 的依赖，FYDependency.hasSet = YES
- */
 - (void)loadDependenciesOf:(UIView *)view {
     [_dependencies enumerateObjectsUsingBlock:
      ^(FYDependency * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {

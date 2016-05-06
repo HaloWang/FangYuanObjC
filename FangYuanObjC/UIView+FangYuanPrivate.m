@@ -83,9 +83,12 @@ static int _AOHolderKey;
 
 #pragma mark - Quick Setter / Getter
 
+// TODO: 作为一个 Getter 写成这样真的好吗😂？
+
 - (NSArray<UIView *> *)usingFangYuanSubviews {
     NSMutableArray *mArr = @[].mutableCopy;
-    [self.subviews enumerateObjectsUsingBlock:^(__kindof UIView * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+    [self.subviews enumerateObjectsUsingBlock:
+     ^(__kindof UIView * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
         if (obj.usingFangYuan) {
             [mArr addObject:obj];
         }
@@ -93,6 +96,7 @@ static int _AOHolderKey;
     return mArr.copy;
 }
 
+// TODO: 还有你，每次调用初始化一堆东西？
 - (BOOL)subviewUsingFangYuan {
     for (UIView *subview in self.subviews) {
         if (subview.usingFangYuan) {
@@ -143,7 +147,7 @@ static int _AOHolderKey;
 }
 
 - (void)basicSetting {
-    // TODO: 这一步是不是必要的？
+//    // TODO: 这一步是不是必要的？
     [self setNeedsLayout];
     self.usingFangYuan = YES;
 }
