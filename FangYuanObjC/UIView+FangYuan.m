@@ -17,36 +17,30 @@
 - (CGFloat)chainLeft {
     [FYDependencyManager
      pushDependencyFrom:self
-     to:nil
      direction:FYDependencyDirectionLeftRight
-     value:0];
+     ];
     return 0;
 }
 
 - (CGFloat)chainRight {
     [FYDependencyManager
      pushDependencyFrom:self
-     to:nil
      direction:FYDependencyDirectionRightLeft
-     value:0];
+     ];
     return 0;
 }
 
 - (CGFloat)chainTop {
     [FYDependencyManager
      pushDependencyFrom:self
-     to:nil
-     direction:FYDependencyDirectionTopBottom
-     value:0];
+     direction:FYDependencyDirectionTopBottom];
     return 0;
 }
 
 - (CGFloat)chainBottom {
     [FYDependencyManager
      pushDependencyFrom:self
-     to:nil
-     direction:FYDependencyDirectionBottomTop
-     value:0];
+     direction:FYDependencyDirectionBottomTop];
     return 0;
 }
 
@@ -59,8 +53,7 @@
         [self basicSetting];
         self.rulerY.a = FYFloatMake(top);
         [FYDependencyManager
-         popDependencyFrom:nil
-         to:self
+         popDependencyTo:self
          direction:FYDependencyDirectionBottomTop
          value:top];
         return self;
@@ -72,8 +65,7 @@
         [self basicSetting];
         self.rulerY.c = FYFloatMake(bottom);
         [FYDependencyManager
-         popDependencyFrom:nil
-         to:self
+         popDependencyTo:self
          direction:FYDependencyDirectionTopBottom
          value:bottom];
         return self;
@@ -95,8 +87,7 @@
         [self basicSetting];
         self.rulerX.a = FYFloatMake(left);
         [FYDependencyManager
-         popDependencyFrom:nil
-         to:self
+         popDependencyTo:self
          direction:FYDependencyDirectionRightLeft
          value:left];
         return self;
@@ -108,8 +99,7 @@
         [self basicSetting];
         self.rulerX.c = FYFloatMake(right);
         [FYDependencyManager
-         popDependencyFrom:nil
-         to:self
+         popDependencyTo:self
          direction:FYDependencyDirectionLeftRight
          value:right];
         return self;

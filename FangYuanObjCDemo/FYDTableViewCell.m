@@ -10,13 +10,14 @@
 #import <HaloObjC.h>
 #import <FangYuanObjC/UIView+FangYuan.h>
 
-// TODO: 1. Fix bug
-// TODO: 2. Add new feature
+// TODO: Add new feature
 
 @implementation FYDTableViewCell
 
 - (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
     if (self = [super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
+        
+        self.selectionStyle = UITableViewCellSelectionStyleNone;
         
         self.itemPriceLabel = [[UILabel new] addToSuperview:self];
         self.itemTitleLabel = [[UILabel new] addToSuperview:self];
@@ -39,11 +40,15 @@
     }
     return self;
 }
+//
+//- (void)layoutSubviews {
+//    [super layoutSubviews];
+//    printf("✅");
+//}
 
 - (void)setItemPriceShow:(BOOL)show {
-    
     self.itemPriceLabel.hidden = !show;
-    
+    self.itemTitleLabel.fy_right(show ? self.itemPriceLabel.chainLeft + 5 : 5);
 }
 
 @end

@@ -11,13 +11,23 @@
 
 @interface FYDependencyManager : NSObject
 
+/**
+ *  推入约束
+ *
+ *  @param from      约束来源
+ *  @param direction 约束方向
+ */
 + (void)pushDependencyFrom:(UIView *)from
-                        to:(UIView *)to
-                 direction:(FYDependencyDirection)direction
-                     value:(CGFloat)value;
+                 direction:(FYDependencyDirection)direction;
 
-+ (void)popDependencyFrom:(UIView *)from
-                       to:(UIView *)to
+/**
+ *  拉取约束
+ *
+ *  @param to        约束接收者
+ *  @param direction 约束方向
+ *  @param value     约束值
+ */
++ (void)popDependencyTo:(UIView *)to
                 direction:(FYDependencyDirection)direction
                     value:(CGFloat)value;
 

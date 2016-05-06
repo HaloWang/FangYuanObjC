@@ -109,6 +109,7 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     FYDTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:[FYDTableViewCell hl_reuseIdentifier]];
     cell.itemPriceLabel.text = self.dataSource[indexPath.row][@"price"];
+    [cell setItemPriceShow:indexPath.row % 2];
     return cell;
 }
 

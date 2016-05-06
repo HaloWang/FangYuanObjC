@@ -8,7 +8,6 @@
 
 #import "FYDependencyManager.h"
 #import "UIView+FangYuanPrivate.h"
-#import <HaloObjC.h>
 
 @interface FYDependencyManager ()
 
@@ -27,29 +26,21 @@
     [[self sharedInstance] layout:view];
 }
 
-+ (void)pushDependencyFrom:(UIView *)from to:(UIView *)to direction:(FYDependencyDirection)direction value:(CGFloat)value {
-    [self sharedInstance].dependencyHolder = [FYDependency dependencyFrom:from to:to direction:direction value:value];
++ (void)pushDependencyFrom:(UIView *)from direction:(FYDependencyDirection)direction {
+    [self sharedInstance].dependencyHolder = [FYDependency dependencyFrom:from to:nil direction:direction value:0];
 }
 
-+ (void)popDependencyFrom:(UIView *)from to:(UIView *)to direction:(FYDependencyDirection)direction value:(CGFloat)value {
++ (void)popDependencyTo:(UIView *)to direction:(FYDependencyDirection)direction value:(CGFloat)value {
     FYDependencyManager *manager = [FYDependencyManager sharedInstance];
+    
+    [manager removeDuplicateDependencyOf:to atDirection:direction];
+    
     if (!manager.dependencyHolder) {
         return;
     }
     
     manager.dependencyHolder.to = to;
     manager.dependencyHolder.value = value;
-
-    //  移除重复的约束
-    FYDependency *dependencyNeedRemove;
-    for (FYDependency *dependency in manager.dependencies) {
-        if (dependency.to == to && manager.dependencyHolder.from == from && dependency.direction == direction) {
-            dependencyNeedRemove = dependency;
-        }
-    }
-    if (dependencyNeedRemove) {
-        [manager.dependencies removeObject:dependencyNeedRemove];
-    }
     
     //  添加约束
     [manager.dependencies addObject:manager.dependencyHolder];
@@ -70,6 +61,19 @@
         }];
     });
     return manager;
+}
+
+- (void)removeDuplicateDependencyOf:(UIView *)view atDirection:(FYDependencyDirection)direction {
+    __block FYDependency *dependencyNeedRemove;
+    [_dependencies enumerateObjectsUsingBlock:^(FYDependency * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        if (obj.to == view && obj.direction == direction) {
+            dependencyNeedRemove = obj;
+            stop = YES;
+        }
+    }];
+    if (dependencyNeedRemove) {
+        [_dependencies removeObject:dependencyNeedRemove];
+    }
 }
 
 - (NSArray<FYDependency *> *)unsetDependencies {
@@ -120,7 +124,6 @@
 }
 
 - (void)removeUselessDep {
-    cc(@(self.dependencies.count));
     NSMutableArray *newDependencies = self.dependencies;
     [self.dependencies enumerateObjectsUsingBlock:^(FYDependency * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
         if (obj.to == nil && obj.from == nil) {
@@ -128,7 +131,6 @@
         }
     }];
     self.dependencies = newDependencies;
-    cc(@(self.dependencies.count));
 }
 
 - (void)layout:(UIView *)view {
@@ -136,9 +138,9 @@
     if (view == nil) {
         return;
     }
-
-    ccRight(@"FangYuan Layouting");
-    cc(view);
+    
+    // TODO: 下面的代码还可以写的更优雅
+    // TODO: 性能方面还是需要提升！static frame ?
     
     if ([self hasUnSetDependenciesOf:view]) {
         do {
@@ -151,14 +153,14 @@
         } while ([self hasUnSetDependenciesOf:view]);
     } else {
         [view.usingFangYuanSubviews enumerateObjectsUsingBlock:^(UIView * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-//            printf("ℹ️");
-//            NSLog(@"%@", obj.usingFangYuan ? @"YES" : @"NO");
-//            NSLog(@"%@",[obj class]);
-//            NSLog(@"%@",obj.superview);
-//            NSLog(@"%@",NSStringFromCGRect(obj.frame));
+            //            printf("ℹ️");
+            //            NSLog(@"%@", obj.usingFangYuan ? @"YES" : @"NO");
+            //            NSLog(@"%@",[obj class]);
+            //            NSLog(@"%@",obj.superview);
+            //            NSLog(@"%@",NSStringFromCGRect(obj.frame));
             [obj layoutWithFangYuan];
-//            NSLog(@"%@",NSStringFromCGRect(obj.frame));
-//            NSLog(@"\n");
+            //            NSLog(@"%@",NSStringFromCGRect(obj.frame));
+            //            NSLog(@"\n");
         }];
     }
 }
