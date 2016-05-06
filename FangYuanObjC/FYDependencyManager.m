@@ -83,15 +83,6 @@
     return mArr;
 }
 
-- (BOOL)layouting:(UIView *)view {
-    for (FYDependency *dep in self.dependencies) {
-        if (dep.from.superview == view) {
-            return YES;
-        }
-    }
-    return NO;
-}
-
 - (BOOL)allDependenciesLoaddedOf:(UIView *)view {
     for (FYDependency *dep in self.dependencies) {
         if (dep.to == view && !dep.hasSet) {
