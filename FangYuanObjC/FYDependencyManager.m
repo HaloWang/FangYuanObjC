@@ -16,7 +16,6 @@
 @property (nonatomic, readonly) NSArray<FYDependency *> *unsetDependencies;
 @property (nonatomic, strong) NSPredicate *filterHasSetPredicate;
 
-
 @end
 
 @implementation FYDependencyManager
@@ -134,6 +133,11 @@
     if (view == nil) {
         return;
     }
+    
+//    NSLog(@"✅ FangYuan Layouting!");
+//    NSLog(@"▶️%@\n", view);
+//    NSLog(@"▶️%@\n", view.subviews);
+//    NSLog(@"▶️%@\n", view.usingFangYuanSubviews);
     
     if ([self hasUnSetDependenciesOf:view]) {
         while ([self hasUnSetDependenciesOf:view]) {

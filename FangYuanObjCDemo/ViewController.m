@@ -8,9 +8,6 @@
 
 #import "ViewController.h"
 #import <UIView+FangYuan.h>
-#import <HaloObjC.h>
-#import <UIView+FangYuanPrivate.h>
-#import <FYDependencyManager.h>
 
 @interface ViewController ()
 
