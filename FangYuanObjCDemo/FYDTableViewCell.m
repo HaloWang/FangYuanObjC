@@ -7,15 +7,43 @@
 //
 
 #import "FYDTableViewCell.h"
+#import <HaloObjC.h>
 #import <FangYuanObjC/UIView+FangYuan.h>
+
+// TODO: 1. Fix bug
+// TODO: 2. Add new feature
 
 @implementation FYDTableViewCell
 
 - (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
     if (self = [super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
         
+        self.itemPriceLabel = [[UILabel new] addToSuperview:self];
+        self.itemTitleLabel = [[UILabel new] addToSuperview:self];
+        
+        self.itemPriceLabel.backgroundColor = [UIColor redColor];
+        self.itemTitleLabel.backgroundColor = [UIColor greenColor];
+    
+        self.itemPriceLabel
+        .fy_top(5)
+        .fy_right(5)
+        .fy_bottom(5)
+        .fy_width(80);
+        
+        self.itemTitleLabel
+        .fy_top(5)
+        .fy_right(self.itemPriceLabel.chainLeft + 5)
+        .fy_bottom(5)
+        .fy_width(80);
+        
     }
     return self;
+}
+
+- (void)setItemPriceShow:(BOOL)show {
+    
+    self.itemPriceLabel.hidden = !show;
+    
 }
 
 @end

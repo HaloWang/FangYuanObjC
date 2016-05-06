@@ -108,11 +108,12 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     FYDTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:[FYDTableViewCell hl_reuseIdentifier]];
+    cell.itemPriceLabel.text = self.dataSource[indexPath.row][@"price"];
     return cell;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 100;
+    return self.dataSource.count;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {

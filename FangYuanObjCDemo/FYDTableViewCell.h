@@ -13,4 +13,6 @@
 @property (nonatomic, strong) UILabel *itemTitleLabel;
 @property (nonatomic, strong) UILabel *itemPriceLabel;
 
+- (void)setItemPriceShow:(BOOL)show;
+
 @end
