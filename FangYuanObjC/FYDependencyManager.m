@@ -8,6 +8,7 @@
 
 #import "FYDependencyManager.h"
 #import "UIView+FangYuanPrivate.h"
+#import <HaloObjC.h>
 
 @interface FYDependencyManager ()
 
@@ -119,6 +120,7 @@
 }
 
 - (void)removeUselessDep {
+    cc(@(self.dependencies.count));
     NSMutableArray *newDependencies = self.dependencies;
     [self.dependencies enumerateObjectsUsingBlock:^(FYDependency * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
         if (obj.to == nil && obj.from == nil) {
@@ -126,6 +128,7 @@
         }
     }];
     self.dependencies = newDependencies;
+    cc(@(self.dependencies.count));
 }
 
 - (void)layout:(UIView *)view {
@@ -133,21 +136,19 @@
     if (view == nil) {
         return;
     }
-    
-//    NSLog(@"✅ FangYuan Layouting!");
-//    NSLog(@"▶️%@\n", view);
-//    NSLog(@"▶️%@\n", view.subviews);
-//    NSLog(@"▶️%@\n", view.usingFangYuanSubviews);
+
+    ccRight(@"FangYuan Layouting");
+    cc(view);
     
     if ([self hasUnSetDependenciesOf:view]) {
-        while ([self hasUnSetDependenciesOf:view]) {
+        do {
             [view.usingFangYuanSubviews enumerateObjectsUsingBlock:^(UIView * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
                 if ([self allDependenciesLoaddedOf:obj]) {
                     [obj layoutWithFangYuan];
                     [self loadDependenciesOf:obj];
                 }
             }];
-        }
+        } while ([self hasUnSetDependenciesOf:view]);
     } else {
         [view.usingFangYuanSubviews enumerateObjectsUsingBlock:^(UIView * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
 //            printf("ℹ️");
@@ -162,43 +163,41 @@
     }
 }
 
+/**
+ *  加载所有依赖于 view 的依赖，FYDependency.hasSet = YES
+ */
 - (void)loadDependenciesOf:(UIView *)view {
-    NSMutableArray<FYDependency *> *dependenciesShouldLoad = @[].mutableCopy;
-    [self.dependencies enumerateObjectsUsingBlock:^(FYDependency * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-        [dependenciesShouldLoad addObject:obj];
-    }];
-    
-    [dependenciesShouldLoad enumerateObjectsUsingBlock:^(FYDependency * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-        UIView *from = obj.from;
-        UIView *to = obj.to;
-        CGFloat value = obj.value;
-        switch (obj.direction) {
-            case FYDependencyDirectionBottomTop:{
-                to.rulerY.a = FYFloatMake(from.fyY + from.fyHeight + value);
-                break;
-            }
-                
-            case FYDependencyDirectionTopBottom:{
-                to.rulerY.c = FYFloatMake(from.superview.fyHeight - from.fyY + value);
-                break;
-            }
-                
-            case FYDependencyDirectionRightLeft:{
-                to.rulerX.a = FYFloatMake(from.fyX + from.fyWidth + value);
-                break;
-            }
-                
-            case FYDependencyDirectionLeftRight:{
-                to.rulerX.c = FYFloatMake(from.superview.fyWidth - from.fyX + value);
-                break;
-            }
-                
-            default:
-                NSAssert(NO, @"Something wrong!");
-                break;
-        }
-        obj.hasSet = YES;
-    }];
+    [_dependencies enumerateObjectsUsingBlock:
+     ^(FYDependency * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+         if (obj.from == view) {
+             UIView *from = obj.from;
+             UIView *to = obj.to;
+             CGFloat value = obj.value;
+             switch (obj.direction) {
+                 case FYDependencyDirectionBottomTop:{
+                     to.rulerY.a = FYFloatMake(from.fyY + from.fyHeight + value);
+                     break;
+                 }
+                 case FYDependencyDirectionTopBottom:{
+                     to.rulerY.c = FYFloatMake(from.superview.fyHeight - from.fyY + value);
+                     break;
+                 }
+                 case FYDependencyDirectionRightLeft:{
+                     to.rulerX.a = FYFloatMake(from.fyX + from.fyWidth + value);
+                     break;
+                 }
+                 case FYDependencyDirectionLeftRight:{
+                     to.rulerX.c = FYFloatMake(from.superview.fyWidth - from.fyX + value);
+                     break;
+                 }
+                 default:
+                     NSAssert(NO, @"Something wrong!");
+                     break;
+             }
+             obj.hasSet = YES;
+             stop = YES;
+         }
+     }];
 }
 
 @end

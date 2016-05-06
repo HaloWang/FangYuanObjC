@@ -97,10 +97,10 @@
                             },
                         ];
     
-    self.tableView = [[[UITableView alloc] initWithFrame:CM(0, ScreenWidth, ScreenHeight) style:UITableViewStylePlain] addToSuperview:self.view];
+    self.tableView                 = [[[UITableView alloc] initWithFrame:CM(0, ScreenWidth, ScreenHeight) style:UITableViewStylePlain] addToSuperview:self.view];
     [self.tableView hl_registerCellClass:[FYDTableViewCell class]];
-    self.tableView.dataSource = self;
-    self.tableView.delegate = self;
+    self.tableView.dataSource      = self;
+    self.tableView.delegate        = self;
     self.tableView.tableFooterView = [UIView new];
 }
 

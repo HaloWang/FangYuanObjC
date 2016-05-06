@@ -24,4 +24,12 @@
     return dep;
 }
 
+- (NSString *)description {
+    return @[
+             [super description],
+             self.from,
+             self.to
+             ].description;
+}
+
 @end
