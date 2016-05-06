@@ -21,6 +21,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.view.backgroundColor = [UIColor whiteColor];
     
     self.view1 = [UIView new];
     [self.view addSubview:_view1];
@@ -57,12 +58,6 @@
     .fy_left(_view1.chainRight + 50)
     .fy_top(50)
     .fy_bottom(_view2.chainTop - 25);
-}
-
-- (IBAction)animation:(id)sender {
-    [UIView animateWithDuration:0.25 animations:^{
-        _view3.fy_bottom(_view2.chainTop + 25).toAnimation();
-    }];
 }
 
 @end

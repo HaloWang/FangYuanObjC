@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		096ED3FE1CDC720700F008D5 /* FYDemoListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 096ED3FD1CDC720700F008D5 /* FYDemoListViewController.m */; };
+		096ED4011CDC74DB00F008D5 /* FYDTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 096ED4001CDC74DB00F008D5 /* FYDTableViewController.m */; };
+		096ED4041CDC750800F008D5 /* FYDTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 096ED4031CDC750800F008D5 /* FYDTableViewCell.m */; };
 		0975A8581C9FFAB200CB5351 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 0975A8571C9FFAB200CB5351 /* main.m */; };
 		0975A85B1C9FFAB200CB5351 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 0975A85A1C9FFAB200CB5351 /* AppDelegate.m */; };
 		0975A85E1C9FFAB200CB5351 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0975A85D1C9FFAB200CB5351 /* ViewController.m */; };
@@ -17,6 +20,12 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		096ED3FC1CDC720700F008D5 /* FYDemoListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FYDemoListViewController.h; sourceTree = "<group>"; };
+		096ED3FD1CDC720700F008D5 /* FYDemoListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FYDemoListViewController.m; sourceTree = "<group>"; };
+		096ED3FF1CDC74DB00F008D5 /* FYDTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FYDTableViewController.h; sourceTree = "<group>"; };
+		096ED4001CDC74DB00F008D5 /* FYDTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FYDTableViewController.m; sourceTree = "<group>"; };
+		096ED4021CDC750800F008D5 /* FYDTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FYDTableViewCell.h; sourceTree = "<group>"; };
+		096ED4031CDC750800F008D5 /* FYDTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FYDTableViewCell.m; sourceTree = "<group>"; };
 		0975A8531C9FFAB200CB5351 /* FangYuanObjCDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FangYuanObjCDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0975A8571C9FFAB200CB5351 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		0975A8591C9FFAB200CB5351 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -66,6 +75,12 @@
 			isa = PBXGroup;
 			children = (
 				0975A85A1C9FFAB200CB5351 /* AppDelegate.m */,
+				096ED3FC1CDC720700F008D5 /* FYDemoListViewController.h */,
+				096ED3FD1CDC720700F008D5 /* FYDemoListViewController.m */,
+				096ED3FF1CDC74DB00F008D5 /* FYDTableViewController.h */,
+				096ED4001CDC74DB00F008D5 /* FYDTableViewController.m */,
+				096ED4021CDC750800F008D5 /* FYDTableViewCell.h */,
+				096ED4031CDC750800F008D5 /* FYDTableViewCell.m */,
 				0975A85C1C9FFAB200CB5351 /* ViewController.h */,
 				0975A85D1C9FFAB200CB5351 /* ViewController.m */,
 				0975A8561C9FFAB200CB5351 /* Supporting Files */,
@@ -224,7 +239,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				096ED3FE1CDC720700F008D5 /* FYDemoListViewController.m in Sources */,
+				096ED4011CDC74DB00F008D5 /* FYDTableViewController.m in Sources */,
 				0975A85E1C9FFAB200CB5351 /* ViewController.m in Sources */,
+				096ED4041CDC750800F008D5 /* FYDTableViewCell.m in Sources */,
 				0975A85B1C9FFAB200CB5351 /* AppDelegate.m in Sources */,
 				0975A8581C9FFAB200CB5351 /* main.m in Sources */,
 			);
