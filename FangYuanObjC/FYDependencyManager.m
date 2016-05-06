@@ -14,7 +14,6 @@
 @property (nonatomic, strong) FYDependency *dependencyHolder;
 @property (nonatomic, strong) NSMutableArray<FYDependency *> *dependencies;
 @property (nonatomic, readonly) NSArray<FYDependency *> *unsetDependencies;
-@property (nonatomic, strong) NSPredicate *filterHasSetPredicate;
 
 @end
 
@@ -23,6 +22,7 @@
 #pragma mark - Public
 
 + (void)layout:(UIView *)view {
+    [[self sharedInstance] removeUselessDep];
     [[self sharedInstance] layout:view];
 }
 
@@ -55,11 +55,6 @@
     dispatch_once(&onceToken, ^{
         manager = [FYDependencyManager new];
         manager.dependencies = [NSMutableArray array];
-        manager.filterHasSetPredicate = [NSPredicate predicateWithBlock:
-                                         ^BOOL(id  _Nonnull evaluatedObject, NSDictionary<NSString *,id> * _Nullable bindings) {
-            FYDependency *dep = evaluatedObject;
-            return !dep.hasSet;
-        }];
     });
     return manager;
 }
@@ -80,8 +75,12 @@
 
 - (NSArray<FYDependency *> *)unsetDependencies {
     NSMutableArray<FYDependency *> *mArr = self.dependencies;
-    [mArr filterUsingPredicate:self.filterHasSetPredicate];
-    return mArr.copy;
+    [mArr filterUsingPredicate:[NSPredicate predicateWithBlock:
+                                ^BOOL(id  _Nonnull evaluatedObject, NSDictionary<NSString *,id> * _Nullable bindings) {
+                                    FYDependency *dep = evaluatedObject;
+                                    return !dep.hasSet;
+                                }]];
+    return mArr;
 }
 
 - (BOOL)layouting:(UIView *)view {
@@ -94,7 +93,6 @@
 }
 
 - (BOOL)allDependenciesLoaddedOf:(UIView *)view {
-    [self removeUselessDep];
     for (FYDependency *dep in self.dependencies) {
         if (dep.to == view && !dep.hasSet) {
             return NO;

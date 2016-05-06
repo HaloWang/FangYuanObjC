@@ -30,6 +30,9 @@
     });
 }
 
+//  If doesn't implement following method, we will get:
+//  *** Terminating app due to uncaught exception 'NSInvalidArgumentException', reason: '-[_UINavigationBarBackground state]: unrecognized selector sent to instance 0x12f589420'
+
 - (void)_swizzled_layoutSubviews {
     [self _swizzled_layoutSubviews];
     if (!self.subviewUsingFangYuan) {
