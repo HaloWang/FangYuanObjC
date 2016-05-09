@@ -65,9 +65,10 @@
      ^(FYDependency * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
         if (obj.to == view && obj.direction == direction) {
             dependencyNeedRemove = obj;
-            stop = YES;
+            *stop = YES;
         }
     }];
+    
     if (dependencyNeedRemove) {
         [_dependencies removeObject:dependencyNeedRemove];
     }
@@ -188,7 +189,7 @@
                      break;
              }
              obj.hasSet = YES;
-             stop = YES;
+             *stop = YES;
          }
      }];
 }
