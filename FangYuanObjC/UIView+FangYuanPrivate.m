@@ -16,6 +16,34 @@ if (a != b) {       \
     a = b;          \
 }                   \
 
+//  @see http://stackoverflow.com/questions/35590676/custom-uibutton-layoutsubviews-doesnt-work-unless-super-layoutsubviews-is-c
+
+// TODO: 永远不要写重复的代码！
+
+@implementation UIButton (FangYuanPrivate)
+
++ (void)load {
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        Class class = [self class];
+        SEL originalSelector = @selector(layoutSubviews);
+        SEL swizzledSelector = @selector(_swizzled_layoutSubviews);
+        Method originalMethod = class_getInstanceMethod(class, originalSelector);
+        Method swizzledMethod = class_getInstanceMethod(class, swizzledSelector);
+        method_exchangeImplementations(originalMethod, swizzledMethod);
+    });
+}
+
+//  If doesn't implement following method, we will get:
+//  *** Terminating app due to uncaught exception 'NSInvalidArgumentException', reason: '-[_UINavigationBarBackground state]: unrecognized selector sent to instance 0x12f589420'
+
+- (void)_swizzled_layoutSubviews {
+    [self _swizzled_layoutSubviews];
+    [FYConstraintManager layout:self];
+}
+
+@end
+
 @implementation UIView (FangYuanPrivate)
 
 #pragma mark - Method Swizzling
@@ -34,9 +62,6 @@ if (a != b) {       \
 
 - (void)_swizzled_layoutSubviews {
     [self _swizzled_layoutSubviews];
-    if (!self.subviewUsingFangYuan) {
-        return;
-    }
     [FYConstraintManager layout:self];
 }
 
@@ -75,24 +100,9 @@ static int _AOHolderKey;
 // TODO: 作为一个 Getter 写成这样真的好吗😂？
 
 - (NSArray<UIView *> *)usingFangYuanSubviews {
-    NSMutableArray *mArr = @[].mutableCopy;
-    [self.subviews enumerateObjectsUsingBlock:
-     ^(__kindof UIView * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-        if (obj.usingFangYuan) {
-            [mArr addObject:obj];
-        }
-    }];
-    return mArr.copy;
-}
-
-// TODO: 还有你，每次调用初始化一堆东西？
-- (BOOL)subviewUsingFangYuan {
-    for (UIView *subview in self.subviews) {
-        if (subview.usingFangYuan) {
-            return YES;
-        }
-    }
-    return NO;
+    return [self.subviews filteredArrayUsingPredicate:[NSPredicate predicateWithBlock:^BOOL(UIView *  _Nonnull evaluatedObject, NSDictionary<NSString *,id> * _Nullable bindings) {
+        return evaluatedObject.usingFangYuan;
+    }]];
 }
 
 - (CGFloat)fyX {
@@ -172,37 +182,6 @@ static int _AOHolderKey;
     }
     setIfNE(self.fyY, newY);
     setIfNE(self.fyHeight, newHeight)
-}
-
-@end
-
-//  @see http://stackoverflow.com/questions/35590676/custom-uibutton-layoutsubviews-doesnt-work-unless-super-layoutsubviews-is-c
-
-// TODO: 永远不要写重复的代码！
-
-@implementation UIButton (FangYuanPrivate)
-
-+ (void)load {
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
-        Class class = [self class];
-        SEL originalSelector = @selector(layoutSubviews);
-        SEL swizzledSelector = @selector(_swizzled_layoutSubviews);
-        Method originalMethod = class_getInstanceMethod(class, originalSelector);
-        Method swizzledMethod = class_getInstanceMethod(class, swizzledSelector);
-        method_exchangeImplementations(originalMethod, swizzledMethod);
-    });
-}
-
-//  If doesn't implement following method, we will get:
-//  *** Terminating app due to uncaught exception 'NSInvalidArgumentException', reason: '-[_UINavigationBarBackground state]: unrecognized selector sent to instance 0x12f589420'
-
-- (void)_swizzled_layoutSubviews {
-    [self _swizzled_layoutSubviews];
-    if (!self.subviewUsingFangYuan) {
-        return;
-    }
-    [FYConstraintManager layout:self];
 }
 
 @end

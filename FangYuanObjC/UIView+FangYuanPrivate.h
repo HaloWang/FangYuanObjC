@@ -17,7 +17,6 @@
 @property (nonatomic, readonly) FYRuler *rulerY;
 
 @property (nonatomic, getter=isUsingFangYuan) BOOL usingFangYuan;
-@property (nonatomic, readonly) BOOL subviewUsingFangYuan;
 @property (nonatomic, readonly) NSArray<UIView *> *usingFangYuanSubviews;
 
 @property (nonatomic, assign) CGFloat fyX;

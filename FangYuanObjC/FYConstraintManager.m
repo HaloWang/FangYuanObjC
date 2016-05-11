@@ -12,8 +12,7 @@
 
 @interface FYConstraintManager ()
 
-@property (nonatomic, strong) NSMutableArray<FYConstraint *> *dependencies;
-@property (nonatomic, readonly) NSArray<FYConstraint *> *unsetDependencies;
+@property (nonatomic, strong) NSMutableArray<FYConstraint *> *constraints;
 @property (nonatomic, strong) FYConstraintHolder *holder;
 
 @end
@@ -36,17 +35,20 @@
     if (cons == nil) {
         return;
     }
-    
+    [manager removeInvalidConstraint];
     [manager removeDuplicateDependencyOf:to atDirection:direction];
     cons.to = to;
     cons.value = value;
-    [manager.dependencies addObject:cons];
+    [manager.constraints addObject:cons];
     [holder set:nil At:direction];
 }
 
 + (void)layout:(UIView *)view {
-    [[self sharedInstance] removeUselessDep];
-    [[self sharedInstance] layout:view];
+    NSMutableArray *viewsNeedLayout = view.usingFangYuanSubviews.mutableCopy;
+    if (viewsNeedLayout.count == 0) {
+        return;
+    }
+    [[self sharedInstance] layout:viewsNeedLayout];
 }
 
 #pragma mark - Private
@@ -56,116 +58,41 @@
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         manager = [FYConstraintManager new];
-        manager.dependencies = [NSMutableArray array];
+        manager.constraints = [NSMutableArray array];
         manager.holder = [FYConstraintHolder new];
     });
     return manager;
 }
 
-- (void)removeDuplicateDependencyOf:(UIView *)view atDirection:(FYConstraintDirection)direction {
-    __block FYConstraint *dependencyNeedRemove;
-    [_dependencies enumerateObjectsUsingBlock:
-     ^(FYConstraint * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-        if (obj.to == view && obj.direction == direction) {
-            dependencyNeedRemove = obj;
-            *stop = YES;
-        }
-    }];
-    
-    if (dependencyNeedRemove) {
-        [_dependencies removeObject:dependencyNeedRemove];
-    }
-}
+#pragma mark Layout Logic
 
-- (NSArray<FYConstraint *> *)unsetDependencies {
-    NSMutableArray<FYConstraint *> *mArr = self.dependencies;
-    [mArr filterUsingPredicate:[NSPredicate predicateWithBlock:
-                                ^BOOL(id  _Nonnull evaluatedObject, NSDictionary<NSString *,id> * _Nullable bindings) {
-                                    FYConstraint *dep = evaluatedObject;
-                                    return !dep.hasSet;
-                                }]];
-    return mArr;
-}
-
-- (BOOL)allDependenciesLoaddedOf:(UIView *)view {
-    for (FYConstraint *dep in self.dependencies) {
-        if (dep.to == view && !dep.hasSet) {
-            return NO;
-        }
-    }
-    return YES;
-}
-
-- (BOOL)hasUnSetDependenciesOf:(UIView *)view {
+- (void)layout:(NSMutableArray<UIView *> *)views {
     
-    if (!view.subviewUsingFangYuan) {
-        return NO;
-    }
-    
-    NSArray<FYConstraint *> *needSetDeps = self.unsetDependencies;
-    if (needSetDeps.count == 0) {
-        return NO;
-    }
-    
-    for (UIView *subview in view.usingFangYuanSubviews) {
-        for (FYConstraint *dep in needSetDeps) {
-            if (dep.to == subview) {
-                return YES;
-            }
-        }
-    }
-    
-    return NO;
-}
-
-- (void)removeUselessDep {
-    NSMutableArray *newDependencies = self.dependencies;
-    [self.dependencies enumerateObjectsUsingBlock:
-     ^(FYConstraint * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-        if (obj.to == nil && obj.from == nil) {
-            [newDependencies removeObject:obj];
-        }
-    }];
-    self.dependencies = newDependencies;
-}
-
-- (void)layout:(UIView *)view {
-    
-    if (view == nil) {
-        return;
-    }
-    
-    // TODO: 下面的代码还可以写的更优雅
-    // TODO: 性能方面还是需要提升！static frame ?
-    
-    if ([self hasUnSetDependenciesOf:view]) {
+    if ([self hasUnSetDependenciesOf:views]) {
+        NSMutableArray<UIView *> *viewsNeedLayout = views;
         do {
-            [view.usingFangYuanSubviews enumerateObjectsUsingBlock
-             :^(UIView * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-                if ([self allDependenciesLoaddedOf:obj]) {
-                    [obj layoutWithFangYuan];
-                    [self loadDependenciesOf:obj];
-                }
+            [viewsNeedLayout enumerateObjectsUsingBlock:
+             ^(UIView * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+                 if ([self hasSetConstraintsOf:obj]) {
+                     [obj layoutWithFangYuan];
+                     [self setConstrainsFrom:obj];
+                     [viewsNeedLayout removeObject:obj];
+                 }
             }];
-        } while ([self hasUnSetDependenciesOf:view]);
+        } while ([self hasUnSetDependenciesOf:views]);
     } else {
-        [view.usingFangYuanSubviews enumerateObjectsUsingBlock:
+        [views enumerateObjectsUsingBlock:
          ^(UIView * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-            //            printf("ℹ️");
-            //            NSLog(@"%@", obj.usingFangYuan ? @"YES" : @"NO");
-            //            NSLog(@"%@",[obj class]);
-            //            NSLog(@"%@",obj.superview);
-            //            NSLog(@"%@",NSStringFromCGRect(obj.frame));
-            [obj layoutWithFangYuan];
-            //            NSLog(@"%@",NSStringFromCGRect(obj.frame));
-            //            NSLog(@"\n");
-        }];
+             [obj layoutWithFangYuan];
+         }];
     }
 }
 
-- (void)loadDependenciesOf:(UIView *)view {
-    [_dependencies enumerateObjectsUsingBlock:
+- (void)setConstrainsFrom:(UIView *)view {
+    __block NSMutableArray<FYConstraint *> *constraintsNeedRemove = @[].mutableCopy;
+    [self.constraints enumerateObjectsUsingBlock:
      ^(FYConstraint * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+         printf("✅");
          if (obj.from == view) {
              UIView *from = obj.from;
              UIView *to = obj.to;
@@ -191,10 +118,84 @@
                      NSAssert(NO, @"Something wrong!");
                      break;
              }
-             obj.hasSet = YES;
+             [constraintsNeedRemove addObject:obj];
+         }
+     }];
+    
+    [self.constraints removeObjectsInArray:constraintsNeedRemove];
+}
+
+- (BOOL)hasSetConstraintsOf:(UIView *)view {
+    for (FYConstraint *dep in self.constraints) {
+        if (dep.to == view) {
+            return NO;
+        }
+    }
+    return YES;
+}
+
+- (BOOL)hasUnSetDependenciesOf:(NSArray<UIView *> *)views {
+    
+    if (self.constraints.count == 0) {
+        return NO;
+    }
+    
+    for (UIView *view in views) {
+        if (![self hasSetConstraintsOf:view]) {
+            return YES;
+        }
+    }
+    
+    return NO;
+}
+
+#pragma mark Assistant Functions
+
+- (void)removeDuplicateDependencyOf:(UIView *)view atDirection:(FYConstraintDirection)direction {
+    __block FYConstraint *constraintNeedRemove = nil;
+    [self.constraints enumerateObjectsUsingBlock:
+     ^(FYConstraint * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+         if (obj.to == view && obj.direction == direction) {
+             constraintNeedRemove = obj;
              *stop = YES;
          }
      }];
+    [_constraints removeObject:constraintNeedRemove];
+}
+
+- (void)removeInvalidConstraint {
+    __block NSMutableArray<FYConstraint *> *constraintsNeedRemove = @[].mutableCopy;
+    [self.constraints enumerateObjectsUsingBlock:
+     ^(FYConstraint * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+         if (obj.to == nil || obj.from == nil) {
+             [constraintsNeedRemove addObject:obj];
+         }
+    }];
+    [self.constraints removeObjectsInArray:constraintsNeedRemove];
+}
+
+- (void)removeAndWarningCyclingConstraint {
+    __block NSMutableArray<FYConstraint *> *constraintsNeedRemove = @[].mutableCopy;
+    [_constraints enumerateObjectsUsingBlock:
+     ^(FYConstraint * _Nonnull toCons, NSUInteger idx, BOOL * _Nonnull stop) {
+        [_constraints enumerateObjectsUsingBlock:
+         ^(FYConstraint * _Nonnull fromCons, NSUInteger idx, BOOL * _Nonnull stop) {
+            if (toCons.to == fromCons.from && toCons.from == fromCons.to) {
+                [constraintsNeedRemove addObject:toCons];
+                [constraintsNeedRemove addObject:fromCons];
+                *stop = YES;
+            }
+        }];
+    }];
+    [self.constraints removeObjectsInArray:constraintsNeedRemove];
 }
 
 @end
+
+//            printf("ℹ️");
+//            NSLog(@"%@", obj.usingFangYuan ? @"YES" : @"NO");
+//            NSLog(@"%@",[obj class]);
+//            NSLog(@"%@",obj.superview);
+//            NSLog(@"%@",NSStringFromCGRect(obj.frame));
+//            NSLog(@"%@",NSStringFromCGRect(obj.frame));
+//            NSLog(@"\n");

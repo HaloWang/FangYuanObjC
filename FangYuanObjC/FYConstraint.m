@@ -20,7 +20,6 @@
     dep.to            = to;
     dep.direction     = direction;
     dep.value         = value;
-    dep.hasSet        = NO;
     return dep;
 }
 

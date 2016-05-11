@@ -21,7 +21,6 @@ typedef NS_ENUM(NSUInteger, FYConstraintDirection) {
 @property (nonatomic, weak) UIView *to;
 @property (nonatomic, assign) CGFloat value;
 @property (nonatomic, assign) FYConstraintDirection direction;
-@property (nonatomic, assign) BOOL hasSet;
 
 + (FYConstraint *)dependencyFrom:(UIView *)from
                               to:(UIView *)to
