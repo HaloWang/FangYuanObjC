@@ -146,8 +146,6 @@ static int _AOHolderKey;
 }
 
 - (void)basicSetting {
-//    // TODO: 这一步是不是必要的？
-    [self setNeedsLayout];
     self.usingFangYuan = YES;
 }
 
