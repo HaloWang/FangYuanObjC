@@ -184,11 +184,3 @@
 }
 
 @end
-
-//            printf("ℹ️");
-//            NSLog(@"%@", obj.usingFangYuan ? @"YES" : @"NO");
-//            NSLog(@"%@",[obj class]);
-//            NSLog(@"%@",obj.superview);
-//            NSLog(@"%@",NSStringFromCGRect(obj.frame));
-//            NSLog(@"%@",NSStringFromCGRect(obj.frame));
-//            NSLog(@"\n");
