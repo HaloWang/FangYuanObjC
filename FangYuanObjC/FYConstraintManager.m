@@ -69,9 +69,10 @@
 - (void)layout:(NSMutableArray<UIView *> *)views {
     
     if ([self hasUnSetDependenciesOf:views]) {
-        NSMutableArray<UIView *> *viewsNeedLayout = views;
+        NSMutableArray<UIView *> *viewsNeedLayout = views.mutableCopy;
         do {
-            [viewsNeedLayout enumerateObjectsUsingBlock:
+            NSArray<UIView *> *_viewsNeedLayout = viewsNeedLayout;
+            [_viewsNeedLayout enumerateObjectsUsingBlock:
              ^(UIView * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
                  if ([self hasSetConstraintsOf:obj]) {
                      [obj layoutWithFangYuan];
@@ -79,7 +80,7 @@
                      [viewsNeedLayout removeObject:obj];
                  }
             }];
-        } while ([self hasUnSetDependenciesOf:views]);
+        } while ([self hasUnSetDependenciesOf:viewsNeedLayout]);
     } else {
         [views enumerateObjectsUsingBlock:
          ^(UIView * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
@@ -89,10 +90,8 @@
 }
 
 - (void)setConstrainsFrom:(UIView *)view {
-    __block NSMutableArray<FYConstraint *> *constraintsNeedRemove = @[].mutableCopy;
-    [self.constraints enumerateObjectsUsingBlock:
+    [_constraints.copy enumerateObjectsUsingBlock:
      ^(FYConstraint * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-         printf("✅");
          if (obj.from == view) {
              UIView *from = obj.from;
              UIView *to = obj.to;
@@ -118,11 +117,9 @@
                      NSAssert(NO, @"Something wrong!");
                      break;
              }
-             [constraintsNeedRemove addObject:obj];
+             [_constraints removeObject:obj];
          }
      }];
-    
-    [self.constraints removeObjectsInArray:constraintsNeedRemove];
 }
 
 - (BOOL)hasSetConstraintsOf:(UIView *)view {
@@ -152,42 +149,37 @@
 #pragma mark Assistant Functions
 
 - (void)removeDuplicateDependencyOf:(UIView *)view atDirection:(FYConstraintDirection)direction {
-    __block FYConstraint *constraintNeedRemove = nil;
-    [self.constraints enumerateObjectsUsingBlock:
+    [_constraints.copy enumerateObjectsUsingBlock:
      ^(FYConstraint * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
          if (obj.to == view && obj.direction == direction) {
-             constraintNeedRemove = obj;
+             [_constraints removeObject:obj];
              *stop = YES;
          }
      }];
-    [_constraints removeObject:constraintNeedRemove];
 }
 
 - (void)removeInvalidConstraint {
-    __block NSMutableArray<FYConstraint *> *constraintsNeedRemove = @[].mutableCopy;
-    [self.constraints enumerateObjectsUsingBlock:
+    [_constraints.copy enumerateObjectsUsingBlock:
      ^(FYConstraint * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
          if (obj.to == nil || obj.from == nil) {
-             [constraintsNeedRemove addObject:obj];
+             [self.constraints removeObjectsInArray:obj];
          }
     }];
-    [self.constraints removeObjectsInArray:constraintsNeedRemove];
 }
 
 - (void)removeAndWarningCyclingConstraint {
-    __block NSMutableArray<FYConstraint *> *constraintsNeedRemove = @[].mutableCopy;
-    [_constraints enumerateObjectsUsingBlock:
+    NSArray<FYConstraint *> *constraintsCopy = _constraints.copy;
+    [constraintsCopy enumerateObjectsUsingBlock:
      ^(FYConstraint * _Nonnull toCons, NSUInteger idx, BOOL * _Nonnull stop) {
-        [_constraints enumerateObjectsUsingBlock:
+        [constraintsCopy enumerateObjectsUsingBlock:
          ^(FYConstraint * _Nonnull fromCons, NSUInteger idx, BOOL * _Nonnull stop) {
             if (toCons.to == fromCons.from && toCons.from == fromCons.to) {
-                [constraintsNeedRemove addObject:toCons];
-                [constraintsNeedRemove addObject:fromCons];
-                *stop = YES;
+                [_constraints removeObject:toCons];
+                [_constraints removeObject:fromCons];
+                return;
             }
         }];
     }];
-    [self.constraints removeObjectsInArray:constraintsNeedRemove];
 }
 
 @end
