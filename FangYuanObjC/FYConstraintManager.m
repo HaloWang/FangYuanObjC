@@ -37,6 +37,7 @@
     }
     [manager removeInvalidConstraint];
     [manager removeDuplicateDependencyOf:to atDirection:direction];
+    [manager removeAndWarningCyclingConstraint];
     cons.to = to;
     cons.value = value;
     [manager.constraints addObject:cons];
@@ -162,7 +163,7 @@
     [_constraints.copy enumerateObjectsUsingBlock:
      ^(FYConstraint * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
          if (obj.to == nil || obj.from == nil) {
-             [self.constraints removeObjectsInArray:obj];
+             [self.constraints removeObject:obj];
          }
     }];
 }
@@ -170,9 +171,9 @@
 - (void)removeAndWarningCyclingConstraint {
     NSArray<FYConstraint *> *constraintsCopy = _constraints.copy;
     [constraintsCopy enumerateObjectsUsingBlock:
-     ^(FYConstraint * _Nonnull toCons, NSUInteger idx, BOOL * _Nonnull stop) {
+     ^(FYConstraint * _Nonnull toCons, NSUInteger toIdx, BOOL * _Nonnull toStop) {
         [constraintsCopy enumerateObjectsUsingBlock:
-         ^(FYConstraint * _Nonnull fromCons, NSUInteger idx, BOOL * _Nonnull stop) {
+         ^(FYConstraint * _Nonnull fromCons, NSUInteger fromIdx, BOOL * _Nonnull fromStop) {
             if (toCons.to == fromCons.from && toCons.from == fromCons.to) {
                 [_constraints removeObject:toCons];
                 [_constraints removeObject:fromCons];

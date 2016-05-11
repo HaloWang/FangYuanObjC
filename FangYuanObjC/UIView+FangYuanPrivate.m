@@ -37,10 +37,13 @@ if (a != b) {       \
 //  If doesn't implement following method, we will get:
 //  *** Terminating app due to uncaught exception 'NSInvalidArgumentException', reason: '-[_UINavigationBarBackground state]: unrecognized selector sent to instance 0x12f589420'
 
+#pragma clang diagnostic push
+#pragma ide diagnostic ignored "InfiniteRecursion"
 - (void)_swizzled_layoutSubviews {
     [self _swizzled_layoutSubviews];
     [FYConstraintManager layout:self];
 }
+#pragma clang diagnostic pop
 
 @end
 
@@ -60,10 +63,13 @@ if (a != b) {       \
     });
 }
 
+#pragma clang diagnostic push
+#pragma ide diagnostic ignored "InfiniteRecursion"
 - (void)_swizzled_layoutSubviews {
     [self _swizzled_layoutSubviews];
     [FYConstraintManager layout:self];
 }
+#pragma clang diagnostic pop
 
 #pragma mark - Associated Object
 
@@ -97,7 +103,7 @@ static int _AOHolderKey;
 
 #pragma mark - Quick Setter / Getter
 
-// TODO: 作为一个 Getter 写成这样真的好吗😂？
+// TODO: 作为一个 Getter 写成这样真的好吗？
 
 - (NSArray<UIView *> *)usingFangYuanSubviews {
     return [self.subviews filteredArrayUsingPredicate:[NSPredicate predicateWithBlock:^BOOL(UIView *  _Nonnull evaluatedObject, NSDictionary<NSString *,id> * _Nullable bindings) {
