@@ -7,7 +7,7 @@
 //
 
 #import "UIView+FangYuanPrivate.h"
-#import "FYDependencyManager.h"
+#import "FYConstraintManager.h"
 #import <objc/runtime.h>
 
 #define             \
@@ -37,7 +37,7 @@ if (a != b) {       \
     if (!self.subviewUsingFangYuan) {
         return;
     }
-    [FYDependencyManager layout:self];
+    [FYConstraintManager layout:self];
 }
 
 #pragma mark - Associated Object
@@ -202,7 +202,7 @@ static int _AOHolderKey;
     if (!self.subviewUsingFangYuan) {
         return;
     }
-    [FYDependencyManager layout:self];
+    [FYConstraintManager layout:self];
 }
 
 @end

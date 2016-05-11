@@ -1,21 +1,21 @@
 //
-//  FYDependency.m
+//  FYConstraint.m
 //  FangYuanObjC
 //
 //  Created by 王策 on 16/5/4.
 //  Copyright © 2016年 WangCe. All rights reserved.
 //
 
-#import "FYDependency.h"
+#import "FYConstraint.h"
 
-@implementation FYDependency
+@implementation FYConstraint
 
-+ (FYDependency *)dependencyFrom:(UIView *)from
++ (FYConstraint *)dependencyFrom:(UIView *)from
                               to:(UIView *)to
-                       direction:(FYDependencyDirection)direction
+                       direction:(FYConstraintDirection)direction
                            value:(CGFloat)value
 {
-    FYDependency *dep = [FYDependency new];
+    FYConstraint *dep = [FYConstraint new];
     dep.from          = from;
     dep.to            = to;
     dep.direction     = direction;

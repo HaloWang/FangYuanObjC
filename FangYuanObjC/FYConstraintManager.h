@@ -1,5 +1,5 @@
 //
-//  FYDependencyManager.h
+//  FYConstraintManager.h
 //  FangYuanObjC
 //
 //  Created by 王策 on 16/5/4.
@@ -7,9 +7,9 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "FYDependency.h"
+#import "FYConstraint.h"
 
-@interface FYDependencyManager : NSObject
+@interface FYConstraintManager : NSObject
 
 /**
  *  推入约束
@@ -17,8 +17,8 @@
  *  @param from      约束来源
  *  @param direction 约束方向
  */
-+ (void)pushDependencyFrom:(UIView *)from
-                 direction:(FYDependencyDirection)direction;
++ (void)getConstraintFrom:(UIView *)from
+                direction:(FYConstraintDirection)direction;
 
 /**
  *  拉取约束
@@ -27,9 +27,9 @@
  *  @param direction 约束方向
  *  @param value     约束值
  */
-+ (void)popDependencyTo:(UIView *)to
-                direction:(FYDependencyDirection)direction
-                    value:(CGFloat)value;
++ (void)setConstraintTo:(UIView *)to
+              direction:(FYConstraintDirection)direction
+                  value:(CGFloat)value;
 
 + (void)layout:(UIView *)view;
 

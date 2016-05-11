@@ -1,23 +1,23 @@
 //
-//  FYDependencyManager.m
+//  FYConstraintManager.m
 //  FangYuanObjC
 //
 //  Created by 王策 on 16/5/4.
 //  Copyright © 2016年 WangCe. All rights reserved.
 //
 
-#import "FYDependencyManager.h"
+#import "FYConstraintManager.h"
 #import "UIView+FangYuanPrivate.h"
 
-@interface FYDependencyManager ()
+@interface FYConstraintManager ()
 
-@property (nonatomic, strong) FYDependency *dependencyHolder;
-@property (nonatomic, strong) NSMutableArray<FYDependency *> *dependencies;
-@property (nonatomic, readonly) NSArray<FYDependency *> *unsetDependencies;
+@property (nonatomic, strong) FYConstraint *dependencyHolder;
+@property (nonatomic, strong) NSMutableArray<FYConstraint *> *dependencies;
+@property (nonatomic, readonly) NSArray<FYConstraint *> *unsetDependencies;
 
 @end
 
-@implementation FYDependencyManager
+@implementation FYConstraintManager
 
 #pragma mark - Public
 
@@ -26,12 +26,12 @@
     [[self sharedInstance] layout:view];
 }
 
-+ (void)pushDependencyFrom:(UIView *)from direction:(FYDependencyDirection)direction {
-    [self sharedInstance].dependencyHolder = [FYDependency dependencyFrom:from to:nil direction:direction value:0];
++ (void)getConstraintFrom:(UIView *)from direction:(FYConstraintDirection)direction {
+    [self sharedInstance].dependencyHolder = [FYConstraint dependencyFrom:from to:nil direction:direction value:0];
 }
 
-+ (void)popDependencyTo:(UIView *)to direction:(FYDependencyDirection)direction value:(CGFloat)value {
-    FYDependencyManager *manager = [FYDependencyManager sharedInstance];
++ (void)setConstraintTo:(UIView *)to direction:(FYConstraintDirection)direction value:(CGFloat)value {
+    FYConstraintManager *manager = [FYConstraintManager sharedInstance];
     
     [manager removeDuplicateDependencyOf:to atDirection:direction];
     
@@ -49,20 +49,20 @@
 
 #pragma mark - Private
 
-+ (FYDependencyManager *)sharedInstance {
-    static FYDependencyManager *manager = nil;
++ (FYConstraintManager *)sharedInstance {
+    static FYConstraintManager *manager = nil;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        manager = [FYDependencyManager new];
+        manager = [FYConstraintManager new];
         manager.dependencies = [NSMutableArray array];
     });
     return manager;
 }
 
-- (void)removeDuplicateDependencyOf:(UIView *)view atDirection:(FYDependencyDirection)direction {
-    __block FYDependency *dependencyNeedRemove;
+- (void)removeDuplicateDependencyOf:(UIView *)view atDirection:(FYConstraintDirection)direction {
+    __block FYConstraint *dependencyNeedRemove;
     [_dependencies enumerateObjectsUsingBlock:
-     ^(FYDependency * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+     ^(FYConstraint * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
         if (obj.to == view && obj.direction == direction) {
             dependencyNeedRemove = obj;
             *stop = YES;
@@ -74,18 +74,18 @@
     }
 }
 
-- (NSArray<FYDependency *> *)unsetDependencies {
-    NSMutableArray<FYDependency *> *mArr = self.dependencies;
+- (NSArray<FYConstraint *> *)unsetDependencies {
+    NSMutableArray<FYConstraint *> *mArr = self.dependencies;
     [mArr filterUsingPredicate:[NSPredicate predicateWithBlock:
                                 ^BOOL(id  _Nonnull evaluatedObject, NSDictionary<NSString *,id> * _Nullable bindings) {
-                                    FYDependency *dep = evaluatedObject;
+                                    FYConstraint *dep = evaluatedObject;
                                     return !dep.hasSet;
                                 }]];
     return mArr;
 }
 
 - (BOOL)allDependenciesLoaddedOf:(UIView *)view {
-    for (FYDependency *dep in self.dependencies) {
+    for (FYConstraint *dep in self.dependencies) {
         if (dep.to == view && !dep.hasSet) {
             return NO;
         }
@@ -99,13 +99,13 @@
         return NO;
     }
     
-    NSArray<FYDependency *> *needSetDeps = self.unsetDependencies;
+    NSArray<FYConstraint *> *needSetDeps = self.unsetDependencies;
     if (needSetDeps.count == 0) {
         return NO;
     }
     
     for (UIView *subview in view.usingFangYuanSubviews) {
-        for (FYDependency *dep in needSetDeps) {
+        for (FYConstraint *dep in needSetDeps) {
             if (dep.to == subview) {
                 return YES;
             }
@@ -118,7 +118,7 @@
 - (void)removeUselessDep {
     NSMutableArray *newDependencies = self.dependencies;
     [self.dependencies enumerateObjectsUsingBlock:
-     ^(FYDependency * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+     ^(FYConstraint * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
         if (obj.to == nil && obj.from == nil) {
             [newDependencies removeObject:obj];
         }
@@ -162,25 +162,25 @@
 
 - (void)loadDependenciesOf:(UIView *)view {
     [_dependencies enumerateObjectsUsingBlock:
-     ^(FYDependency * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+     ^(FYConstraint * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
          if (obj.from == view) {
              UIView *from = obj.from;
              UIView *to = obj.to;
              CGFloat value = obj.value;
              switch (obj.direction) {
-                 case FYDependencyDirectionBottomTop:{
+                 case FYConstraintDirectionBottomTop:{
                      to.rulerY.a = FYFloatMake(from.fyY + from.fyHeight + value);
                      break;
                  }
-                 case FYDependencyDirectionTopBottom:{
+                 case FYConstraintDirectionTopBottom:{
                      to.rulerY.c = FYFloatMake(from.superview.fyHeight - from.fyY + value);
                      break;
                  }
-                 case FYDependencyDirectionRightLeft:{
+                 case FYConstraintDirectionRightLeft:{
                      to.rulerX.a = FYFloatMake(from.fyX + from.fyWidth + value);
                      break;
                  }
-                 case FYDependencyDirectionLeftRight:{
+                 case FYConstraintDirectionLeftRight:{
                      to.rulerX.c = FYFloatMake(from.superview.fyWidth - from.fyX + value);
                      break;
                  }

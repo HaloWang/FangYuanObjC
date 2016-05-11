@@ -7,7 +7,7 @@
 //
 
 #import "UIView+FangYuan.h"
-#import "FYDependencyManager.h"
+#import "FYConstraintManager.h"
 #import "UIView+FangYuanPrivate.h"
 
 @implementation UIView (FangYuan)
@@ -15,32 +15,34 @@
 #pragma mark - Chainable Methods
 
 - (CGFloat)chainLeft {
-    [FYDependencyManager
-     pushDependencyFrom:self
-     direction:FYDependencyDirectionLeftRight
+    [FYConstraintManager
+     getConstraintFrom:self
+     direction:FYConstraintDirectionLeftRight
      ];
     return 0;
 }
 
 - (CGFloat)chainRight {
-    [FYDependencyManager
-     pushDependencyFrom:self
-     direction:FYDependencyDirectionRightLeft
+    [FYConstraintManager
+     getConstraintFrom:self
+     direction:FYConstraintDirectionRightLeft
      ];
     return 0;
 }
 
 - (CGFloat)chainTop {
-    [FYDependencyManager
-     pushDependencyFrom:self
-     direction:FYDependencyDirectionTopBottom];
+    [FYConstraintManager
+     getConstraintFrom:self
+     direction:FYConstraintDirectionTopBottom
+     ];
     return 0;
 }
 
 - (CGFloat)chainBottom {
-    [FYDependencyManager
-     pushDependencyFrom:self
-     direction:FYDependencyDirectionBottomTop];
+    [FYConstraintManager
+     getConstraintFrom:self
+     direction:FYConstraintDirectionBottomTop
+     ];
     return 0;
 }
 
@@ -52,9 +54,9 @@
     return ^(CGFloat top) {
         [self basicSetting];
         self.rulerY.a = FYFloatMake(top);
-        [FYDependencyManager
-         popDependencyTo:self
-         direction:FYDependencyDirectionBottomTop
+        [FYConstraintManager
+         setConstraintTo:self
+         direction:FYConstraintDirectionBottomTop
          value:top];
         return self;
     };
@@ -64,9 +66,9 @@
     return ^(CGFloat bottom) {
         [self basicSetting];
         self.rulerY.c = FYFloatMake(bottom);
-        [FYDependencyManager
-         popDependencyTo:self
-         direction:FYDependencyDirectionTopBottom
+        [FYConstraintManager
+         setConstraintTo:self
+         direction:FYConstraintDirectionTopBottom
          value:bottom];
         return self;
     };
@@ -86,9 +88,9 @@
     return ^(CGFloat left) {
         [self basicSetting];
         self.rulerX.a = FYFloatMake(left);
-        [FYDependencyManager
-         popDependencyTo:self
-         direction:FYDependencyDirectionRightLeft
+        [FYConstraintManager
+         setConstraintTo:self
+         direction:FYConstraintDirectionRightLeft
          value:left];
         return self;
     };
@@ -98,9 +100,9 @@
     return ^(CGFloat right) {
         [self basicSetting];
         self.rulerX.c = FYFloatMake(right);
-        [FYDependencyManager
-         popDependencyTo:self
-         direction:FYDependencyDirectionLeftRight
+        [FYConstraintManager
+         setConstraintTo:self
+         direction:FYConstraintDirectionLeftRight
          value:right];
         return self;
     };
@@ -123,7 +125,7 @@
 - (void (^)())toAnimation {
     return ^{
         // TODO: 需要更高的性能！
-        [FYDependencyManager layout:self.superview];
+        [FYConstraintManager layout:self.superview];
     };
 }
 
