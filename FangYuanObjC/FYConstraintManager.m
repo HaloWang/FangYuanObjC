@@ -8,12 +8,13 @@
 
 #import "FYConstraintManager.h"
 #import "UIView+FangYuanPrivate.h"
+#import "FYConstraintHolder.h"
 
 @interface FYConstraintManager ()
 
-@property (nonatomic, strong) FYConstraint *dependencyHolder;
 @property (nonatomic, strong) NSMutableArray<FYConstraint *> *dependencies;
 @property (nonatomic, readonly) NSArray<FYConstraint *> *unsetDependencies;
+@property (nonatomic, strong) FYConstraintHolder *holder;
 
 @end
 
@@ -21,30 +22,31 @@
 
 #pragma mark - Public
 
-+ (void)layout:(UIView *)view {
-    [[self sharedInstance] removeUselessDep];
-    [[self sharedInstance] layout:view];
-}
-
 + (void)getConstraintFrom:(UIView *)from direction:(FYConstraintDirection)direction {
-    [self sharedInstance].dependencyHolder = [FYConstraint dependencyFrom:from to:nil direction:direction value:0];
+    FYConstraint *cons = [FYConstraint dependencyFrom:from to:nil direction:direction value:0];
+    FYConstraintHolder *holder = [self sharedInstance].holder;
+    [holder set:cons At:direction];
 }
 
 + (void)setConstraintTo:(UIView *)to direction:(FYConstraintDirection)direction value:(CGFloat)value {
     FYConstraintManager *manager = [FYConstraintManager sharedInstance];
+    FYConstraintHolder *holder = [self sharedInstance].holder;
+    FYConstraint *cons = [holder constraintAt:direction];
     
-    [manager removeDuplicateDependencyOf:to atDirection:direction];
-    
-    if (!manager.dependencyHolder) {
+    if (cons == nil) {
         return;
     }
     
-    manager.dependencyHolder.to = to;
-    manager.dependencyHolder.value = value;
-    
-    //  添加约束
-    [manager.dependencies addObject:manager.dependencyHolder];
-    manager.dependencyHolder = nil;
+    [manager removeDuplicateDependencyOf:to atDirection:direction];
+    cons.to = to;
+    cons.value = value;
+    [manager.dependencies addObject:cons];
+    [holder set:nil At:direction];
+}
+
++ (void)layout:(UIView *)view {
+    [[self sharedInstance] removeUselessDep];
+    [[self sharedInstance] layout:view];
 }
 
 #pragma mark - Private
@@ -55,6 +57,7 @@
     dispatch_once(&onceToken, ^{
         manager = [FYConstraintManager new];
         manager.dependencies = [NSMutableArray array];
+        manager.holder = [FYConstraintHolder new];
     });
     return manager;
 }
