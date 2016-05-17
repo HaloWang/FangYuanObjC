@@ -39,6 +39,7 @@
 }
 
 - (void)setItemPriceShow:(BOOL)show {
+    // TODO: ⚠️BUG
     self.itemPriceLabel.hidden = !show;
     self.itemTitleLabel.fy_right(show ? self.itemPriceLabel.chainLeft + 5 : 5);
 }
