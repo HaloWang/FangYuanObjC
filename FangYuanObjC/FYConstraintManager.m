@@ -28,7 +28,10 @@
 }
 
 + (void)popConstraintTo:(UIView *)to direction:(FYConstraintDirection)direction value:(CGFloat)value {
+    
     FYConstraintManager *manager = [FYConstraintManager sharedInstance];
+    [manager removeDuplicateConstraintOf:to at:direction];
+    
     FYConstraintHolder *holder = [self sharedInstance].holder;
     FYConstraint *cons = [holder constraintAt:direction];
     
@@ -36,10 +39,9 @@
         return;
     }
 
-    [manager removeDuplicateConstraintOf:to atDirection:direction];
     cons.to = to;
     cons.value = value;
-    [manager checkCyclingConstraintWhenAdding:cons];
+    [manager checkCyclingWhenAdding:cons];
     [manager.constraints addObject:cons];
     [holder clearConstraintAt:direction];
 }
@@ -77,13 +79,13 @@
         return;
     }
     
-    NSMutableArray<UIView *> *viewsNeedLayout = views.mutableCopy;
+    NSMutableArray<UIView *> *viewsNeedLayout = views;
     __block BOOL shouldRepeat;
     do {
         shouldRepeat = NO;
         [viewsNeedLayout.copy enumerateObjectsUsingBlock:
          ^(UIView * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-             if ([self hasSetConstraintsOf:obj]) {
+             if ([self hasSetConstraintTo:obj]) {
                  [obj layoutWithFangYuan];
                  [self setConstrainsFrom:obj];
                  [viewsNeedLayout removeObject:obj];
@@ -127,7 +129,7 @@
      }];
 }
 
-- (BOOL)hasSetConstraintsOf:(UIView *)view {
+- (BOOL)hasSetConstraintTo:(UIView *)view {
     for (FYConstraint *cons in self.constraints) {
         if (cons.to == view) {
             return NO;
@@ -143,7 +145,7 @@
     }
     
     for (UIView *view in views) {
-        if (![self hasSetConstraintsOf:view]) {
+        if (![self hasSetConstraintTo:view]) {
             return YES;
         }
     }
@@ -153,7 +155,7 @@
 
 #pragma mark Assistant Functions
 
-- (void)removeDuplicateConstraintOf:(UIView *)view atDirection:(FYConstraintDirection)direction {
+- (void)removeDuplicateConstraintOf:(UIView *)view at:(FYConstraintDirection)direction {
     [_constraints.copy enumerateObjectsUsingBlock:
      ^(FYConstraint * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
          if (obj.to == view && obj.direction == direction) {
@@ -163,7 +165,7 @@
      }];
 }
 
-- (void)checkCyclingConstraintWhenAdding:(FYConstraint *)cons {
+- (void)checkCyclingWhenAdding:(FYConstraint *)cons {
     [_constraints enumerateObjectsUsingBlock:
      ^(FYConstraint * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
          NSAssert(!(obj.to == cons.from && obj.from == cons.to), @"there is a cycling constraint between view:%@ and view:%@", obj.to, obj.from);

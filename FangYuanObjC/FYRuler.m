@@ -9,10 +9,10 @@
 #import "FYRuler.h"
 
 FYFloat FYFloatMake(CGFloat value) {
-    FYFloat ruler;
-    ruler.value = value;
-    ruler.enable = YES;
-    return ruler;
+    FYFloat fyFloat;
+    fyFloat.value = value;
+    fyFloat.enable = YES;
+    return fyFloat;
 }
 
 @implementation FYRuler
