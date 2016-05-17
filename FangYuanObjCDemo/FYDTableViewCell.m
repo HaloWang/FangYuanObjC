@@ -10,8 +10,6 @@
 #import <HaloObjC.h>
 #import <FangYuanObjC/UIView+FangYuan.h>
 
-// TODO: Add new feature
-
 @implementation FYDTableViewCell
 
 - (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {

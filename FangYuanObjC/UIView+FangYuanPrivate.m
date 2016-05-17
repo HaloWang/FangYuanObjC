@@ -18,8 +18,6 @@ if (a != b) {       \
 
 //  @see http://stackoverflow.com/questions/35590676/custom-uibutton-layoutsubviews-doesnt-work-unless-super-layoutsubviews-is-c
 
-// TODO: 永远不要写重复的代码！
-
 @implementation UIButton (FangYuanPrivate)
 
 + (void)load {
@@ -92,7 +90,6 @@ static int _AOHolderKey;
     return self.fy_AssociatedObjectHolder.rulerY;
 }
 
-// TODO: 给所有的 UIView 添加了一个 fy_AssociatedObjectHolder 的属性，这样真的好吗？
 - (BOOL)isUsingFangYuan {
     return self.fy_AssociatedObjectHolder.isUsingFangYuan;
 }
@@ -102,8 +99,6 @@ static int _AOHolderKey;
 }
 
 #pragma mark - Quick Setter / Getter
-
-// TODO: 作为一个 Getter 写成这样真的好吗？
 
 - (NSArray<UIView *> *)usingFangYuanSubviews {
     return [self.subviews filteredArrayUsingPredicate:[NSPredicate predicateWithBlock:^BOOL(UIView *  _Nonnull evaluatedObject, NSDictionary<NSString *,id> * _Nullable bindings) {
