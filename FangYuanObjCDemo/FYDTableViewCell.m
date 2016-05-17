@@ -36,15 +36,9 @@
         .fy_right(self.itemPriceLabel.chainLeft + 5)
         .fy_bottom(5)
         .fy_width(80);
-        
     }
     return self;
 }
-//
-//- (void)layoutSubviews {
-//    [super layoutSubviews];
-//    printf("✅");
-//}
 
 - (void)setItemPriceShow:(BOOL)show {
     self.itemPriceLabel.hidden = !show;

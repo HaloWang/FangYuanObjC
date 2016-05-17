@@ -10,17 +10,17 @@
 
 @implementation FYConstraint
 
-+ (FYConstraint *)dependencyFrom:(UIView *)from
++ (FYConstraint *)constraintFrom:(UIView *)from
                               to:(UIView *)to
                        direction:(FYConstraintDirection)direction
                            value:(CGFloat)value
 {
-    FYConstraint *dep = [FYConstraint new];
-    dep.from          = from;
-    dep.to            = to;
-    dep.direction     = direction;
-    dep.value         = value;
-    return dep;
+    FYConstraint *cons = [FYConstraint new];
+    cons.from          = from;
+    cons.to            = to;
+    cons.direction     = direction;
+    cons.value         = value;
+    return cons;
 }
 
 - (NSString *)description {

@@ -17,8 +17,8 @@
  *  @param from      约束来源
  *  @param direction 约束方向
  */
-+ (void)getConstraintFrom:(UIView *)from
-                direction:(FYConstraintDirection)direction;
++ (void)pushConstraintFrom:(UIView *)from
+                 direction:(FYConstraintDirection)direction;
 
 /**
  *  拉取约束
@@ -27,7 +27,7 @@
  *  @param direction 约束方向
  *  @param value     约束值
  */
-+ (void)setConstraintTo:(UIView *)to
++ (void)popConstraintTo:(UIView *)to
               direction:(FYConstraintDirection)direction
                   value:(CGFloat)value;
 

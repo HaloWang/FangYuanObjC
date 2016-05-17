@@ -16,33 +16,33 @@
 
 - (CGFloat)chainLeft {
     [FYConstraintManager
-     getConstraintFrom:self
-     direction:FYConstraintDirectionLeftRight
-     ];
+            pushConstraintFrom:self
+                     direction:FYConstraintDirectionLeftRight
+    ];
     return 0;
 }
 
 - (CGFloat)chainRight {
     [FYConstraintManager
-     getConstraintFrom:self
-     direction:FYConstraintDirectionRightLeft
-     ];
+            pushConstraintFrom:self
+                     direction:FYConstraintDirectionRightLeft
+    ];
     return 0;
 }
 
 - (CGFloat)chainTop {
     [FYConstraintManager
-     getConstraintFrom:self
-     direction:FYConstraintDirectionTopBottom
-     ];
+            pushConstraintFrom:self
+                     direction:FYConstraintDirectionTopBottom
+    ];
     return 0;
 }
 
 - (CGFloat)chainBottom {
     [FYConstraintManager
-     getConstraintFrom:self
-     direction:FYConstraintDirectionBottomTop
-     ];
+            pushConstraintFrom:self
+                     direction:FYConstraintDirectionBottomTop
+    ];
     return 0;
 }
 
@@ -55,9 +55,9 @@
         [self basicSetting];
         self.rulerY.a = FYFloatMake(top);
         [FYConstraintManager
-         setConstraintTo:self
-         direction:FYConstraintDirectionBottomTop
-         value:top];
+                popConstraintTo:self
+                      direction:FYConstraintDirectionBottomTop
+                          value:top];
         return self;
     };
 }
@@ -67,9 +67,9 @@
         [self basicSetting];
         self.rulerY.c = FYFloatMake(bottom);
         [FYConstraintManager
-         setConstraintTo:self
-         direction:FYConstraintDirectionTopBottom
-         value:bottom];
+                popConstraintTo:self
+                      direction:FYConstraintDirectionTopBottom
+                          value:bottom];
         return self;
     };
 }
@@ -89,9 +89,9 @@
         [self basicSetting];
         self.rulerX.a = FYFloatMake(left);
         [FYConstraintManager
-         setConstraintTo:self
-         direction:FYConstraintDirectionRightLeft
-         value:left];
+                popConstraintTo:self
+                      direction:FYConstraintDirectionRightLeft
+                          value:left];
         return self;
     };
 }
@@ -101,9 +101,9 @@
         [self basicSetting];
         self.rulerX.c = FYFloatMake(right);
         [FYConstraintManager
-         setConstraintTo:self
-         direction:FYConstraintDirectionLeftRight
-         value:right];
+                popConstraintTo:self
+                      direction:FYConstraintDirectionLeftRight
+                          value:right];
         return self;
     };
 }

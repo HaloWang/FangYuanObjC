@@ -19,6 +19,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (void)set:(FYConstraint * _Nullable)constraint At:(FYConstraintDirection)direction;
 
+- (void)clearConstraintAt:(FYConstraintDirection)direction;
+
 @end
 
 NS_ASSUME_NONNULL_END

@@ -22,7 +22,7 @@ typedef NS_ENUM(NSUInteger, FYConstraintDirection) {
 @property (nonatomic, assign) CGFloat value;
 @property (nonatomic, assign) FYConstraintDirection direction;
 
-+ (FYConstraint *)dependencyFrom:(UIView *)from
++ (FYConstraint *)constraintFrom:(UIView *)from
                               to:(UIView *)to
                        direction:(FYConstraintDirection)direction
                            value:(CGFloat)value;

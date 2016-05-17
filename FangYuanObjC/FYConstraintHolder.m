@@ -49,4 +49,8 @@
     }
 }
 
+- (void)clearConstraintAt:(FYConstraintDirection)direction {
+    [self set:nil At:direction];
+}
+
 @end
