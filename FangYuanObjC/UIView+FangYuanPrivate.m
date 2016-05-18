@@ -16,35 +16,6 @@ if (a != b) {       \
     a = b;          \
 }                   \
 
-//  @see http://stackoverflow.com/questions/35590676/custom-uibutton-layoutsubviews-doesnt-work-unless-super-layoutsubviews-is-c
-
-@implementation UIButton (FangYuanPrivate)
-
-+ (void)load {
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
-        Class class = [self class];
-        SEL originalSelector = @selector(layoutSubviews);
-        SEL swizzledSelector = @selector(_swizzled_layoutSubviews);
-        Method originalMethod = class_getInstanceMethod(class, originalSelector);
-        Method swizzledMethod = class_getInstanceMethod(class, swizzledSelector);
-        method_exchangeImplementations(originalMethod, swizzledMethod);
-    });
-}
-
-//  If doesn't implement following method, we will get:
-//  *** Terminating app due to uncaught exception 'NSInvalidArgumentException', reason: '-[_UINavigationBarBackground state]: unrecognized selector sent to instance 0x12f589420'
-
-#pragma clang diagnostic push
-#pragma ide diagnostic ignored "InfiniteRecursion"
-- (void)_swizzled_layoutSubviews {
-    [self _swizzled_layoutSubviews];
-    [FYConstraintManager layout:self];
-}
-#pragma clang diagnostic pop
-
-@end
-
 @implementation UIView (FangYuanPrivate)
 
 #pragma mark - Method Swizzling
