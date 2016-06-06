@@ -117,8 +117,11 @@ static int _AOHolderKey;
     self.frame = rect;
 }
 
-- (void)basicSetting {
+- (void)basicSetting:(void(^)())setting {
     self.usingFangYuan = YES;
+    _fy_layoutQueue(^{
+        setting();
+    });
 }
 
 - (void)layoutWithFangYuan {

@@ -10,6 +10,26 @@
 #import "UIView+FangYuanPrivate.h"
 #import "FYConstraintHolder.h"
 
+#define _fy_should_in_layout_queue_ NSAssert(![NSThread isMainThread], nil);
+#define _fy_should_in_main_queue_   NSAssert([NSThread isMainThread], nil);
+
+static dispatch_queue_t _fangyuan_layout_queue() {
+    static dispatch_queue_t __fangyuan_layout_queue;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        __fangyuan_layout_queue = dispatch_queue_create("fangyuan.layout", DISPATCH_QUEUE_SERIAL);
+    });
+    return __fangyuan_layout_queue;
+}
+
+void _fy_layoutQueue(dispatch_block_t block) {
+    dispatch_async(_fangyuan_layout_queue(), block);
+}
+
+void _fy_waitLayoutQueue() {
+    dispatch_barrier_sync(_fangyuan_layout_queue(), ^{});
+}
+
 @interface FYConstraintManager ()
 
 @property (nonatomic, strong) NSMutableArray<FYConstraint *> *constraints;
@@ -22,13 +42,14 @@
 #pragma mark - Public
 
 + (void)pushConstraintFrom:(UIView *)from direction:(FYConstraintDirection)direction {
+    _fy_should_in_layout_queue_
     FYConstraint *cons = [FYConstraint constraintFrom:from to:nil direction:direction value:0];
     FYConstraintHolder *holder = [self sharedInstance].holder;
     [holder set:cons At:direction];
 }
 
 + (void)popConstraintTo:(UIView *)to direction:(FYConstraintDirection)direction value:(CGFloat)value {
-    
+    _fy_should_in_layout_queue_
     FYConstraintManager *manager = [FYConstraintManager sharedInstance];
     [manager removeDuplicateConstraintOf:to at:direction];
     
@@ -51,6 +72,7 @@
     if (viewsNeedLayout.count == 0) {
         return;
     }
+    _fy_wait_layout_queue_
     [[self sharedInstance] layout:viewsNeedLayout];
 }
 
@@ -70,7 +92,7 @@
 #pragma mark Layout Logic
 
 - (void)layout:(NSMutableArray<UIView *> *)views {
-    
+    _fy_should_in_main_queue_
     if (![self hasUnSetConstraintOf:views]) {
         [views enumerateObjectsUsingBlock:
          ^(UIView * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
@@ -97,6 +119,7 @@
 }
 
 - (void)setConstrainsFrom:(UIView *)view {
+    _fy_should_in_main_queue_
     [_constraints.copy enumerateObjectsUsingBlock:
      ^(FYConstraint * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
          if (obj.from == view) {
@@ -156,6 +179,7 @@
 #pragma mark Assistant Functions
 
 - (void)removeDuplicateConstraintOf:(UIView *)view at:(FYConstraintDirection)direction {
+    _fy_should_in_layout_queue_
     [_constraints.copy enumerateObjectsUsingBlock:
      ^(FYConstraint * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
          if (obj.to == view && obj.direction == direction) {

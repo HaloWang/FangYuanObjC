@@ -15,34 +15,42 @@
 #pragma mark - Chainable Methods
 
 - (CGFloat)chainLeft {
-    [FYConstraintManager
-     pushConstraintFrom:self
-     direction:FYConstraintDirectionLeftRight
-     ];
+    [self basicSetting:^{
+        [FYConstraintManager
+         pushConstraintFrom:self
+         direction:FYConstraintDirectionLeftRight
+         ];
+    }];
     return 0;
 }
 
 - (CGFloat)chainRight {
-    [FYConstraintManager
-     pushConstraintFrom:self
-     direction:FYConstraintDirectionRightLeft
-     ];
+    [self basicSetting:^{
+        [FYConstraintManager
+         pushConstraintFrom:self
+         direction:FYConstraintDirectionRightLeft
+         ];
+    }];
     return 0;
 }
 
 - (CGFloat)chainTop {
-    [FYConstraintManager
-     pushConstraintFrom:self
-     direction:FYConstraintDirectionTopBottom
-     ];
+    [self basicSetting:^{
+        [FYConstraintManager
+         pushConstraintFrom:self
+         direction:FYConstraintDirectionTopBottom
+         ];
+    }];
     return 0;
 }
 
 - (CGFloat)chainBottom {
-    [FYConstraintManager
-     pushConstraintFrom:self
-     direction:FYConstraintDirectionBottomTop
-     ];
+    [self basicSetting:^{
+        [FYConstraintManager
+         pushConstraintFrom:self
+         direction:FYConstraintDirectionBottomTop
+         ];
+    }];
     return 0;
 }
 
@@ -52,32 +60,35 @@
 
 - (FYSectionValueChainableSetter)fy_top {
     return ^(CGFloat top) {
-        [self basicSetting];
-        self.rulerY.a = FYFloatMake(top);
-        [FYConstraintManager
-         popConstraintTo:self
-         direction:FYConstraintDirectionBottomTop
-         value:top];
+        [self basicSetting:^{
+            self.rulerY.a = FYFloatMake(top);
+            [FYConstraintManager
+             popConstraintTo:self
+             direction:FYConstraintDirectionBottomTop
+             value:top];
+        }];
         return self;
     };
 }
 
 - (FYSectionValueChainableSetter)fy_bottom {
     return ^(CGFloat bottom) {
-        [self basicSetting];
-        self.rulerY.c = FYFloatMake(bottom);
-        [FYConstraintManager
-         popConstraintTo:self
-         direction:FYConstraintDirectionTopBottom
-         value:bottom];
+        [self basicSetting:^{
+            self.rulerY.c = FYFloatMake(bottom);
+            [FYConstraintManager
+             popConstraintTo:self
+             direction:FYConstraintDirectionTopBottom
+             value:bottom];
+        }];
         return self;
     };
 }
 
 - (FYSectionValueChainableSetter)fy_height {
     return ^(CGFloat height) {
-        [self basicSetting];
-        self.rulerY.b = FYFloatMake(height);
+        [self basicSetting:^{
+            self.rulerY.b = FYFloatMake(height);
+        }];
         return self;
     };
 }
@@ -86,32 +97,35 @@
 
 - (FYSectionValueChainableSetter)fy_left {
     return ^(CGFloat left) {
-        [self basicSetting];
-        self.rulerX.a = FYFloatMake(left);
-        [FYConstraintManager
-         popConstraintTo:self
-         direction:FYConstraintDirectionRightLeft
-         value:left];
+        [self basicSetting:^{
+            self.rulerX.a = FYFloatMake(left);
+            [FYConstraintManager
+             popConstraintTo:self
+             direction:FYConstraintDirectionRightLeft
+             value:left];
+        }];
         return self;
     };
 }
 
 - (FYSectionValueChainableSetter)fy_right {
     return ^(CGFloat right) {
-        [self basicSetting];
-        self.rulerX.c = FYFloatMake(right);
-        [FYConstraintManager
-         popConstraintTo:self
-         direction:FYConstraintDirectionLeftRight
-         value:right];
+        [self basicSetting:^{
+            self.rulerX.c = FYFloatMake(right);
+            [FYConstraintManager
+             popConstraintTo:self
+             direction:FYConstraintDirectionLeftRight
+             value:right];
+        }];
         return self;
     };
 }
 
 - (FYSectionValueChainableSetter)fy_width {
     return ^(CGFloat width) {
-        [self basicSetting];
-        self.rulerX.b = FYFloatMake(width);
+        [self basicSetting:^{
+            self.rulerX.b = FYFloatMake(width);
+        }];
         return self;
     };
 }

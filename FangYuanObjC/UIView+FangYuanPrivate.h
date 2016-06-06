@@ -26,6 +26,6 @@
 
 - (void)layoutWithFangYuan;
 
-- (void)basicSetting;
+- (void)basicSetting:(void(^)())setting;
 
 @end
