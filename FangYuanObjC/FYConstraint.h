@@ -15,6 +15,8 @@ typedef NS_ENUM(NSUInteger, FYConstraintDirection) {
     FYConstraintDirectionTopBottom,
 };
 
+BOOL isHorizontal(FYConstraintDirection direction);
+
 @interface FYConstraint : NSObject
 
 @property (nonatomic, weak) UIView *from;

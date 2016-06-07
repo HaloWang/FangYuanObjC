@@ -15,42 +15,42 @@
 #pragma mark - Chainable Methods
 
 - (CGFloat)chainLeft {
-    [self basicSetting:^{
+    _fy_layoutQueue(^{
         [FYConstraintManager
          pushConstraintFrom:self
          direction:FYConstraintDirectionLeftRight
          ];
-    }];
+    });
     return 0;
 }
 
 - (CGFloat)chainRight {
-    [self basicSetting:^{
+    _fy_layoutQueue(^{
         [FYConstraintManager
          pushConstraintFrom:self
          direction:FYConstraintDirectionRightLeft
          ];
-    }];
+    });
     return 0;
 }
 
 - (CGFloat)chainTop {
-    [self basicSetting:^{
+    _fy_layoutQueue(^{
         [FYConstraintManager
          pushConstraintFrom:self
          direction:FYConstraintDirectionTopBottom
          ];
-    }];
+    });
     return 0;
 }
 
 - (CGFloat)chainBottom {
-    [self basicSetting:^{
+    _fy_layoutQueue(^{
         [FYConstraintManager
          pushConstraintFrom:self
          direction:FYConstraintDirectionBottomTop
          ];
-    }];
+    });
     return 0;
 }
 
@@ -61,11 +61,8 @@
 - (FYSectionValueChainableSetter)fy_top {
     return ^(CGFloat top) {
         [self basicSetting:^{
-            self.rulerY.a = FYFloatMake(top);
-            [FYConstraintManager
-             popConstraintTo:self
-             direction:FYConstraintDirectionBottomTop
-             value:top];
+            [self resetRelatedConstraintHorizontal:NO];
+            [self popConstraintAt:FYConstraintDirectionBottomTop value:top];
         }];
         return self;
     };
@@ -74,11 +71,8 @@
 - (FYSectionValueChainableSetter)fy_bottom {
     return ^(CGFloat bottom) {
         [self basicSetting:^{
-            self.rulerY.c = FYFloatMake(bottom);
-            [FYConstraintManager
-             popConstraintTo:self
-             direction:FYConstraintDirectionTopBottom
-             value:bottom];
+            [self resetRelatedConstraintHorizontal:NO];
+            [self popConstraintAt:FYConstraintDirectionTopBottom value:bottom];
         }];
         return self;
     };
@@ -87,6 +81,7 @@
 - (FYSectionValueChainableSetter)fy_height {
     return ^(CGFloat height) {
         [self basicSetting:^{
+            [self resetRelatedConstraintHorizontal:NO];
             self.rulerY.b = FYFloatMake(height);
         }];
         return self;
@@ -98,11 +93,8 @@
 - (FYSectionValueChainableSetter)fy_left {
     return ^(CGFloat left) {
         [self basicSetting:^{
-            self.rulerX.a = FYFloatMake(left);
-            [FYConstraintManager
-             popConstraintTo:self
-             direction:FYConstraintDirectionRightLeft
-             value:left];
+            [self resetRelatedConstraintHorizontal:YES];
+            [self popConstraintAt:FYConstraintDirectionRightLeft value:left];
         }];
         return self;
     };
@@ -111,11 +103,8 @@
 - (FYSectionValueChainableSetter)fy_right {
     return ^(CGFloat right) {
         [self basicSetting:^{
-            self.rulerX.c = FYFloatMake(right);
-            [FYConstraintManager
-             popConstraintTo:self
-             direction:FYConstraintDirectionLeftRight
-             value:right];
+            [self resetRelatedConstraintHorizontal:YES];
+            [self popConstraintAt:FYConstraintDirectionLeftRight value:right];
         }];
         return self;
     };
@@ -124,6 +113,7 @@
 - (FYSectionValueChainableSetter)fy_width {
     return ^(CGFloat width) {
         [self basicSetting:^{
+            [self resetRelatedConstraintHorizontal:YES];
             self.rulerX.b = FYFloatMake(width);
         }];
         return self;

@@ -8,6 +8,19 @@
 
 #import "FYConstraint.h"
 
+BOOL isHorizontal(FYConstraintDirection direction) {
+    switch (direction) {
+        case FYConstraintDirectionLeftRight:
+        case FYConstraintDirectionRightLeft:
+            return YES;
+        case FYConstraintDirectionTopBottom:
+        case FYConstraintDirectionBottomTop:
+            return NO;
+        default:
+            return NO;
+    }
+}
+
 @implementation FYConstraint
 
 + (FYConstraint *)constraintFrom:(UIView *)from

@@ -38,4 +38,6 @@ void _fy_waitLayoutQueue();
 
 + (void)layout:(UIView *)view;
 
++ (void)resetRelatedConstraintFrom:(UIView *)fromView horizontal:(BOOL)horizontal;
+
 @end

@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "FYRuler.h"
 #import "FYHolder.h"
+#import "FYConstraint.h"
 
 @interface UIView (FangYuanPrivate)
 
@@ -27,5 +28,9 @@
 - (void)layoutWithFangYuan;
 
 - (void)basicSetting:(void(^)())setting;
+
+- (void)popConstraintAt:(FYConstraintDirection)direction value:(CGFloat)value;
+
+- (void)resetRelatedConstraintHorizontal:(BOOL)isHorizontal;
 
 @end
