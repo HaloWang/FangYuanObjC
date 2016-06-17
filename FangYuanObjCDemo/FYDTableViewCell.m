@@ -30,6 +30,7 @@
         .fy_width(80);
         
         self.itemTitleLabel
+        .fy_right(self.itemPriceLabel.chainLeft + 5)
         .fy_top(5)
         .fy_bottom(5)
         .fy_width(80);
@@ -38,10 +39,7 @@
 }
 
 - (void)setItemPriceShow:(BOOL)show {
-
-    self.itemPriceLabel.hidden = !show;
-    CGFloat fff = self.itemPriceLabel.chainLeft + 5;
-    self.itemTitleLabel.fy_right(fff);
+    self.itemPriceLabel.fy_width(show ? 80 : 0);
 }
 
 @end
