@@ -31,7 +31,6 @@
         
         self.itemTitleLabel
         .fy_top(5)
-        .fy_right(self.itemPriceLabel.chainLeft + 5)
         .fy_bottom(5)
         .fy_width(80);
     }
@@ -39,9 +38,10 @@
 }
 
 - (void)setItemPriceShow:(BOOL)show {
+
     self.itemPriceLabel.hidden = !show;
-    NSLog(@"%@", self);
-//    self.itemTitleLabel.fy_right(5);
+    CGFloat fff = self.itemPriceLabel.chainLeft + 5;
+    self.itemTitleLabel.fy_right(fff);
 }
 
 @end

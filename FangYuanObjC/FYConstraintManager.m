@@ -180,7 +180,7 @@ void _fy_waitLayoutQueue() {
 - (FYConstraints)setConstrains:(FYConstraints)constraints From:(UIView *)view {
     _fy_should_in_main_queue_
     NSMutableArray<FYConstraint *> *_constraints = constraints.mutableCopy;
-    [constraints.copy enumerateObjectsUsingBlock:
+    [constraints enumerateObjectsUsingBlock:
      ^(FYConstraint * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
          if (obj.from == view) {
              _fy_layoutQueue(^{
