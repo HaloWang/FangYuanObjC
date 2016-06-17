@@ -12,13 +12,13 @@
 
 #define _fy_should_in_layout_queue_ NSAssert(![NSThread isMainThread], nil);
 #define _fy_should_in_main_queue_   NSAssert([NSThread isMainThread], nil);
-#define FYConstraintS               NSArray<FYConstraint *> *
+#define FYConstraints               NSArray<FYConstraint *> *
 
 static dispatch_queue_t _fangyuan_layout_queue() {
     static dispatch_queue_t __fangyuan_layout_queue;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        __fangyuan_layout_queue = dispatch_queue_create("fangyuan.layout", DISPATCH_QUEUE_SERIAL);
+        __fangyuan_layout_queue = dispatch_queue_create("com.fangyuan.layout", DISPATCH_QUEUE_SERIAL);
     });
     return __fangyuan_layout_queue;
 }
@@ -33,8 +33,8 @@ void _fy_waitLayoutQueue() {
 
 @interface FYConstraintManager ()
 
-@property (nonatomic, strong) NSMutableArray<FYConstraint *> *constraints;
-@property (nonatomic, strong) NSMutableArray<FYConstraint *> *settedConstraints;
+@property (nonatomic, strong) NSMutableArray<FYConstraint *> *unsetConstraints;
+@property (nonatomic, strong) NSMutableArray<FYConstraint *> *storedConstraints;
 @property (nonatomic, strong) FYConstraintHolder *holder;
 
 @end
@@ -43,30 +43,32 @@ void _fy_waitLayoutQueue() {
 
 #pragma mark - Public
 
-+ (void)pushConstraintFrom:(UIView *)from direction:(FYConstraintDirection)direction {
++ (void)pushConstraintFrom:(UIView *)from section:(FYConstraintSection)section {
     _fy_should_in_layout_queue_
-    FYConstraint *cons = [FYConstraint constraintFrom:from to:nil direction:direction value:0];
+    FYConstraint *cons = [FYConstraint constraintFrom:from to:nil section:section value:0];
     FYConstraintHolder *holder = [self sharedInstance].holder;
-    [holder set:cons At:direction];
+    [holder set:cons at:section];
 }
 
-+ (void)popConstraintTo:(UIView *)to direction:(FYConstraintDirection)direction value:(CGFloat)value {
++ (void)popConstraintTo:(UIView *)to section:(FYConstraintSection)section value:(CGFloat)value {
     _fy_should_in_layout_queue_
     FYConstraintManager *manager = [FYConstraintManager sharedInstance];
-    [manager removeDuplicateConstraintOf:to at:direction];
     
-    FYConstraintHolder *holder = [self sharedInstance].holder;
-    FYConstraint *cons = [holder constraintAt:direction];
+    [manager removeDuplicateConstraintOf:to at:section];
     
-    if (cons == nil) {
+    FYConstraintHolder *holder = manager.holder;
+    FYConstraint *constraint = [holder constraintAt:section];
+    
+    if (constraint == nil) {
         return;
     }
 
-    cons.to = to;
-    cons.value = value;
-    [manager.constraints addObject:cons];
-    [holder clearConstraintAt:direction];
-    NSAssert([manager noConstraintCirculationWith:cons], @"there is a cycling constraint between view:%@ and view:%@", cons.to, cons.from);
+    constraint.to = to;
+    constraint.value = value;
+    [manager.unsetConstraints addObject:constraint];
+    [holder clearConstraintAt:section];
+    
+    NSAssert([manager noConstraintCirculationWith:constraint], @"there is a cycling constraint between view:%@ and view:%@", constraint.to, constraint.from);
 }
 
 + (void)layout:(UIView *)view {
@@ -81,37 +83,33 @@ void _fy_waitLayoutQueue() {
 + (void)resetRelatedConstraintFrom:(UIView *)fromView horizontal:(BOOL)horizontal {
     _fy_should_in_layout_queue_
     FYConstraintManager *manager = self.sharedInstance;
-    [manager.settedConstraints.copy enumerateObjectsUsingBlock:^(FYConstraint* _Nonnull constraint, NSUInteger idx, BOOL * _Nonnull stop) {
-        if (constraint.from != nil) {
-            if (constraint.from == fromView) {
-                if (horizontal == isHorizontal(constraint.direction)) {
-                    switch (constraint.direction) {
-                        case FYConstraintDirectionRightLeft:
-                            constraint.to.rulerX.a = FYFloatMake(constraint.value);
-                            break;
-                            
-                        case FYConstraintDirectionLeftRight:
-                            constraint.to.rulerX.c = FYFloatMake(constraint.value);
-                            break;
-                            
-                        case FYConstraintDirectionTopBottom:
-                            constraint.to.rulerY.a = FYFloatMake(constraint.value);
-                            break;
-                            
-                        case FYConstraintDirectionBottomTop:
-                            constraint.to.rulerY.c = FYFloatMake(constraint.value);
-                            break;
-                            
-                        default:
-                            NSAssert(NO, @"Something Wrong!");
-                            break;
-                    }
+    for (FYConstraint *constraint in manager.storedConstraints) {
+        if (constraint.from != nil && constraint.from == fromView) {
+            if (horizontal == isHorizontal(constraint.section)) {
+                switch (constraint.section) {
+                    case FYConstraintSectionLeft:
+                        constraint.to.rulerX.a = FYFloatMake(constraint.value);
+                        break;
+                        
+                    case FYConstraintSectionRight:
+                        constraint.to.rulerX.c = FYFloatMake(constraint.value);
+                        break;
+                        
+                    case FYConstraintSectionBottom:
+                        constraint.to.rulerY.a = FYFloatMake(constraint.value);
+                        break;
+                        
+                    case FYConstraintSectionTop:
+                        constraint.to.rulerY.c = FYFloatMake(constraint.value);
+                        break;
+                        
+                    default:
+                        NSAssert(NO, @"Something Wrong!");
+                        break;
                 }
             }
-        } else {
-            [manager.settedConstraints removeObject:constraint];
         }
-    }];
+    }
 }
 
 #pragma mark - Private
@@ -121,8 +119,8 @@ void _fy_waitLayoutQueue() {
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         manager = [FYConstraintManager new];
-        manager.constraints = [NSMutableArray array];
-        manager.settedConstraints = [NSMutableArray array];
+        manager.unsetConstraints = [NSMutableArray array];
+        manager.storedConstraints = [NSMutableArray array];
         manager.holder = [FYConstraintHolder new];
     });
     return manager;
@@ -132,72 +130,30 @@ void _fy_waitLayoutQueue() {
 
 - (void)layout:(NSMutableArray<UIView *> *)views {
     _fy_should_in_main_queue_
-    if (![self hasUnSetConstraint:self.constraints of:views]) {
-        [views enumerateObjectsUsingBlock:
-         ^(UIView * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-            [obj layoutWithFangYuan];
-        }];
+    if (![self hasUnSetConstraint:self.unsetConstraints of:views]) {
+        for (UIView *view in views) {
+            [view layoutWithFangYuan];
+        }
         return;
     }
     
-    NSMutableArray<UIView *> *layoutingViews = views;
-    __block NSArray<FYConstraint *> *layoutingConstraints = self.constraints;
+    __block NSArray<FYConstraint *> *constraints = self.unsetConstraints;
     __block BOOL shouldRepeat;
     do {
         shouldRepeat = NO;
-        [layoutingViews.copy enumerateObjectsUsingBlock:
-         ^(UIView * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-             if ([self hasSetConstraint:layoutingConstraints to:obj]) {
-                 [obj layoutWithFangYuan];
-                 layoutingConstraints = [self setConstrains:layoutingConstraints From:obj];
-                 [layoutingViews removeObject:obj];
-             } else {
-                 shouldRepeat = YES;
-             }
-         }];
+        for (UIView *view in views.copy) {
+            if ([self hasSetConstraint:constraints to:view]) {
+                [view layoutWithFangYuan];
+                constraints = [self setConstrains:constraints From:view];
+                [views removeObject:view];
+            } else {
+                shouldRepeat = YES;
+            }
+        }
     } while (shouldRepeat);
 }
 
-- (FYConstraintS)setConstrains:(FYConstraintS)constraints From:(UIView *)view {
-    _fy_should_in_main_queue_
-    NSMutableArray<FYConstraint *> *_cons = constraints.mutableCopy;
-    [constraints.copy enumerateObjectsUsingBlock:
-     ^(FYConstraint * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-         if (obj.from == view) {
-             UIView *from = obj.from;
-             UIView *to = obj.to;
-             CGFloat value = obj.value;
-             switch (obj.direction) {
-                 case FYConstraintDirectionBottomTop:{
-                     to.rulerY.a = FYFloatMake(from.fyY + from.fyHeight + value);
-                     break;
-                 }
-                 case FYConstraintDirectionTopBottom:{
-                     to.rulerY.c = FYFloatMake(from.superview.fyHeight - from.fyY + value);
-                     break;
-                 }
-                 case FYConstraintDirectionRightLeft:{
-                     to.rulerX.a = FYFloatMake(from.fyX + from.fyWidth + value);
-                     break;
-                 }
-                 case FYConstraintDirectionLeftRight:{
-                     to.rulerX.c = FYFloatMake(from.superview.fyWidth - from.fyX + value);
-                     break;
-                 }
-                 default:
-                     NSAssert(NO, @"Something wrong!");
-                     break;
-             }
-             [_cons removeObject:obj];
-             _fy_layoutQueue(^{
-                 [self setSettedConstraint:obj];
-             });
-         }
-     }];
-    return _cons;
-}
-
-- (BOOL)hasSetConstraint:(FYConstraintS)constraints to:(UIView *)view {
+- (BOOL)hasSetConstraint:(FYConstraints)constraints to:(UIView *)view {
     for (FYConstraint *cons in constraints) {
         if (cons.to == view) {
             return NO;
@@ -206,7 +162,7 @@ void _fy_waitLayoutQueue() {
     return YES;
 }
 
-- (BOOL)hasUnSetConstraint:(FYConstraintS)constraints of:(NSArray<UIView *> *)views {
+- (BOOL)hasUnSetConstraint:(FYConstraints)constraints of:(NSArray<UIView *> *)views {
     
     if (constraints.count == 0) {
         return NO;
@@ -221,36 +177,75 @@ void _fy_waitLayoutQueue() {
     return NO;
 }
 
-#pragma mark Assistant Functions
-
-- (void)setSettedConstraint:(FYConstraint *)constraint {
-    _fy_should_in_layout_queue_
-    [self.settedConstraints.copy enumerateObjectsUsingBlock:
+- (FYConstraints)setConstrains:(FYConstraints)constraints From:(UIView *)view {
+    _fy_should_in_main_queue_
+    NSMutableArray<FYConstraint *> *_constraints = constraints.mutableCopy;
+    [constraints.copy enumerateObjectsUsingBlock:
      ^(FYConstraint * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-         if (obj.to == nil || obj.from == nil) {
-             [self.settedConstraints removeObject:obj];
-         } else if (obj.to == constraint.to && obj.direction == constraint.direction) {
-             [self.settedConstraints removeObject:obj];
+         if (obj.from == view) {
+             _fy_layoutQueue(^{
+                 [self storedConstraintsInsert:obj];
+             });
+             UIView *from = obj.from;
+             UIView *to = obj.to;
+             CGFloat value = obj.value;
+             switch (obj.section) {
+                 case FYConstraintSectionTop:{
+                     to.rulerY.a = FYFloatMake(from.fyY + from.fyHeight + value);
+                     break;
+                 }
+                 case FYConstraintSectionBottom:{
+                     to.rulerY.c = FYFloatMake(from.superview.fyHeight - from.fyY + value);
+                     break;
+                 }
+                 case FYConstraintSectionLeft:{
+                     to.rulerX.a = FYFloatMake(from.fyX + from.fyWidth + value);
+                     break;
+                 }
+                 case FYConstraintSectionRight:{
+                     to.rulerX.c = FYFloatMake(from.superview.fyWidth - from.fyX + value);
+                     break;
+                 }
+                 default:
+                     NSAssert(NO, @"Something wrong!");
+                     break;
+             }
+             [_constraints removeObject:obj];
          }
      }];
-    [self.settedConstraints addObject:constraint];
+    return _constraints;
 }
 
-- (void)removeDuplicateConstraintOf:(UIView *)view at:(FYConstraintDirection)direction {
+#pragma mark Assistant Functions
+
+- (void)storedConstraintsInsert:(FYConstraint *)constraint {
     _fy_should_in_layout_queue_
-    [_constraints.copy enumerateObjectsUsingBlock:
+    [self.storedConstraints.copy enumerateObjectsUsingBlock:
      ^(FYConstraint * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-         if (obj.to == view && obj.direction == direction) {
-             [_constraints removeObject:obj];
+         if (obj.to == nil || obj.from == nil) {
+             [self.storedConstraints removeObject:obj];
+         } else if (obj.to == constraint.to && obj.section == constraint.section) {
+             [self.storedConstraints removeObject:obj];
+         }
+     }];
+    [self.storedConstraints addObject:constraint];
+}
+
+- (void)removeDuplicateConstraintOf:(UIView *)view at:(FYConstraintSection)section {
+    _fy_should_in_layout_queue_
+    [_unsetConstraints.copy enumerateObjectsUsingBlock:
+     ^(FYConstraint * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+         if (obj.to == view && obj.section == section) {
+             [_unsetConstraints removeObject:obj];
              *stop = YES;
          }
      }];
 }
 
-- (BOOL)noConstraintCirculationWith:(FYConstraint *)cons {
-    NSMutableArray<FYConstraint *> * constraints = _constraints;
+- (BOOL)noConstraintCirculationWith:(FYConstraint *)constraint {
+    NSMutableArray<FYConstraint *> * constraints = _unsetConstraints;
     [constraints filterUsingPredicate:[NSPredicate predicateWithBlock:^BOOL(FYConstraint * _Nonnull con, NSDictionary<NSString *,id> * _Nullable bindings) {
-        return con.to == cons.from && con.from == cons.to;
+        return con.to == constraint.from && con.from == constraint.to;
     }]];
     return constraints.count == 0;
 }

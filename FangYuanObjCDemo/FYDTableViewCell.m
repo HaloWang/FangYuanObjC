@@ -40,7 +40,8 @@
 
 - (void)setItemPriceShow:(BOOL)show {
     self.itemPriceLabel.hidden = !show;
-    self.itemTitleLabel.fy_right(show ? self.itemPriceLabel.chainLeft + 5 : 5);
+    NSLog(@"%@", self);
+//    self.itemTitleLabel.fy_right(5);
 }
 
 @end

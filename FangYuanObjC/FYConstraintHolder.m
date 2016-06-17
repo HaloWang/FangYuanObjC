@@ -7,50 +7,52 @@
 
 @implementation FYConstraintHolder
 
-- (FYConstraint *)constraintAt:(FYConstraintDirection)direction {
-    switch (direction) {
-        case FYConstraintDirectionTopBottom:
-            return self.topBottom;
-        case FYConstraintDirectionBottomTop:
-            return self.bottomTop;
-        case FYConstraintDirectionLeftRight:
-            return self.leftRight;
-        case FYConstraintDirectionRightLeft:
-            return self.rightLeft;
+- (FYConstraint *)constraintAt:(FYConstraintSection)section {
+    switch (section) {
+        case FYConstraintSectionBottom:
+            return self.bottom;
+        case FYConstraintSectionTop:
+            return self.top;
+        case FYConstraintSectionRight:
+            return self.right;
+        case FYConstraintSectionLeft:
+            return self.left;
         default:
+            NSAssert(NO, @"Something wrong!");
             return nil;
     }
 }
 
-- (void)set:(FYConstraint *)constraint At:(FYConstraintDirection)direction {
-    switch (direction) {
-        case FYConstraintDirectionTopBottom:{
-            self.topBottom = constraint;
+- (void)set:(FYConstraint *)constraint at:(FYConstraintSection)section {
+    switch (section) {
+        case FYConstraintSectionBottom:{
+            self.bottom = constraint;
             break;
         }
             
-        case FYConstraintDirectionBottomTop:{
-            self.bottomTop = constraint;
+        case FYConstraintSectionTop:{
+            self.top = constraint;
             break;
         }
             
-        case FYConstraintDirectionLeftRight:{
-            self.leftRight = constraint;
+        case FYConstraintSectionRight:{
+            self.right = constraint;
             break;
         }
             
-        case FYConstraintDirectionRightLeft:{
-            self.rightLeft = constraint;
+        case FYConstraintSectionLeft:{
+            self.left = constraint;
             break;
         }
             
         default:
+            NSAssert(NO, @"Something wrong!");
             return;
     }
 }
 
-- (void)clearConstraintAt:(FYConstraintDirection)direction {
-    [self set:nil At:direction];
+- (void)clearConstraintAt:(FYConstraintSection)section {
+    [self set:nil at:section];
 }
 
 @end

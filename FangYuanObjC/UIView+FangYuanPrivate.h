@@ -29,7 +29,7 @@
 
 - (void)basicSetting:(void(^)())setting;
 
-- (void)popConstraintAt:(FYConstraintDirection)direction value:(CGFloat)value;
+- (void)popConstraintAt:(FYConstraintSection)section value:(CGFloat)value;
 
 - (void)resetRelatedConstraintHorizontal:(BOOL)isHorizontal;
 

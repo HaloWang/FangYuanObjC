@@ -20,20 +20,20 @@ void _fy_waitLayoutQueue();
  *  推入约束
  *
  *  @param from      约束来源
- *  @param direction 约束方向
+ *  @param section 约束方向
  */
 + (void)pushConstraintFrom:(UIView *)from
-                 direction:(FYConstraintDirection)direction;
+                   section:(FYConstraintSection)section;
 
 /**
  *  拉取约束
  *
  *  @param to        约束接收者
- *  @param direction 约束方向
+ *  @param section 约束方向
  *  @param value     约束值
  */
 + (void)popConstraintTo:(UIView *)to
-              direction:(FYConstraintDirection)direction
+                section:(FYConstraintSection)section
                   value:(CGFloat)value;
 
 + (void)layout:(UIView *)view;

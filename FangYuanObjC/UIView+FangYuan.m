@@ -18,7 +18,7 @@
     _fy_layoutQueue(^{
         [FYConstraintManager
          pushConstraintFrom:self
-         direction:FYConstraintDirectionLeftRight
+         section:FYConstraintSectionRight
          ];
     });
     return 0;
@@ -28,7 +28,7 @@
     _fy_layoutQueue(^{
         [FYConstraintManager
          pushConstraintFrom:self
-         direction:FYConstraintDirectionRightLeft
+         section:FYConstraintSectionLeft
          ];
     });
     return 0;
@@ -38,7 +38,7 @@
     _fy_layoutQueue(^{
         [FYConstraintManager
          pushConstraintFrom:self
-         direction:FYConstraintDirectionTopBottom
+         section:FYConstraintSectionBottom
          ];
     });
     return 0;
@@ -48,7 +48,7 @@
     _fy_layoutQueue(^{
         [FYConstraintManager
          pushConstraintFrom:self
-         direction:FYConstraintDirectionBottomTop
+         section:FYConstraintSectionTop
          ];
     });
     return 0;
@@ -62,7 +62,7 @@
     return ^(CGFloat top) {
         [self basicSetting:^{
             [self resetRelatedConstraintHorizontal:NO];
-            [self popConstraintAt:FYConstraintDirectionBottomTop value:top];
+            [self popConstraintAt:FYConstraintSectionTop value:top];
         }];
         return self;
     };
@@ -72,7 +72,7 @@
     return ^(CGFloat bottom) {
         [self basicSetting:^{
             [self resetRelatedConstraintHorizontal:NO];
-            [self popConstraintAt:FYConstraintDirectionTopBottom value:bottom];
+            [self popConstraintAt:FYConstraintSectionBottom value:bottom];
         }];
         return self;
     };
@@ -94,7 +94,7 @@
     return ^(CGFloat left) {
         [self basicSetting:^{
             [self resetRelatedConstraintHorizontal:YES];
-            [self popConstraintAt:FYConstraintDirectionRightLeft value:left];
+            [self popConstraintAt:FYConstraintSectionLeft value:left];
         }];
         return self;
     };
@@ -104,7 +104,7 @@
     return ^(CGFloat right) {
         [self basicSetting:^{
             [self resetRelatedConstraintHorizontal:YES];
-            [self popConstraintAt:FYConstraintDirectionLeftRight value:right];
+            [self popConstraintAt:FYConstraintSectionRight value:right];
         }];
         return self;
     };
@@ -122,7 +122,15 @@
 
 - (UIView *(^)(UIEdgeInsets))fy_edge {
     return ^(UIEdgeInsets edge) {
-        return self.fy_top(edge.top).fy_left(edge.left).fy_right(edge.right).fy_bottom(edge.bottom);
+        [self basicSetting:^{
+            [self resetRelatedConstraintHorizontal:YES];
+            [self resetRelatedConstraintHorizontal:NO];
+            [self popConstraintAt:FYConstraintSectionTop value:edge.top];
+            [self popConstraintAt:FYConstraintSectionLeft value:edge.left];
+            [self popConstraintAt:FYConstraintSectionRight value:edge.right];
+            [self popConstraintAt:FYConstraintSectionBottom value:edge.bottom];
+        }];
+        return self;
     };
 }
 

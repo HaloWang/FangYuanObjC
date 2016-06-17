@@ -10,16 +10,16 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface FYConstraintHolder : NSObject
 
-@property (nonatomic, strong) FYConstraint * _Nullable topBottom;
-@property (nonatomic, strong) FYConstraint * _Nullable bottomTop;
-@property (nonatomic, strong) FYConstraint * _Nullable leftRight;
-@property (nonatomic, strong) FYConstraint * _Nullable rightLeft;
+@property (nonatomic, strong) FYConstraint * _Nullable bottom;
+@property (nonatomic, strong) FYConstraint * _Nullable top;
+@property (nonatomic, strong) FYConstraint * _Nullable right;
+@property (nonatomic, strong) FYConstraint * _Nullable left;
 
-- (FYConstraint * _Nullable)constraintAt:(FYConstraintDirection)direction;
+- (FYConstraint * _Nullable)constraintAt:(FYConstraintSection)section;
 
-- (void)set:(FYConstraint * _Nullable)constraint At:(FYConstraintDirection)direction;
+- (void)set:(FYConstraint * _Nullable)constraint at:(FYConstraintSection)section;
 
-- (void)clearConstraintAt:(FYConstraintDirection)direction;
+- (void)clearConstraintAt:(FYConstraintSection)section;
 
 @end
 

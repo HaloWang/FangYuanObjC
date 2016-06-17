@@ -8,13 +8,13 @@
 
 #import "FYConstraint.h"
 
-BOOL isHorizontal(FYConstraintDirection direction) {
-    switch (direction) {
-        case FYConstraintDirectionLeftRight:
-        case FYConstraintDirectionRightLeft:
+BOOL isHorizontal(FYConstraintSection section) {
+    switch (section) {
+        case FYConstraintSectionRight:
+        case FYConstraintSectionLeft:
             return YES;
-        case FYConstraintDirectionTopBottom:
-        case FYConstraintDirectionBottomTop:
+        case FYConstraintSectionBottom:
+        case FYConstraintSectionTop:
             return NO;
         default:
             return NO;
@@ -25,13 +25,13 @@ BOOL isHorizontal(FYConstraintDirection direction) {
 
 + (FYConstraint *)constraintFrom:(UIView *)from
                               to:(UIView *)to
-                       direction:(FYConstraintDirection)direction
+                         section:(FYConstraintSection)section
                            value:(CGFloat)value
 {
     FYConstraint *cons = [FYConstraint new];
     cons.from          = from;
     cons.to            = to;
-    cons.direction     = direction;
+    cons.section     = section;
     cons.value         = value;
     return cons;
 }

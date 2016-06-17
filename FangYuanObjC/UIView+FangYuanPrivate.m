@@ -117,7 +117,7 @@ static int _AOHolderKey;
     self.frame = rect;
 }
 
-#pragma mark - Helper Functions
+#pragma mark - Functions
 
 - (void)basicSetting:(void(^)())setting {
     self.usingFangYuan = YES;
@@ -163,21 +163,21 @@ static int _AOHolderKey;
     [FYConstraintManager resetRelatedConstraintFrom:self horizontal:isHorizontal];
 }
 
-- (void)popConstraintAt:(FYConstraintDirection)direction value:(CGFloat)value {
-    switch (direction) {
-        case FYConstraintDirectionRightLeft:
+- (void)popConstraintAt:(FYConstraintSection)section value:(CGFloat)value {
+    switch (section) {
+        case FYConstraintSectionLeft:
             self.rulerX.a = FYFloatMake(value);
             break;
             
-        case FYConstraintDirectionLeftRight:
+        case FYConstraintSectionRight:
             self.rulerX.c = FYFloatMake(value);
             break;
             
-        case FYConstraintDirectionTopBottom:
+        case FYConstraintSectionBottom:
             self.rulerY.a = FYFloatMake(value);
             break;
             
-        case FYConstraintDirectionBottomTop:
+        case FYConstraintSectionTop:
             self.rulerY.c = FYFloatMake(value);
             break;
             
@@ -185,7 +185,7 @@ static int _AOHolderKey;
             NSAssert(NO, @"Something Wrong!");
             break;
     }
-    [FYConstraintManager popConstraintTo:self direction:direction value:value];
+    [FYConstraintManager popConstraintTo:self section:section value:value];
 }
 
 @end

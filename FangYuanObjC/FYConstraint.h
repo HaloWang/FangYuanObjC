@@ -8,25 +8,25 @@
 
 #import <UIKit/UIKit.h>
 
-typedef NS_ENUM(NSUInteger, FYConstraintDirection) {
-    FYConstraintDirectionBottomTop,
-    FYConstraintDirectionLeftRight,
-    FYConstraintDirectionRightLeft,
-    FYConstraintDirectionTopBottom,
+typedef NS_ENUM(NSUInteger, FYConstraintSection) {
+    FYConstraintSectionTop,
+    FYConstraintSectionRight,
+    FYConstraintSectionLeft,
+    FYConstraintSectionBottom,
 };
 
-BOOL isHorizontal(FYConstraintDirection direction);
+BOOL isHorizontal(FYConstraintSection section);
 
 @interface FYConstraint : NSObject
 
 @property (nonatomic, weak) UIView *from;
 @property (nonatomic, weak) UIView *to;
 @property (nonatomic, assign) CGFloat value;
-@property (nonatomic, assign) FYConstraintDirection direction;
+@property (nonatomic, assign) FYConstraintSection section;
 
 + (FYConstraint *)constraintFrom:(UIView *)from
                               to:(UIView *)to
-                       direction:(FYConstraintDirection)direction
+                         section:(FYConstraintSection)section
                            value:(CGFloat)value;
 
 @end
