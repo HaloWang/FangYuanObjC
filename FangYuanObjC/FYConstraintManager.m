@@ -247,6 +247,7 @@ void _fy_waitLayoutQueue() {
      }];
 }
 
+#ifdef DEBUG
 - (BOOL)noConstraintCirculationWith:(FYConstraint *)constraint {
     NSMutableArray<FYConstraint *> * constraints = _unsetConstraints.mutableCopy;
     [constraints filterUsingPredicate:[NSPredicate predicateWithBlock:^BOOL(FYConstraint * _Nonnull con, NSDictionary<NSString *,id> * _Nullable bindings) {
@@ -254,5 +255,6 @@ void _fy_waitLayoutQueue() {
     }]];
     return constraints.count == 0;
 }
+#endif
 
 @end
