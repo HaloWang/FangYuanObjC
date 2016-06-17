@@ -233,6 +233,11 @@ void _fy_waitLayoutQueue() {
 
 - (void)removeDuplicateConstraintOf:(UIView *)view at:(FYConstraintSection)section {
     _fy_should_in_layout_queue_
+    
+    if (_unsetConstraints.count == 0) {
+        return;
+    }
+    
     [_unsetConstraints.copy enumerateObjectsUsingBlock:
      ^(FYConstraint * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
          if (obj.to == view && obj.section == section) {
@@ -243,7 +248,7 @@ void _fy_waitLayoutQueue() {
 }
 
 - (BOOL)noConstraintCirculationWith:(FYConstraint *)constraint {
-    NSMutableArray<FYConstraint *> * constraints = _unsetConstraints;
+    NSMutableArray<FYConstraint *> * constraints = _unsetConstraints.mutableCopy;
     [constraints filterUsingPredicate:[NSPredicate predicateWithBlock:^BOOL(FYConstraint * _Nonnull con, NSDictionary<NSString *,id> * _Nullable bindings) {
         return con.to == constraint.from && con.from == constraint.to;
     }]];

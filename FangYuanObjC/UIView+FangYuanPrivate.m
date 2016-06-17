@@ -173,11 +173,11 @@ static int _AOHolderKey;
             self.rulerX.c = FYFloatMake(value);
             break;
             
-        case FYConstraintSectionBottom:
+        case FYConstraintSectionTop:
             self.rulerY.a = FYFloatMake(value);
             break;
             
-        case FYConstraintSectionTop:
+        case FYConstraintSectionBottom:
             self.rulerY.c = FYFloatMake(value);
             break;
             
