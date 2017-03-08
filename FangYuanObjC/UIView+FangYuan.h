@@ -36,7 +36,10 @@ NS_ASSUME_NONNULL_BEGIN
 /// 函数：设定某个 UIView 四个边距离其父视图相对四边的距离
 @property (nonatomic, readonly) UIView *(^fy_edge)(UIEdgeInsets edge);
 
-@property (nonatomic, readonly) void(^toAnimation)();
+@property (nonatomic, readonly) UIView *(^fy_xRange)(CGFloat left, CGFloat right);
+
+/// 升级布局，在重新设置某个 fy 值时使用（比如设定 UIView.animation）
+@property (nonatomic, readonly) void(^fy_update)();
 
 @end
 

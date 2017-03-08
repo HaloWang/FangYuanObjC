@@ -10,6 +10,8 @@
 #import "FYConstraintManager.h"
 #import "UIView+FangYuanPrivate.h"
 
+NS_ASSUME_NONNULL_BEGIN
+
 @implementation UIView (FangYuan)
 
 #pragma mark - Chainable Methods
@@ -134,10 +136,23 @@
     };
 }
 
-- (void (^)())toAnimation {
+- (UIView *(^)(CGFloat, CGFloat))fy_xRange {
+    return ^(CGFloat left, CGFloat right) {
+        [self basicSetting:^{
+            [self resetRelatedConstraintHorizontal:YES];
+            [self popConstraintAt:FYConstraintSectionLeft value:left];
+            [self popConstraintAt:FYConstraintSectionRight value:right];
+        }];
+        return self;
+    };
+}
+
+- (void (^)())fy_update {
     return ^{
         [FYConstraintManager layout:self.superview];
     };
 }
 
 @end
+
+NS_ASSUME_NONNULL_END
