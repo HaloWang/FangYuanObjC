@@ -8,9 +8,9 @@
 
 #import <UIKit/UIKit.h>
 
-typedef  UIView * _Nonnull (^FYSectionValueChainableSetter)(CGFloat value);
-
 NS_ASSUME_NONNULL_BEGIN
+
+typedef  UIView *(^FYSectionValueChainableSetter)(CGFloat value);
 
 @interface UIView (FangYuan)
 
