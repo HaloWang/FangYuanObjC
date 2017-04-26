@@ -1,7 +1,7 @@
 
 Pod::Spec.new do |s|
   s.name         = "FangYuanObjC"
-  s.version      = "0.1.1"
+  s.version      = "0.1.2"
   s.summary      = "A lightweght layout tool written by Objective-C"
   s.homepage     = "https://github.com/HaloWang/FangYuanObjC"
   s.license      = { :type => "MIT", :file => "LICENSE" }
