@@ -189,3 +189,29 @@ static int _AOHolderKey;
 }
 
 @end
+
+@implementation UIButton (FangYuanPrivate)
+
+#pragma mark - Method Swizzling
+
++ (void)load {
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        Class class = [self class];
+        SEL originalSelector = @selector(layoutSubviews);
+        SEL swizzledSelector = @selector(_swizzled_layoutSubviews);
+        Method originalMethod = class_getInstanceMethod(class, originalSelector);
+        Method swizzledMethod = class_getInstanceMethod(class, swizzledSelector);
+        method_exchangeImplementations(originalMethod, swizzledMethod);
+    });
+}
+
+#pragma clang diagnostic push
+#pragma ide diagnostic ignored "InfiniteRecursion"
+- (void)_swizzled_layoutSubviews {
+    [self _swizzled_layoutSubviews];
+    [FYConstraintManager layout:self];
+}
+#pragma clang diagnostic pop
+
+@end
