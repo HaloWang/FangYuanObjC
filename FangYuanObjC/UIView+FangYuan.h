@@ -10,7 +10,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-typedef  UIView *(^FYSectionValueChainableSetter)(CGFloat value);
+typedef UIView * _Nullable (^FYSectionValueChainableSetter)(CGFloat value);
 
 @interface UIView (FangYuan)
 
