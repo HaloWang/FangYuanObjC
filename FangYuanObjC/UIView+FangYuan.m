@@ -147,7 +147,7 @@ NS_ASSUME_NONNULL_BEGIN
     };
 }
 
-- (void (^)())fy_update {
+- (void (^)(void))fy_update {
     return ^{
         [FYConstraintManager layout:self.superview];
     };

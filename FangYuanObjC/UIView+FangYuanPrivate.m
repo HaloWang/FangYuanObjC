@@ -119,7 +119,7 @@ static int _AOHolderKey;
 
 #pragma mark - Functions
 
-- (void)basicSetting:(void(^)())setting {
+- (void)basicSetting:(void(^)(void))setting {
     self.usingFangYuan = YES;
     _fy_layoutQueue(^{
         setting();
@@ -192,36 +192,27 @@ static int _AOHolderKey;
 
 @implementation UIButton (FangYuanPrivate)
 
-static float _fy_systemVersionFloatValue;
-
 #pragma mark - Method Swizzling
 
 + (void)load {
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        //  在 iOS11 中，UIButton 直接使用 UIView 的 layoutSubviews 方法，在 iOS10 及之前的版本中，UIButton 的 layoutSubviews 需要单独置换
-        _fy_systemVersionFloatValue = UIDevice.currentDevice.systemVersion.floatValue;
-        if (_fy_systemVersionFloatValue < 11.0) {
-            Class class = [self class];
-            SEL originalSelector = @selector(layoutSubviews);
-            SEL swizzledSelector = @selector(_swizzled_layoutSubviews);
-            Method originalMethod = class_getInstanceMethod(class, originalSelector);
-            Method swizzledMethod = class_getInstanceMethod(class, swizzledSelector);
-            method_exchangeImplementations(originalMethod, swizzledMethod);
-        }
+        Class class = [self class];
+        SEL originalSelector = @selector(layoutSubviews);
+        SEL swizzledSelector = @selector(_btn_swizzled_layoutSubviews);
+        Method originalMethod = class_getInstanceMethod(class, originalSelector);
+        Method swizzledMethod = class_getInstanceMethod(class, swizzledSelector);
+        method_exchangeImplementations(originalMethod, swizzledMethod);
     });
 }
 
 #pragma clang diagnostic push
 #pragma ide diagnostic ignored "InfiniteRecursion"
-- (void)_swizzled_layoutSubviews {
-    if (_fy_systemVersionFloatValue < 11.0) {
-        [self _swizzled_layoutSubviews];
-        [FYConstraintManager layout:self];
-    } else {
-        [super _swizzled_layoutSubviews];
-    }
+- (void)_btn_swizzled_layoutSubviews {
+    [self _btn_swizzled_layoutSubviews];
+    [FYConstraintManager layout:self];
 }
 #pragma clang diagnostic pop
 
 @end
+

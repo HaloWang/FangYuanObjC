@@ -39,7 +39,7 @@ typedef UIView * _Nullable (^FYSectionValueChainableSetter)(CGFloat value);
 @property (nonatomic, readonly) UIView *(^fy_xRange)(CGFloat left, CGFloat right);
 
 /// 升级布局，在重新设置某个 fy 值时使用（比如设定 UIView.animation）
-@property (nonatomic, readonly) void(^fy_update)();
+@property (nonatomic, readonly) void(^fy_update)(void);
 
 @end
 

@@ -16,6 +16,10 @@
 @property (nonatomic, strong) UIView *view2;
 @property (nonatomic, strong) UIView *view3;
 
+@property (nonatomic, strong) UIButton *btn1;
+@property (nonatomic, strong) UIButton *btn2;
+@property (nonatomic, strong) UIView *viewInBtn;
+
 @end
 
 @implementation ViewController
@@ -35,6 +39,14 @@
     self.view3 = [UIView new];
     [self.view addSubview:_view3];
     _view3.backgroundColor = [UIColor greenColor];
+    
+    self.btn1 = [UIButton buttonWithType:UIButtonTypeCustom];
+    _btn1.backgroundColor = [UIColor lightGrayColor];
+    [self.view addSubview:_btn1];
+    
+    self.viewInBtn = [UIView new];
+    _viewInBtn.backgroundColor = [UIColor darkGrayColor];
+    [self.btn1 addSubview:_viewInBtn];
     
     DemoLayout(^{
         
@@ -62,6 +74,20 @@
         .fy_top(50)
         .fy_bottom(_view2.chainTop - 25);
         
+        _btn1
+        .fy_width(100)
+        .fy_right(20)
+        .fy_top(100)
+        .fy_height(50);
+        
+        _viewInBtn
+        .fy_edge(UIEdgeInsetsMake(3, 3, 3, 3));
+        
+    });
+    
+    dispatch_async(dispatch_get_main_queue(), ^{
+        NSLog(@"✅%@", _btn1);
+        NSLog(@"✅%@", _viewInBtn);
     });
     
 }

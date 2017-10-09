@@ -12,7 +12,7 @@
 void _fy_layoutQueue(dispatch_block_t block);
 
 #define _fy_wait_layout_queue_ _fy_waitLayoutQueue();
-void _fy_waitLayoutQueue();
+void _fy_waitLayoutQueue(void);
 
 @interface FYConstraintManager : NSObject
 

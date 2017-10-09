@@ -27,7 +27,7 @@
 
 - (void)layoutWithFangYuan;
 
-- (void)basicSetting:(void(^)())setting;
+- (void)basicSetting:(void(^)(void))setting;
 
 - (void)popConstraintAt:(FYConstraintSection)section value:(CGFloat)value;
 
