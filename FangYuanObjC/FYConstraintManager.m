@@ -245,7 +245,7 @@ void _fy_waitLayoutQueue() {
     [_unsetConstraints.copy enumerateObjectsUsingBlock:
      ^(FYConstraint * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
          if (obj.to == view && obj.section == section) {
-             [_unsetConstraints removeObject:obj];
+             [self.unsetConstraints removeObject:obj];
              *stop = YES;
          }
      }];
