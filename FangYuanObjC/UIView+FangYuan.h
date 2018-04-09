@@ -39,10 +39,7 @@ typedef UIView * _Nullable (^FYSectionValueChainableSetter)(CGFloat value);
 /// 同时设定 fy_left 与 fy_right
 @property (nonatomic, readonly) UIView *(^fy_xRange)(CGFloat left, CGFloat right);
 
-/// 升级布局，在重新设置某个 fy 值时使用。比如在 cellForRow 中为 UITableViewCell 绑定数据时使用 FangYuanObjC 重设 cell.subviews 的布局
-@property (nonatomic, readonly) void(^fy_update)(void) DEPRECATED_MSG_ATTRIBUTE("不再需要手动调用");
-
-/// 该方法将调用 view.superview 的 layoutIfNeed 方法，在 UIView.animation 中使用它
+/// 该方法将调用直接使用方圆设定某 UIView.frame，在 UIView.animation 中使用该方法以实现动画
 @property (nonatomic, readonly) void(^fy_animate)(void);
 
 @end
