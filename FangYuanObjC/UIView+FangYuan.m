@@ -153,6 +153,12 @@ NS_ASSUME_NONNULL_BEGIN
     };
 }
 
+- (void (^)(void))fy_animate {
+    return ^{
+        [self.superview layoutIfNeeded];
+    };
+}
+
 @end
 
 NS_ASSUME_NONNULL_END
