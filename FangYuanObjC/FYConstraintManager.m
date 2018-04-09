@@ -130,6 +130,8 @@ void _fy_waitLayoutQueue() {
 
 - (void)layout:(NSMutableArray<UIView *> *)views {
     _fy_should_in_main_queue_
+    
+    //  在没有前置约束的情况下，直接使用 rulerX/rulerY 进行布局
     if (![self hasUnSetConstraint:self.unsetConstraints of:views]) {
         for (UIView *view in views) {
             [view layoutWithFangYuan];
@@ -137,6 +139,8 @@ void _fy_waitLayoutQueue() {
         return;
     }
     
+    //  如果有前置约束，先对没有前置约束的 subview 使用 rulerX/rulerY 进行布局。然后对后续 subview 进行布局
+    //  类似“无环有向图”
     __block NSArray<FYConstraint *> *constraints = self.unsetConstraints;
     __block BOOL shouldRepeat;
     do {

@@ -120,7 +120,9 @@ static int _AOHolderKey;
 #pragma mark - Functions
 
 - (void)basicSetting:(void(^)(void))setting {
+    NSAssert([NSThread isMainThread], nil);
     self.usingFangYuan = YES;
+    [self.superview setNeedsLayout];
     _fy_layoutQueue(^{
         setting();
     });

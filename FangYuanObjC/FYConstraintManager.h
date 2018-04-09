@@ -36,6 +36,9 @@ void _fy_waitLayoutQueue(void);
                 section:(FYConstraintSection)section
                   value:(CGFloat)value;
 
+/**
+ Core Layout Method
+ */
 + (void)layout:(UIView *)view;
 
 + (void)resetRelatedConstraintFrom:(UIView *)fromView horizontal:(BOOL)horizontal;

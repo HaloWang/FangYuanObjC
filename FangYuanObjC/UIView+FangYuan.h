@@ -36,10 +36,11 @@ typedef UIView * _Nullable (^FYSectionValueChainableSetter)(CGFloat value);
 /// 函数：设定某个 UIView 四个边距离其父视图相对四边的距离
 @property (nonatomic, readonly) UIView *(^fy_edge)(UIEdgeInsets edge);
 
+/// 同时设定 fy_left 与 fy_right
 @property (nonatomic, readonly) UIView *(^fy_xRange)(CGFloat left, CGFloat right);
 
-/// 升级布局，在重新设置某个 fy 值时使用（比如设定 UIView.animation）
-@property (nonatomic, readonly) void(^fy_update)(void);
+/// 升级布局，在重新设置某个 fy 值时使用。比如：1. UIView.animation 2. UITableViewCell.setModel
+@property (nonatomic, readonly) void(^fy_update)(void) DEPRECATED_MSG_ATTRIBUTE("不再需要手动调用");
 
 @end
 
