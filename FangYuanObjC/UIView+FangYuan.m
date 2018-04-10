@@ -149,7 +149,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (void (^)(void))fy_animate {
     return ^{
-        [FYConstraintManager layout:self.superview];
+        if (self.superview) {
+            [FYConstraintManager layout:self.superview];
+        }
     };
 }
 
