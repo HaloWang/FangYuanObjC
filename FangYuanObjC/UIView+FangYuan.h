@@ -39,6 +39,9 @@ typedef UIView * _Nullable (^FYSectionValueChainableSetter)(CGFloat value);
 /// 同时设定 fy_left 与 fy_right
 @property (nonatomic, readonly) UIView *(^fy_xRange)(CGFloat left, CGFloat right);
 
+/// 同时设定 fy_width 与 fy_height
+@property (nonatomic, readonly) UIView *(^fy_size)(CGFloat width, CGFloat height);
+
 /// 该方法将调用直接使用方圆设定某 UIView.frame，在 UIView.animation 中使用该方法以实现动画
 @property (nonatomic, readonly) void(^fy_animate)(void);
 

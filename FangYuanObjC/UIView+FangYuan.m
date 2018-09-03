@@ -147,11 +147,16 @@ NS_ASSUME_NONNULL_BEGIN
     };
 }
 
+- (UIView * _Nonnull (^)(CGFloat, CGFloat))fy_size {
+    return ^(CGFloat width, CGFloat height) {
+        return self.fy_width(width).fy_height(height);
+    };
+}
+
 - (void (^)(void))fy_animate {
     return ^{
-        if (self.superview) {
-            [FYConstraintManager layout:self.superview];
-        }
+        NSAssert(self.superview != nil, @"需要先添加到 superView 上");
+        [FYConstraintManager layout:self.superview];
     };
 }
 
